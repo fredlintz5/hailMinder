@@ -49,6 +49,14 @@
               //   accessToken: accessToken,
               //   providerData: providerData
               // }, null, '  ');
+              // email verification function upon sign-up
+            var user = firebase.auth().currentUser;
+
+            user.sendEmailVerification().then(function() {
+              // Email sent.
+              }).catch(function(error) {
+              // An error happened.
+              });
             });
           } else {
             // User is signed out.
@@ -60,15 +68,6 @@
           console.log(error);
         });
       };
-
-      // email verification function upon sign-up
-      var user = firebase.auth().currentUser;
-
-      user.sendEmailVerification().then(function() {
-        // Email sent.
-      }).catch(function(error) {
-        // An error happened.
-      });
 
       window.addEventListener('load', function() {
         initApp()
