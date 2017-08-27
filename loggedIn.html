@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>HailMinder | Auth Page</title>
+    <title>HailMinder | Profile Page</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assetts/css/style.css">
@@ -67,17 +67,56 @@
     </script>
   </head>
   <body>
+  <br>
+  <div class="container">
+    <div class="row col-sm-12">
+      <h3 id="header">hailMinder</h3>
+      <hr>
+    </div>
 
-  <div class="container-fluid">
-    <div class="jumbotron text-white text-center">
-      <div>
-        <h1>hailMinder</h1>
-        <div id="displayName"></div>
-        <div id="sign-in-status"></div>
-        <br>
-        <button class="btn btn-info" id="sign-in"></button>
-        <div id="account-details"></div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">Personal Settings</div>
+          <div class="panel-body">
+            <a class="menu-item" id="profileSettings">Profile</a>
+            <a class="menu-item" id="locationSettings">Locations</a>
+            <a class="menu-item" id="emailSettings">Emails</a>
+            <a class="menu-item" id="notificationSettings">Notifications</a>
+          </div>
+        </div>
       </div>
+
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label for="displayName">Name</label>
+              <input type="text" class="form-control" id="displayName" placeholder="displayName">
+            </div>
+            <div class="form-group">
+              <label for="displayName">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="email">
+            </div>
+            <div class="form-group">
+              <label for="displayName">Phone Number</label>
+              <input type="tel" class="form-control" id="phoneNumber" placeholder="phoneNumber">
+            </div>
+          </div>
+
+          <div class="col-sm-8 hide">Email Inputs</div>
+          <div class="col-sm-8 hide">Notification Inputs</div>
+
+          <div class="col-sm-4">
+            <label for="profilePic">Profile Pic</label>
+            <img src="assetts/images/avatar-placeholder.png" width="150"/>
+          </div>
+        </div>
+      </div>
+
+        <!-- <div id="sign-in-status"></div>
+        <button class="btn btn-info" id="sign-in"></button>
+        <div id="account-details"></div> -->
     </div>
   </div>
 

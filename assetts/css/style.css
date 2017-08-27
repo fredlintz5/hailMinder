@@ -5,3 +5,19 @@
 	padding-top: 40vh;
 	color: whitesmoke;
 }
+
+.menu-item {
+	padding: 8px 10px;
+	display: block;
+	border-bottom: 1px solid #e1e4e8;
+}
+
+a:hover {
+	text-decoration: none;
+	cursor: pointer;
+	background-color:rgba(192,192,192,0.2);
+}
+
+.panel-body {
+	padding: 0px;
+}
