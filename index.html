@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
 	<title>HailMinder</title>
 
-	<!-- Firebase API Key and Config  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assetts/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script>
 
-<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyClRKGEi4sOAzyk6pOn8oxIevbY3zOoy7I",
-    authDomain: "hailminder-d07a5.firebaseapp.com",
-    databaseURL: "https://hailminder-d07a5.firebaseio.com",
-    projectId: "hailminder-d07a5",
-    storageBucket: "hailminder-d07a5.appspot.com",
-    messagingSenderId: "150987850599"
-  };
-  firebase.initializeApp(config);
-</script>
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyClRKGEi4sOAzyk6pOn8oxIevbY3zOoy7I",
+      authDomain: "hailminder-d07a5.firebaseapp.com",
+      databaseURL: "https://hailminder-d07a5.firebaseio.com",
+      projectId: "hailminder-d07a5",
+      storageBucket: "hailminder-d07a5.appspot.com",
+      messagingSenderId: "150987850599"
+    };
+    firebase.initializeApp(config);
+  </script>
 
 	<!-- Firebase Web Auth UI -->
 
@@ -50,10 +55,17 @@
 
 </head>
 <body>
-	<!-- The surrounding HTML is left untouched by FirebaseUI.
-         Your app may use that space for branding, controls and other customizations.-->
-	<h1>Welcome to HailMinder</h1>
-	<div id="firebaseui-auth-container"></div>
+	<div class="container-fluid">
+    <div class="jumbotron text-white text-center">
+      <div>
+        <h1>Welcome to hailMinder</h1>
+        <div id="sign-in-status"></div>
+        <div id="sign-in"></div>
+        <div id="account-details"></div>
+        <div id="firebaseui-auth-container"></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 

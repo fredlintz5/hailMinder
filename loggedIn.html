@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>HailMinder | Auth Page</title>
     
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assetts/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
     <script>
     // Initialize Firebase
@@ -31,22 +35,23 @@
             var phoneNumber = user.phoneNumber;
             var providerData = user.providerData;
             user.getIdToken().then(function(accessToken) {
-              document.getElementById('sign-in-status').textContent = 'Signed in';
+              $("#displayName").html("Hello " + displayName + " !" )
+              document.getElementById('sign-in-status').textContent = 'You are currently logged in';
               document.getElementById('sign-in').textContent = 'Sign out';
-              document.getElementById('account-details').textContent = JSON.stringify({
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                phoneNumber: phoneNumber,
-                photoURL: photoURL,
-                uid: uid,
-                accessToken: accessToken,
-                providerData: providerData
-              }, null, '  ');
+              // document.getElementById('account-details').textContent = JSON.stringify({
+              //   displayName: displayName,
+              //   email: email,
+              //   emailVerified: emailVerified,
+              //   phoneNumber: phoneNumber,
+              //   photoURL: photoURL,
+              //   uid: uid,
+              //   accessToken: accessToken,
+              //   providerData: providerData
+              // }, null, '  ');
             });
           } else {
             // User is signed out.
-            document.getElementById('sign-in-status').textContent = 'Signed out';
+            document.getElementById('sign-in-status').textContent = 'You are currently logged out';
             document.getElementById('sign-in').textContent = 'Sign in';
             document.getElementById('account-details').textContent = 'null';
           }
@@ -61,9 +66,32 @@
     </script>
   </head>
   <body>
-    <h1>Welcome to My Awesome App</h1>
-    <div id="sign-in-status"></div>
-    <div id="sign-in"></div>
-    <div id="account-details"></div>
-  </body>
+
+  <div class="container-fluid">
+    <div class="jumbotron text-white text-center">
+      <div>
+        <h1>hailMinder</h1>
+        <div id="displayName"></div>
+        <div id="sign-in-status"></div>
+        <br>
+        <button class="btn btn-info" id="sign-in"></button>
+        <div id="account-details"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
