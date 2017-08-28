@@ -43,6 +43,14 @@ initApp = function() {
   });
 };
 
+function signOut() {
+  firebase.auth().signOut().then(function() {
+    window.location.assign("https://fredlintz5.github.io/hailMinder/");
+  }).catch(function(error) {
+    console.log(error);
+  });
+}
+
 window.addEventListener('load', function() {
   initApp()
 });
