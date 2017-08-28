@@ -22,33 +22,22 @@ initApp = function() {
       var uid = user.uid;
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
+
       user.getIdToken().then(function(accessToken) {
-        // $("#displayName").html("Hello " + displayName + " !" )
-        // document.getElementById('sign-in-status').textContent = 'You are currently logged in';
-        // document.getElementById('sign-in').textContent = 'Sign out';
-        // document.getElementById('account-details').textContent = JSON.stringify({
-        //   displayName: displayName,
-        //   email: email,
-        //   emailVerified: emailVerified,
-        //   phoneNumber: phoneNumber,
-        //   photoURL: photoURL,
-        //   uid: uid,
-        //   accessToken: accessToken,
-        //   providerData: providerData
-        // }, null, '  ');
+        
         console.log(user);
         $('#displayName').attr('value', displayName);
         $('#email').attr('value', email);
         $('#phoneNumber').attr('value', phoneNumber);
+        $('#profilePic img').attr('src', photoURL);
         $('#homeZip').attr('value', homeZip);
         $('#workZip').attr('value', workZip);
       })
+
     } else {
-      // User is signed out.
-      // $('sign-in-status').textContent = 'You are currently logged out';
-      // $('sign-in').textContent = 'Sign in';
-      // $('account-details').textContent = 'null';
+      // User is signed out
     }
+
   }, function(error) {
     console.log(error);
   });
@@ -57,4 +46,14 @@ initApp = function() {
 window.addEventListener('load', function() {
   initApp()
 });
+
+
+
+
+
+
+
+
+
+
    
