@@ -99,12 +99,14 @@ $('#updateButton').click(function() {
 
   console.log("click");
 
-  firebase.database().ref('users/').set({
+  firebase.database().ref('users/' + uid).set({
     displayName: inputDisplayName,
     email: inputEmail,
     profile_picture: photoURL,
     uid: uid,
-    phoneNumber: inputPhoneNumber
+    phoneNumber: inputPhoneNumber,
+    homeZip: inputHomeZip,
+    workZip: inputWorkZip
 
   });
 
