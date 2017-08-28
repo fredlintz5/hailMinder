@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!--Responsive Mobile Meta Tag-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>HailMinder | Profile Page</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,8 +24,8 @@
 
     <div class="row">
       <div class="col-sm-3 text-center">
-        <div id="profilePic">
-          <img src="assetts/images/avatar-placeholder.png"/>
+        <div>
+          <img id="profilePic" src="assetts/images/avatar-placeholder.png"/>
         </div>
         <br>
         <button class="btn btn-default disabled">Change Profile Pic</button>
@@ -37,23 +37,23 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="displayName">Name</label>
-          <input type="text" class="form-control" id="displayName">
+          <input type="text" class="form-control" id="displayName" placeholder="John Smith">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email">
+          <input type="email" class="form-control" id="email" placeholder="john.smith@genericEmail.com">
         </div>
         <div class="form-group">
           <label for="phoneNumber">Phone Number</label>
-          <input type="tel" class="form-control" id="phoneNumber" placeholder="Add your phone number here to receive SMS...">
+          <input type="tel" class="form-control" id="phoneNumber" placeholder="(800)-867-5309">
         </div>
         <div class="form-group">
           <label for="homeZip">Home Zipcode</label>
-          <input type="number" class="form-control" id="homeZip" placeholder="Add your home zipcode here for custom alerts...">
+          <input type="number" class="form-control" id="homeZip" placeholder="90210">
         </div>
         <div class="form-group">
           <label for="workZip">Work Zipcode</label>
-          <input type="number" class="form-control" id="workZip" placeholder="Add your work zipcode here for custom alerts...">
+          <input type="number" class="form-control" id="workZip" placeholder="90210">
         </div>
         <div class="form-group">
           <label for="">Email Notification</label>
@@ -61,7 +61,7 @@
           <label for="">SMS Notification</label>
           <input id="notificationToggle" type="checkbox" checked data-toggle="toggle">
         </div>
-        <button class="btn btn-success disabled" id="updateButton">Update Profile Info</button>
+        <button class="btn btn-success" id="updateButton">Update Profile Info</button>
       </div>
       <br>
       <div class="col-sm-3">

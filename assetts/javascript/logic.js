@@ -11,6 +11,11 @@ var config = {
 firebase.initializeApp(config);
     
 
+window.addEventListener('load', function() {
+  initApp()
+});
+
+
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -26,12 +31,21 @@ initApp = function() {
       user.getIdToken().then(function(accessToken) {
         
         console.log(user);
-        $('#displayName').attr('value', displayName);
-        $('#email').attr('value', email);
-        $('#phoneNumber').attr('value', phoneNumber);
-        $('#profilePic img').attr('src', photoURL);
-        $('#homeZip').attr('value', homeZip);
-        $('#workZip').attr('value', workZip);
+
+        firebase.database().ref('users/' + uid).set({
+          displayName: displayName,
+          email: email,
+          profile_picture : photoURL,
+          uid = uid,
+          phoneNumber = phoneNumber
+
+        });
+        // $('#displayName').attr('value', displayName);
+        // $('#email').attr('value', email);
+        // $('#phoneNumber').attr('value', phoneNumber);
+        // $('#profilePic img').attr('src', photoURL);
+        // $('#homeZip').attr('value', homeZip);
+        // $('#workZip').attr('value', workZip);
       })
 
     } else {
@@ -52,9 +66,30 @@ function signOut() {
   });
 }
 
-window.addEventListener('load', function() {
-  initApp()
+
+var database = firebase.database().ref();
+
+database.on("value", function(snapshot) {
+
+  console.log(snapshot);
+    
+})
+
+
+$('#updateButton').click(function() {
+
+  var displayName = $('#displayName').val().trim();
+  var email = $('#email').val().trim();
+  var phoneNumber = $('#phoneNumber').val().trim();
+  var profilePic = $('#profilePic img').val().trim();
+  var homeZip = $('#homeZip').val().trim();
+  var workZip = $('#workZip').val().trim();
+
+  console.log("click");
+
+
 });
+
 
 
 

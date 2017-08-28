@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <!--Responsive Mobile Meta Tag-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
 	<title>HailMinder</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="assetts/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 
   <script>
@@ -37,13 +36,11 @@
       var uiConfig = {
         signInSuccessUrl: 'loggedIn.html',
         signInOptions: [
-          // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
           // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
           // firebase.auth.GithubAuthProvider.PROVIDER_ID,
           firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          // firebase.auth.PhoneAuthProvider.PROVIDER_ID
         ],
         // Terms of service url.
         tosUrl: '<your-tos-url>'
@@ -62,7 +59,7 @@
 	<div class="container-fluid">
     <div class="jumbotron text-white text-center">
       <h1>Welcome to hailMinder</h1>
-      <!-- this line utilizes the builtin firebase login UI -->
+      <!-- this line utilizes the built-in firebase login UI -->
       <div id="firebaseui-auth-container"></div>
     </div>
   </div>
