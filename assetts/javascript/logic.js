@@ -110,6 +110,8 @@ $('#updateButton').click(function() {
 
   });
 
+  alert("Your profile has been updated!");
+
 
 });
 
