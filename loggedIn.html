@@ -10,61 +10,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
     
-    <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyClRKGEi4sOAzyk6pOn8oxIevbY3zOoy7I",
-      authDomain: "hailminder-d07a5.firebaseapp.com",
-      databaseURL: "https://hailminder-d07a5.firebaseio.com",
-      projectId: "hailminder-d07a5",
-      storageBucket: "hailminder-d07a5.appspot.com",
-      messagingSenderId: "150987850599"
-    };
-    firebase.initializeApp(config);
-    </script>
-
-    <script type="text/javascript">
-      initApp = function() {
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var uid = user.uid;
-            var phoneNumber = user.phoneNumber;
-            var providerData = user.providerData;
-            user.getIdToken().then(function(accessToken) {
-              $("#displayName").html("Hello " + displayName + " !" )
-              document.getElementById('sign-in-status').textContent = 'You are currently logged in';
-              document.getElementById('sign-in').textContent = 'Sign out';
-              // document.getElementById('account-details').textContent = JSON.stringify({
-              //   displayName: displayName,
-              //   email: email,
-              //   emailVerified: emailVerified,
-              //   phoneNumber: phoneNumber,
-              //   photoURL: photoURL,
-              //   uid: uid,
-              //   accessToken: accessToken,
-              //   providerData: providerData
-              // }, null, '  ');
-            })
-          } else {
-            // User is signed out.
-            document.getElementById('sign-in-status').textContent = 'You are currently logged out';
-            document.getElementById('sign-in').textContent = 'Sign in';
-            document.getElementById('account-details').textContent = 'null';
-          }
-        }, function(error) {
-          console.log(error);
-        });
-      };
-
-      window.addEventListener('load', function() {
-        initApp()
-      });
-    </script>
   </head>
   <body>
   <br>
@@ -75,51 +20,53 @@
     </div>
 
     <div class="row">
+      <div class="col-sm-3 text-center">
+        <div id="profilePic">
+          <img src="assetts/images/avatar-placeholder.png"/>
+        </div>
+        <br>
+        <button class="btn btn-default">Change Profile Pic</button>
+      </div>
+      <br>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="displayName">Name</label>
+          <input type="text" class="form-control" id="displayName">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="tel" class="form-control" id="phoneNumber">
+        </div>
+        <div class="form-group">
+          <label for="homeZip">Home Zipcode</label>
+          <input type="number" class="form-control" id="homeZip">
+        </div>
+        <div class="form-group">
+          <label for="workZip">Work Zipcode</label>
+          <input type="number" class="form-control" id="workZip">
+        </div>
+        <div class="form-group">
+          <label for="">Email Notification</label>
+          <input id="emailToggle" type="checkbox" checked data-toggle="toggle">
+          <label for="">SMS Notification</label>
+          <input id="notificationToggle" type="checkbox" checked data-toggle="toggle">
+        </div>
+        <button class="btn btn-success" id="updateButton">Update Profile Info</button>
+      </div>
+      <br>
       <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">Personal Settings</div>
-          <div class="panel-body">
-            <a class="menu-item" id="profileSettings">Profile</a>
-            <a class="menu-item" id="locationSettings">Locations</a>
-            <a class="menu-item" id="emailSettings">Emails</a>
-            <a class="menu-item" id="notificationSettings">Notifications</a>
-          </div>
-        </div>
+        Current Weather Conditions go here...
       </div>
 
-      <div class="col-sm-9">
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="form-group">
-              <label for="displayName">Name</label>
-              <input type="text" class="form-control" id="displayName" placeholder="displayName">
-            </div>
-            <div class="form-group">
-              <label for="displayName">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="email">
-            </div>
-            <div class="form-group">
-              <label for="displayName">Phone Number</label>
-              <input type="tel" class="form-control" id="phoneNumber" placeholder="phoneNumber">
-            </div>
-          </div>
-
-          <div class="col-sm-8 hide">Email Inputs</div>
-          <div class="col-sm-8 hide">Notification Inputs</div>
-
-          <div class="col-sm-4">
-            <label for="profilePic">Profile Pic</label>
-            <img src="assetts/images/avatar-placeholder.png" width="150"/>
-          </div>
-        </div>
-      </div>
-
-        <!-- <div id="sign-in-status"></div>
-        <button class="btn btn-info" id="sign-in"></button>
-        <div id="account-details"></div> -->
     </div>
   </div>
 
+
+<script src="assetts/javascript/logic.js"></script>
 </body>
 </html>
 

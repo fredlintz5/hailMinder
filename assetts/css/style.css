@@ -1,3 +1,9 @@
+a:hover {
+	text-decoration: none;
+	cursor: pointer;
+	background-color:rgba(192,192,192,0.2);
+}
+
 .jumbotron {
 	background-image: url("../images/tenor.gif");
 	background-size: cover;
@@ -12,12 +18,26 @@
 	border-bottom: 1px solid #e1e4e8;
 }
 
-a:hover {
-	text-decoration: none;
-	cursor: pointer;
-	background-color:rgba(192,192,192,0.2);
-}
-
 .panel-body {
 	padding: 0px;
 }
+
+#profilePic img {
+	width: 50%;
+}
+
+#emailToggle {
+	margin-right: 10px;
+}
+
+
+@media (min-width: 768px) {
+	#profilePic img {
+		width: 100%;
+	}
+}
+
+
+
+
+
