@@ -97,9 +97,9 @@ $('#updateButton').click(function() {
   firebase.database().ref('users/' + uid).set({
     displayName: inputDisplayName,
     email: inputEmail,
-    profile_picture : photoURL,
-    uid = uid,
-    phoneNumber = inputPhoneNumber
+    profile_picture: photoURL,
+    uid: uid,
+    phoneNumber: inputPhoneNumber
 
   });
 
