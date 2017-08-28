@@ -23,9 +23,9 @@ initApp = function() {
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
       user.getIdToken().then(function(accessToken) {
-        $("#displayName").html("Hello " + displayName + " !" )
-        document.getElementById('sign-in-status').textContent = 'You are currently logged in';
-        document.getElementById('sign-in').textContent = 'Sign out';
+        // $("#displayName").html("Hello " + displayName + " !" )
+        // document.getElementById('sign-in-status').textContent = 'You are currently logged in';
+        // document.getElementById('sign-in').textContent = 'Sign out';
         // document.getElementById('account-details').textContent = JSON.stringify({
         //   displayName: displayName,
         //   email: email,
@@ -44,9 +44,9 @@ initApp = function() {
       })
     } else {
       // User is signed out.
-      $('sign-in-status').textContent = 'You are currently logged out';
-      $('sign-in').textContent = 'Sign in';
-      $('account-details').textContent = 'null';
+      // $('sign-in-status').textContent = 'You are currently logged out';
+      // $('sign-in').textContent = 'Sign in';
+      // $('account-details').textContent = 'null';
     }
   }, function(error) {
     console.log(error);
