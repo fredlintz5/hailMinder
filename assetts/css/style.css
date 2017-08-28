@@ -22,7 +22,7 @@ a:hover {
 	padding: 0px;
 }
 
-#profilePic img {
+#profilePic {
 	width: 50%;
 }
 
@@ -32,7 +32,7 @@ a:hover {
 
 
 @media (min-width: 768px) {
-	#profilePic img {
+	#profilePic {
 		width: 100%;
 	}
 }

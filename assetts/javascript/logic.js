@@ -84,7 +84,7 @@ var database = firebase.database().ref();
 
 database.on("value", function(snapshot) {
 
-  console.log(snapshot);
+  console.log(snapshot.val());
     
 })
 
@@ -99,7 +99,7 @@ $('#updateButton').click(function() {
 
   console.log("click");
 
-  firebase.database().ref('users/' + uid).set({
+  firebase.database().ref('users/').set({
     displayName: inputDisplayName,
     email: inputEmail,
     profile_picture: photoURL,
