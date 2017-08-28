@@ -15,31 +15,39 @@ window.addEventListener('load', function() {
   initApp()
 });
 
+var displayName;
+var email;
+var photoURL;
+var uid;
+var phoneNumber;
+
 
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
-      var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var uid = user.uid;
-      var phoneNumber = user.phoneNumber;
-      var providerData = user.providerData;
+      displayName = user.displayName;
+      email = user.email;
+      photoURL = user.photoURL;
+      uid = user.uid;
+      phoneNumber = user.phoneNumber;
 
       user.getIdToken().then(function(accessToken) {
         
         console.log(user);
 
-        firebase.database().ref('users/' + uid).set({
-          displayName: displayName,
-          email: email,
-          profile_picture : photoURL,
-          uid = uid,
-          phoneNumber = phoneNumber
+        if ($('#displayName').attr('value') === "") {
+          $('#displayName').attr('value', displayName);
+        }
 
-        });
+        if ($('#email').attr('value') === "") {
+          $('#email').attr('value', email);
+        }
+
+        if ($('#phoneNumber').attr('value') === "") {
+          $('#phoneNumber').attr('value', phoneNumber);
+        }
+
         // $('#displayName').attr('value', displayName);
         // $('#email').attr('value', email);
         // $('#phoneNumber').attr('value', phoneNumber);
@@ -78,14 +86,22 @@ database.on("value", function(snapshot) {
 
 $('#updateButton').click(function() {
 
-  var displayName = $('#displayName').val().trim();
-  var email = $('#email').val().trim();
-  var phoneNumber = $('#phoneNumber').val().trim();
-  var profilePic = $('#profilePic img').val().trim();
-  var homeZip = $('#homeZip').val().trim();
-  var workZip = $('#workZip').val().trim();
+  var inputDisplayName = $('#displayName').val().trim();
+  var inputEmail = $('#email').val().trim();
+  var inputPhoneNumber = $('#phoneNumber').val().trim();
+  var inputHomeZip = $('#homeZip').val().trim();
+  var inputWorkZip = $('#workZip').val().trim();
 
   console.log("click");
+
+  firebase.database().ref('users/' + uid).set({
+    displayName: inputDisplayName,
+    email: inputEmail,
+    profile_picture : photoURL,
+    uid = uid,
+    phoneNumber = inputPhoneNumber
+
+  });
 
 
 });
