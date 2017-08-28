@@ -37,6 +37,7 @@ initApp = function() {
         console.log(user);
 
         if ($('#displayName').attr('value') === "") {
+          console.log("display name is empty");
           $('#displayName').attr('value', displayName);
         }
 
@@ -48,10 +49,14 @@ initApp = function() {
           $('#phoneNumber').attr('value', phoneNumber);
         }
 
+        if ($('#profilePic').attr('src') === "assetts/images/avatar-placeholder.png") {
+          $('#profilePic').attr('src', photoURL);
+        }
+        
         // $('#displayName').attr('value', displayName);
         // $('#email').attr('value', email);
         // $('#phoneNumber').attr('value', phoneNumber);
-        // $('#profilePic img').attr('src', photoURL);
+        // $('#profilePic').attr('src', photoURL);
         // $('#homeZip').attr('value', homeZip);
         // $('#workZip').attr('value', workZip);
       })
