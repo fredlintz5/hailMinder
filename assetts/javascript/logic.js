@@ -36,11 +36,11 @@ initApp = function() {
         //   accessToken: accessToken,
         //   providerData: providerData
         // }, null, '  ');
-        $('#displayName').attr('val', displayName);
-        $('#email').attr('val', email);
-        $('#phoneNumber').attr('val', phoneNumber);
-        $('#homeZip').attr('val', homeZip);
-        $('#workZip').attr('val', workZip);
+        $('#displayName').attr('value', displayName);
+        $('#email').attr('value', email);
+        $('#phoneNumber').attr('value', phoneNumber);
+        $('#homeZip').attr('value', homeZip);
+        $('#workZip').attr('value', workZip);
       })
     } else {
       // User is signed out.
