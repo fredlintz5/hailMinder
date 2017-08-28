@@ -36,6 +36,7 @@ initApp = function() {
         //   accessToken: accessToken,
         //   providerData: providerData
         // }, null, '  ');
+        console.log(accessToken);
         $('#displayName').attr('value', displayName);
         $('#email').attr('value', email);
         $('#phoneNumber').attr('value', phoneNumber);
