@@ -78,12 +78,12 @@ var database = firebase.database().ref();
 
 database.on("value", function(snapshot) {
 
-  console.log(snapshot.val().uid);
+  console.log(snapshot.val().'users/' + uid);
 
   if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
 
-    $('#displayName').attr('value', snapshot.val().displayName);
+    $('#displayName').attr('value', snapshot.val().'users/' + displayName);
     $('#email').attr('value', snapshot.val().email);
     $('#phoneNumber').attr('value', snapshot.val().phoneNumber);
     $('#profilePic').attr('src', snapshot.val().profile_picture);
