@@ -78,17 +78,17 @@ var database = firebase.database().ref();
 
 database.on("value", function(snapshot) {
 
-  console.log(snapshot.val().users);
+  console.log(snapshot.val().users.uid);
 
   if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
 
-    $('#displayName').attr('value', snapshot.val().uid.displayName);
-    $('#email').attr('value', snapshot.val().email);
-    $('#phoneNumber').attr('value', snapshot.val().uid.phoneNumber);
-    $('#profilePic').attr('src', snapshot.val().uid.profile_picture);
-    $('#homeZip').attr('value', snapshot.val().uid.homeZip);
-    $('#workZip').attr('value', snapshot.val().uid.workZip);
+    $('#displayName').attr('value', snapshot.val().users.uid.displayName);
+    $('#email').attr('value', snapshot.val().users.uid.email);
+    $('#phoneNumber').attr('value', snapshot.val().users.uid.phoneNumber);
+    $('#profilePic').attr('src', snapshot.val().users.uid.profile_picture);
+    $('#homeZip').attr('value', snapshot.val().users.uid.homeZip);
+    $('#workZip').attr('value', snapshot.val().users.uid.workZip);
   }
     
 })
