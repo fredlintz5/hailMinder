@@ -80,7 +80,7 @@ database.on("value", function(snapshot) {
 
   console.log(snapshot.val());
   console.log(snapshot.child('users').val());
-  console.log(snapshot.child('users/' + uid).val());
+  console.log(snapshot.child('users/' + uid + '/displayName').val());
 
   if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
