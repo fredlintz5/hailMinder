@@ -78,7 +78,7 @@ var database = firebase.database().ref();
 
 database.on("value", function(snapshot) {
 
-  console.log(snapshot.val().users);
+  console.log(snapshot.val().child('users/' + uid));
 
   if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
