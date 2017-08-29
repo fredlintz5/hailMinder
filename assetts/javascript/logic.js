@@ -83,7 +83,7 @@ database.on("value", function(snapshot) {
   if (snapshot.child(uid).exists()) {
     console.log('exists');
 
-    $('#displayName').attr('value', snapshot.val().displayName);
+    $('#displayName').attr('value', snapshot.val().uid.displayName);
     $('#email').attr('value', snapshot.val().email);
     $('#phoneNumber').attr('value', snapshot.val().phoneNumber);
     $('#profilePic').attr('src', snapshot.val().profile_picture);
