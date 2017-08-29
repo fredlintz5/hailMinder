@@ -35,6 +35,10 @@ a:hover {
 	#profilePic {
 		width: 100%;
 	}
+
+	.firebaseui-card-header h1 {
+		font-size: 30px;
+	}
 }
 
 

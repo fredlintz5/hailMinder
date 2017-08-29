@@ -34,8 +34,6 @@ initApp = function() {
 
       user.getIdToken().then(function(accessToken) {
         
-        console.log(user);
-
         if ($('#displayName').attr('value') === "") {
           console.log("display name is empty");
           $('#displayName').attr('value', displayName);
@@ -78,9 +76,9 @@ var database = firebase.database().ref();
 
 database.on("value", function(snapshot) {
 
-  console.log(snapshot.val());
-  console.log(snapshot.child('users').val());
-  console.log(snapshot.child('users/' + uid + '/displayName').val());
+  // console.log(snapshot.val());
+  // console.log(snapshot.child('users').val());
+  // console.log(snapshot.child('users/' + uid + '/displayName').val());
 
   if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
@@ -103,8 +101,8 @@ $('#updateButton').click(function() {
   var inputPhoneNumber = $('#phoneNumber').val().trim();
   var inputHomeZip = $('#homeZip').val().trim();
   var inputWorkZip = $('#workZip').val().trim();
-
-  console.log("click");
+  var emailCheck = $('#emailToggle').is(":checked");
+  var notificationCheck = $('#notificationToggle').is(":checked");
 
   firebase.database().ref('users/' + uid).set({
     displayName: inputDisplayName,
@@ -114,11 +112,12 @@ $('#updateButton').click(function() {
     phoneNumber: inputPhoneNumber,
     homeZip: inputHomeZip,
     workZip: inputWorkZip
+    emailNotification: emailCheck,
+    smsNotification: notificationCheck
 
   });
 
   alert("Your profile has been updated!");
-
 
 });
 
