@@ -86,11 +86,11 @@ database.on("value", function(snapshot) {
     console.log('exists');
 
     $('#displayName').attr('value', snapshot.child('users/' + uid + '/displayName').val());
-    $('#email').attr('value', snapshot.child('users/' + uid + '/email').val();
-    $('#phoneNumber').attr('value', snapshot.child('users/' + uid + '/phoneNumber').val();
-    $('#profilePic').attr('src', snapshot.child('users/' + uid + '/profile_picture').val();
+    $('#email').attr('value', snapshot.child('users/' + uid + '/email').val());
+    $('#phoneNumber').attr('value', snapshot.child('users/' + uid + '/phoneNumber').val());
+    $('#profilePic').attr('src', snapshot.child('users/' + uid + '/profile_picture').val());
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
-    $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val();
+    $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
   }
     
 })
