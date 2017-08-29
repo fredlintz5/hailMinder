@@ -85,12 +85,12 @@ database.on("value", function(snapshot) {
   if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
 
-    $('#displayName').attr('value', snapshot.val().displayName);
-    $('#email').attr('value', snapshot.val().email);
-    $('#phoneNumber').attr('value', snapshot.val().phoneNumber);
-    $('#profilePic').attr('src', snapshot.val().profile_picture);
-    $('#homeZip').attr('value', snapshot.val().homeZip);
-    $('#workZip').attr('value', snapshot.val().workZip);
+    $('#displayName').attr('value', snapshot.child('users/' + uid + '/displayName').val());
+    $('#email').attr('value', snapshot.child('users/' + uid + '/email').val();
+    $('#phoneNumber').attr('value', snapshot.child('users/' + uid + '/phoneNumber').val();
+    $('#profilePic').attr('src', snapshot.child('users/' + uid + '/profile_picture').val();
+    $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
+    $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val();
   }
     
 })
