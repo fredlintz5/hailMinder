@@ -111,7 +111,7 @@ $('#updateButton').click(function() {
     uid: uid,
     phoneNumber: inputPhoneNumber,
     homeZip: inputHomeZip,
-    workZip: inputWorkZip
+    workZip: inputWorkZip,
     emailNotification: emailCheck,
     smsNotification: notificationCheck
 
