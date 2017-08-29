@@ -90,7 +90,7 @@ database.on("value", function(snapshot) {
     $('#profilePic').attr('src', snapshot.val().profile_picture);
     $('#homeZip').attr('value', snapshot.val().homeZip);
     $('#workZip').attr('value', snapshot.val().workZip);
-  }
+  // }
     
 })
 
