@@ -74,14 +74,15 @@ function signOut() {
 }
 
 
-var database = firebase.database().ref('users/' + uid);
+var database = firebase.database().ref();
 
 database.on("value", function(snapshot) {
 
-  console.log(uid);
-  console.log(snapshot.child("displayName").val());
+  console.log(snapshot.val());
+  console.log(snapshot.child('users').val());
+  console.log(snapshot.child('users/' + uid).val());
 
-  if (snapshot.child("uid").exists()) {
+  if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
 
     $('#displayName').attr('value', snapshot.val().displayName);
