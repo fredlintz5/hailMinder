@@ -74,7 +74,7 @@ function signOut() {
 }
 
 
-var database = firebase.database().ref().child('users');
+var database = firebase.database().ref().child('users/'+uid);
 
 database.on("value", function(snapshot) {
 
