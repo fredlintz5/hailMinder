@@ -74,7 +74,7 @@ function signOut() {
 }
 
 
-var database = firebase.database().ref().child(uid);
+var database = firebase.database().ref().child('users/' + uid);
 
 database.on("value", function(snapshot) {
 
@@ -83,12 +83,12 @@ database.on("value", function(snapshot) {
   if (snapshot.child('users/' + uid).exists()) {
     console.log('exists');
 
-    $('#displayName').attr('value', snapshot.val().users.uid.displayName);
-    $('#email').attr('value', snapshot.val().users.uid.email);
-    $('#phoneNumber').attr('value', snapshot.val().users.uid.phoneNumber);
-    $('#profilePic').attr('src', snapshot.val().users.uid.profile_picture);
-    $('#homeZip').attr('value', snapshot.val().users.uid.homeZip);
-    $('#workZip').attr('value', snapshot.val().users.uid.workZip);
+    $('#displayName').attr('value', snapshot.val().displayName);
+    $('#email').attr('value', snapshot.val().email);
+    $('#phoneNumber').attr('value', snapshot.val().phoneNumber);
+    $('#profilePic').attr('src', snapshot.val().profile_picture);
+    $('#homeZip').attr('value', snapshot.val().homeZip);
+    $('#workZip').attr('value', snapshot.val().workZip);
   }
     
 })
