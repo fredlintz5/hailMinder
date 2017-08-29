@@ -35,7 +35,6 @@ initApp = function() {
       user.getIdToken().then(function(accessToken) {
         
         if ($('#displayName').attr('value') === "") {
-          console.log("display name is empty");
           $('#displayName').attr('value', displayName);
         }
 
@@ -81,7 +80,6 @@ database.on("value", function(snapshot) {
   // console.log(snapshot.child('users/' + uid + '/displayName').val());
 
   if (snapshot.child('users/' + uid).exists()) {
-    console.log('exists');
 
     $('#displayName').attr('value', snapshot.child('users/' + uid + '/displayName').val());
     $('#email').attr('value', snapshot.child('users/' + uid + '/email').val());
