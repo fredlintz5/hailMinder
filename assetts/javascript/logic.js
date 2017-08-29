@@ -79,10 +79,10 @@ var database = firebase.database().ref('users/' + uid);
 database.on("value", function(snapshot) {
 
   console.log(uid);
-  console.log(snapshot.val());
+  console.log(snapshot.child("displayName").val());
 
-  // if (snapshot.child(uid).exists()) {
-  //   console.log('exists');
+  if (snapshot.child("uid").exists()) {
+    console.log('exists');
 
     $('#displayName').attr('value', snapshot.val().displayName);
     $('#email').attr('value', snapshot.val().email);
@@ -90,7 +90,7 @@ database.on("value", function(snapshot) {
     $('#profilePic').attr('src', snapshot.val().profile_picture);
     $('#homeZip').attr('value', snapshot.val().homeZip);
     $('#workZip').attr('value', snapshot.val().workZip);
-  // }
+  }
     
 })
 
