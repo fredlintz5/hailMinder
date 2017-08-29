@@ -74,7 +74,7 @@ function signOut() {
 }
 
 
-var database = firebase.database().ref().child('users');
+var database = firebase.database().ref().child('users').child("'" + uid + "'");
 
 database.on("value", function(snapshot) {
 
@@ -83,7 +83,7 @@ database.on("value", function(snapshot) {
   if (snapshot.child(uid).exists()) {
     console.log('exists');
 
-    $('#displayName').attr('value', snapshot.val().uid.displayName);
+    $('#displayName').attr('value', snapshot.val().displayName);
     $('#email').attr('value', snapshot.val().email);
     $('#phoneNumber').attr('value', snapshot.val().phoneNumber);
     $('#profilePic').attr('src', snapshot.val().profile_picture);
