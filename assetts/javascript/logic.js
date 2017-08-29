@@ -87,6 +87,18 @@ database.on("value", function(snapshot) {
     $('#profilePic').attr('src', snapshot.child('users/' + uid + '/profile_picture').val());
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
+
+      if (snapshot.child('users/' + uid + '/emailNotification').val()) {
+          $('#emailToggle').attr('checked');
+      } else {
+        $('#emailToggle').removeAttr('checked');
+      }
+
+      if (snapshot.child('users/' + uid + '/smsNotification').val()) {
+          $('#notificationToggle').attr('checked');
+      } else {
+        $('#notificationToggle').removeAttr('checked');
+      }
   }
     
 })
