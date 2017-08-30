@@ -11,9 +11,7 @@ a:hover {
 }
 
 .jumbotron {
-	/*background-image: url("../images/tenor.gif");
-	background-size: cover;*/
-	/*height: 100vh;*/
+	background: none;
 	padding-top: 40vh;
 	color: whitesmoke;
 }
