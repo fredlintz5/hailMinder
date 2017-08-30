@@ -1,3 +1,9 @@
+.container-fluid {
+	background-image: url("../images/tenor.gif");
+	background-size: cover;
+	height: 100vh;
+}
+
 a:hover {
 	text-decoration: none;
 	cursor: pointer;
@@ -5,9 +11,9 @@ a:hover {
 }
 
 .jumbotron {
-	background-image: url("../images/tenor.gif");
-	background-size: cover;
-	height: 100vh;
+	/*background-image: url("../images/tenor.gif");
+	background-size: cover;*/
+	/*height: 100vh;*/
 	padding-top: 40vh;
 	color: whitesmoke;
 }
