@@ -78,7 +78,7 @@ var localArray = [];
 // This callback keeps the page updated when a value changes in firebase.
 database.on("value", function(snapshot) {
   
-  if (snapshot.child('userZips/zipCodes').exists()) {
+  if (snapshot.child('userZips').exists()) {
     localArray = snapshot.child('userZips/zipCodes').val();
     console.log(localArray);
 
@@ -146,7 +146,7 @@ $('#updateButton').click(function() {
   console.log(localArray);
 
 
-  firebase.database().ref('userZips/zipCodes').set({
+  firebase.database().ref('userZips').set({
     zipCodes:localArray,
   })
 
