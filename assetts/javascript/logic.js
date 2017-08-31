@@ -72,8 +72,6 @@ function signOut() {
 
 
 var database = firebase.database().ref();
-var user = firebase.database().ref('users/' + uid);
-var zips = firebase.database().ref('zipCodes');
 
 
 database.on("value", function(snapshot) {
@@ -117,7 +115,7 @@ $('#updateButton').click(function() {
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
 
-  user.set({
+  firebase.database().ref('users/' + uid).set({
     displayName: inputDisplayName,
     email: inputEmail,
     profile_picture: photoURL,
@@ -128,12 +126,6 @@ $('#updateButton').click(function() {
     emailNotification: emailCheck,
     smsNotification: notificationCheck
   });
-
-  zips.push({
-    zip: inputHomeZip,
-    zip: inputWorkZip,
-
-  })
 
   // replace this with a 'modal'...
   alert("Your profile has been updated!");
