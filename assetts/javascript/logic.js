@@ -72,6 +72,18 @@ function signOut() {
 
 
 var database = firebase.database().ref();
+var localArray = [];
+
+database.on("value", function(snapshot) {
+  
+  if (snapshot.child('userZipCodeArray').exists()) {
+    localArray = snapshot.val().userZipCodeArray;
+
+  } else {
+    localArray = [];
+  }
+})
+
 
 database.on("value", function(snapshot) {
 
@@ -126,9 +138,11 @@ $('#updateButton').click(function() {
     smsNotification: notificationCheck
   });
 
-  firebase.database().ref().push({
-    userZipCodeArray: inputHomeZip,
-    userZipCodeArray: inputWorkZip,
+  localArray.push(inputHomeZip);
+  localArray.push(inputWorkZip);
+
+  database.set({
+    userZipCodeArray: localArray,
   });
 
   // replace this with a 'modal'...
