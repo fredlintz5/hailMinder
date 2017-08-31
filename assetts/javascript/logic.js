@@ -73,6 +73,19 @@ function signOut() {
 
 var database = firebase.database().ref();
 
+var localArray = [];
+
+// This callback keeps the page updated when a value changes in firebase.
+database.on("value", function(snapshot) {
+  
+  if (snapshot.child('zipCodes').exists()) {
+    localArray = snapshot.val().zipCodes;
+    console.log(localArray);
+
+  } else {
+    localArray = [];
+  }
+})
 
 database.on("value", function(snapshot) {
 
@@ -128,15 +141,17 @@ $('#updateButton').click(function() {
   });
 
 
-  firebase.database().ref('zipcodes').push({
-    zip: inputHomeZip,
+  localArray.push(inputHomeZip);
+  localArray.push(inputWorkZip);
+  console.log(localArray);
 
+
+  firebase.database().ref('zipCodes').set({
+    zipCodes:localArray,
   })
 
-  firebase.database().ref('zipcodes').push({
-    zip: inputWorkZip,
 
-  })
+
   // replace this with a 'modal'...
   alert("Your profile has been updated!");
 
