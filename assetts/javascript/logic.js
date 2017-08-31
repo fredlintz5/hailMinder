@@ -141,14 +141,19 @@ $('#updateButton').click(function() {
   });
 
   for (var i = 0; i < localArray.length; i++) {
-    if (inputHomeZip !== localArray[i]) {
+    if (inputHomeZip === localArray[i]) {
+      console.log('homeZip match');
+    } else {
       localArray.push(inputHomeZip);
     }
+  }
 
-    if (inputWorkZip !== localArray[i]) {
+  for (var j = 0; j < localArray.length; j++) {
+    jf (inputWorkZip === localArray[j]) {
+      console.log('workZip match');
+    } else {
       localArray.push(inputWorkZip);
     }
-    
   }
   
   console.log(localArray);
