@@ -146,7 +146,7 @@ $('#updateButton').click(function() {
   console.log(localArray);
 
 
-  firebase.database().ref('zipCodes').set({
+  firebase.database().ref().set({
     zipCodes:localArray,
   })
 
