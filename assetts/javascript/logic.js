@@ -124,9 +124,14 @@ $('#updateButton').click(function() {
     workZip: inputWorkZip,
     emailNotification: emailCheck,
     smsNotification: notificationCheck
-
   });
 
+  firebase.database().ref().push({
+    userZipCodeArray: inputHomeZip,
+    userZipCodeArray: inputWorkZip,
+  });
+
+  // replace this with a 'modal'...
   alert("Your profile has been updated!");
 
 });
