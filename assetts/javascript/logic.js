@@ -129,12 +129,12 @@ $('#updateButton').click(function() {
 
 
   firebase.database().ref('zipcodes').push({
-    zip.inputHomeZip,
+    zip: inputHomeZip,
 
   })
 
   firebase.database().ref('zipcodes').push({
-    zip.inputWorkZip,
+    zip: inputWorkZip,
 
   })
   // replace this with a 'modal'...
