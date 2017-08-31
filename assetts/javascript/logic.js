@@ -141,7 +141,7 @@ $('#updateButton').click(function() {
   localArray.push(inputHomeZip);
   localArray.push(inputWorkZip);
 
-  database.push({
+  database.set({
     userZipCodeArray: localArray,
   });
 
