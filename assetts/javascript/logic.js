@@ -149,7 +149,7 @@ $('#updateButton').click(function() {
   }
 
   for (var j = 0; j < localArray.length; j++) {
-    jf (inputWorkZip === localArray[j]) {
+    if (inputWorkZip === localArray[j]) {
       console.log('workZip match');
     } else {
       localArray.push(inputWorkZip);
