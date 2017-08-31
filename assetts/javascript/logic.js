@@ -127,6 +127,16 @@ $('#updateButton').click(function() {
     smsNotification: notificationCheck
   });
 
+
+  firebase.database().ref('zipcodes').push({
+    zip.inputHomeZip,
+
+  })
+
+  firebase.database().ref('zipcodes').push({
+    zip.inputWorkZip,
+
+  })
   // replace this with a 'modal'...
   alert("Your profile has been updated!");
 
