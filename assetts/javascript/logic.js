@@ -72,17 +72,8 @@ function signOut() {
 
 
 var database = firebase.database().ref();
-var localArray = [];
-
-database.on("value", function(snapshot) {
-  
-  if (snapshot.child('userZipCodeArray').exists()) {
-    localArray = snapshot.val().userZipCodeArray;
-
-  } else {
-    localArray = [];
-  }
-})
+var user = firebase.database().ref('users/' + uid);
+var zips = firebase.database().ref('zipCodes');
 
 
 database.on("value", function(snapshot) {
@@ -126,7 +117,7 @@ $('#updateButton').click(function() {
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
 
-  firebase.database().ref('users/' + uid).set({
+  user.set({
     displayName: inputDisplayName,
     email: inputEmail,
     profile_picture: photoURL,
@@ -138,12 +129,11 @@ $('#updateButton').click(function() {
     smsNotification: notificationCheck
   });
 
-  localArray.push(inputHomeZip);
-  localArray.push(inputWorkZip);
+  zips.push({
+    zip: inputHomeZip,
+    zip: inputWorkZip,
 
-  database.set({
-    userZipCodeArray: localArray,
-  });
+  })
 
   // replace this with a 'modal'...
   alert("Your profile has been updated!");
