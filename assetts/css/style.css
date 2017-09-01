@@ -1,3 +1,8 @@
+/* body {
+	font-family: 'Amatic SC', cursive;
+	font-size: 20px !important;
+} */
+
 a:hover {
 	text-decoration: none;
 	cursor: pointer;
@@ -5,11 +10,16 @@ a:hover {
 }
 
 .jumbotron {
-	background-image: url("../images/tenor.gif");
+	background-image: url("https://media.giphy.com/media/xTiTnGmU99wLFvZBfy/giphy.gif");
 	background-size: cover;
 	height: 100vh;
-	padding-top: 40vh;
+	padding-top: 20vh;
 	color: whitesmoke;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+#login-logo {
+	height:30%;
 }
 
 .menu-item {
@@ -22,12 +32,29 @@ a:hover {
 	padding: 0px;
 }
 
+h3 {
+	font-family: 'Ubuntu', sans-serif;
+	text-align:center;
+	font-size:40px;
+}
 #profilePic {
 	width: 50%;
 }
 
+
 #emailToggle {
 	margin-right: 10px;
+}
+
+
+.btn {
+	background-color:#6BCDDA;
+	border-color:#488E97;
+}
+
+.btn:hover {
+	background-color:#488E97;
+	border-color:#6BCDDA;
 }
 
 
