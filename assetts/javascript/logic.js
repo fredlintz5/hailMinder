@@ -73,6 +73,21 @@ function signOut() {
 
 var database = firebase.database().ref();
 
+var localArray = [];
+
+// This callback keeps the page updated when a value changes in firebase.
+database.on("value", function(snapshot) {
+  
+  if (snapshot.child('userZips').exists()) {
+    localArray = snapshot.child('userZips/zipCodes').val();
+    console.log(localArray);
+
+  } else {
+    localArray = [];
+  }
+
+})
+
 database.on("value", function(snapshot) {
 
   // console.log(snapshot.val());
@@ -114,20 +129,33 @@ $('#updateButton').click(function() {
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
 
-  firebase.database().ref('users/' + uid).set({
-    displayName: inputDisplayName,
-    email: inputEmail,
-    profile_picture: photoURL,
-    uid: uid,
-    phoneNumber: inputPhoneNumber,
-    homeZip: inputHomeZip,
-    workZip: inputWorkZip,
-    emailNotification: emailCheck,
-    smsNotification: notificationCheck
+  // firebase.database().ref('users/' + uid).set({
+  //   displayName: inputDisplayName,
+  //   email: inputEmail,
+  //   profile_picture: photoURL,
+  //   uid: uid,
+  //   phoneNumber: inputPhoneNumber,
+  //   homeZip: inputHomeZip,
+  //   workZip: inputWorkZip,
+  //   emailNotification: emailCheck,
+  //   smsNotification: notificationCheck
+  // });
 
-  });
+  // var filterArray = localArray.filter(function(){
 
-  alert("Your profile has been updated!");
+    
+  // });
+
+  // localArray.push(inputHomeZip);
+  // localArray.push(inputWorkZip);
+  // console.log(localArray);
+
+
+  // firebase.database().ref('userZips').set({
+  //   zipCodes:localArray,
+  // })
+
+  $('#myModal').modal('toggle');
 
 });
 
