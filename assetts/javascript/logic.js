@@ -129,31 +129,31 @@ $('#updateButton').click(function() {
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
 
-  // firebase.database().ref('users/' + uid).set({
-  //   displayName: inputDisplayName,
-  //   email: inputEmail,
-  //   profile_picture: photoURL,
-  //   uid: uid,
-  //   phoneNumber: inputPhoneNumber,
-  //   homeZip: inputHomeZip,
-  //   workZip: inputWorkZip,
-  //   emailNotification: emailCheck,
-  //   smsNotification: notificationCheck
-  // });
+  firebase.database().ref('users/' + uid).set({
+    displayName: inputDisplayName,
+    email: inputEmail,
+    profile_picture: photoURL,
+    uid: uid,
+    phoneNumber: inputPhoneNumber,
+    homeZip: inputHomeZip,
+    workZip: inputWorkZip,
+    emailNotification: emailCheck,
+    smsNotification: notificationCheck
+  });
 
-  // var filterArray = localArray.filter(function(){
+  var filterArray = localArray.filter(function(){
 
     
-  // });
+  });
 
-  // localArray.push(inputHomeZip);
-  // localArray.push(inputWorkZip);
-  // console.log(localArray);
+  localArray.push(inputHomeZip);
+  localArray.push(inputWorkZip);
+  console.log(localArray);
 
 
-  // firebase.database().ref('userZips').set({
-  //   zipCodes:localArray,
-  // })
+  firebase.database().ref('userZips').set({
+    zipCodes:localArray,
+  })
 
   $('#myModal').modal('toggle');
 
