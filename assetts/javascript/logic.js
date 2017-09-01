@@ -9,7 +9,7 @@ var config = {
   messagingSenderId: "150987850599"
 };
 firebase.initializeApp(config);
-    
+
 
 window.addEventListener('load', function() {
   initApp()
@@ -33,7 +33,7 @@ initApp = function() {
       phoneNumber = user.phoneNumber;
 
       user.getIdToken().then(function(accessToken) {
-        
+
         if ($('#displayName').attr('value') === "") {
           $('#displayName').attr('value', displayName);
         }
@@ -77,7 +77,7 @@ var localArray = [];
 
 // This callback keeps the page updated when a value changes in firebase.
 database.on("value", function(snapshot) {
-  
+
   if (snapshot.child('userZips').exists()) {
     localArray = snapshot.child('userZips/zipCodes').val();
     console.log(localArray);
@@ -103,55 +103,19 @@ database.on("value", function(snapshot) {
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
 
-      if (snapshot.child('users/' + uid + '/emailNotification').val()) {
-          $('#emailToggle').attr('checked');
-      } else {
-        $('#emailToggle').removeAttr('checked');
-      }
-
-      if (snapshot.child('users/' + uid + '/smsNotification').val()) {
-          $('#notificationToggle').attr('checked');
-      } else {
-        $('#notificationToggle').removeAttr('checked');
-      }
-  }
-    //function showing current weather info on login page
-       // function codeAddress() {
-       //      alert('ok');
-       //  }
-       //  window.onload = codeAddress;
-
-       function currentweather() {
-
-       var appID = "fa6eb231f9fb2288695c7834db698e4c";
-
-        window.onload = currentweather;
-
-        var query_param = $(this).prev().val();
-
-        if ($(this).prev().attr("placeholder") == "City") {
-            var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + query_param + "&units=imperial&APPID=" + appID;
-        } else if ($(this).prev().attr("placeholder") == "Zip Code") {
-            var weather = "http://api.openweathermap.org/data/2.5/weather?zip=" + query_param + "&units=imperial&APPID=" + appID;
-        }   //"http://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&units=imperial&appid=" + APIKey;
-
-        $.getJSON(weather,function(json){
-            $("#city").html(json.name);
-            $("#description_weather").html(json.weather[0].description);
-            $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + json.weather[0].icon + ".png");
-            $("#temperature").html(json.main.temp);
-          });
-      };
-
-      function getlocation () {
-        if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+    if (snapshot.child('users/' + uid + '/emailNotification').val()) {
+      $('#emailToggle').attr('checked');
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-        console.log(showPosition);
-    } 
+      $('#emailToggle').removeAttr('checked');
     }
-    };
+
+    if (snapshot.child('users/' + uid + '/smsNotification').val()) {
+      $('#notificationToggle').attr('checked');
+    } else {
+      $('#notificationToggle').removeAttr('checked');
+    }
+  }
+})
 
 
 $('#updateButton').click(function() {
@@ -178,7 +142,7 @@ $('#updateButton').click(function() {
 
   var filterArray = localArray.filter(function(){
 
-    
+
   });
 
   localArray.push(inputHomeZip);
@@ -204,4 +168,3 @@ $('#updateButton').click(function() {
 
 
 
-   
