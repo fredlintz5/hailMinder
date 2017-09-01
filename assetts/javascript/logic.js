@@ -140,22 +140,11 @@ $('#updateButton').click(function() {
     smsNotification: notificationCheck
   });
 
-  for (var i = 0; i < localArray.length; i++) {
-    if (inputHomeZip === localArray[i]) {
-      console.log('homeZip match');
-    } else {
-      localArray.push(inputHomeZip);
-    }
-  }
+  var filterArray = localArray.filter(function(){
 
-  for (var j = 0; j < localArray.length; j++) {
-    if (inputWorkZip === localArray[j]) {
-      console.log('workZip match');
-    } else {
-      localArray.push(inputWorkZip);
-    }
-  }
-  
+    
+  });
+
   console.log(localArray);
 
 
