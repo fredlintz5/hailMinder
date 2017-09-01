@@ -115,7 +115,7 @@ database.on("value", function(snapshot) {
       $('#notificationToggle').removeAttr('checked');
     }
   }
-};
+})
 
 
 $('#updateButton').click(function() {
