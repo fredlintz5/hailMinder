@@ -85,6 +85,7 @@ database.on("value", function(snapshot) {
   } else {
     localArray = [];
   }
+
 })
 
 database.on("value", function(snapshot) {
@@ -189,10 +190,7 @@ $('#updateButton').click(function() {
     zipCodes:localArray,
   })
 
-
-
-  // replace this with a 'modal'...
-  alert("Your profile has been updated!");
+  $('#myModal').modal('toggle');
 
 });
 

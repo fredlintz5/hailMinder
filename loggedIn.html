@@ -9,6 +9,7 @@
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assetts/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|BenchNine|Berkshire+Swash|Sacramento|Shrikhand" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
@@ -16,6 +17,23 @@
   </head>
   <body>
   <br>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Profile Updated</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Hail Yes!
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row col-sm-12">
       <h3 id="header">hailMinder</h3>
