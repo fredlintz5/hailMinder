@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-/* body {
-	font-family: 'Amatic SC', cursive;
-	font-size: 20px !important;
-} */
-=======
 .container-fluid {
 	background-image: url("../images/tenor.gif");
 	background-size: cover;
 	height: 100vh;
 }
->>>>>>> 07339f82f242798778bc60504660adb3525b7648
 
 a:hover {
 	text-decoration: none;
@@ -18,21 +11,14 @@ a:hover {
 }
 
 .jumbotron {
-<<<<<<< HEAD
-	background-image: url("https://media.giphy.com/media/xTiTnGmU99wLFvZBfy/giphy.gif");
-	background-size: cover;
-	height: 100vh;
-	padding-top: 20vh;
-=======
 	background: none;
-	padding-top: 40vh;
->>>>>>> 07339f82f242798778bc60504660adb3525b7648
+	padding-top: 20vh;
 	color: whitesmoke;
 	font-family: 'Ubuntu', sans-serif;
 }
 
 #login-logo {
-	height:30%;
+	width: 30%;
 }
 
 .menu-item {
