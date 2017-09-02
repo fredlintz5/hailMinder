@@ -1,7 +1,4 @@
 
-window.onload = currentweather();
-
-
 function currentweather() {
 
   if (navigator.geolocation){
@@ -66,6 +63,7 @@ function currentweather() {
     });
   }
 }
+currentweather();
 
 
 
