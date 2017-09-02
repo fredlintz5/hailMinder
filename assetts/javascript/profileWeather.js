@@ -35,7 +35,7 @@ function currentweather() {
 
         //Snow
         else if(data.weather[0].id>=600 && data.weather[0].id<=622){  
-          $("#currentWeather").css("background","url('http://res.freestockphotos.biz/pictures/9/9250-snow-covered-trees-pv.jpg')"); }
+          $("#currentWeather").css("background","url('https://res.freestockphotos.biz/pictures/9/9250-snow-covered-trees-pv.jpg')"); }
 
         //Atmosphere
         else if(data.weather[0].id>=701 && data.weather[0].id<=781){ 
@@ -49,7 +49,7 @@ function currentweather() {
 
         //Clouds
         else if(data.weather[0].id>=801 && data.weather[0].id<=804){ 
-          $("#currentWeather").css("background","url('http://www.freegreatpicture.com/Max-Pixel/static/photo/1x/Skyporn-Clouds-Skies-Weather-Lookup-Sky-Cloudy-1571791.jpg')"); 
+          $("#currentWeather").css("background","url('https://www.freegreatpicture.com/Max-Pixel/static/photo/1x/Skyporn-Clouds-Skies-Weather-Lookup-Sky-Cloudy-1571791.jpg')"); 
         }
 
         //Extreme
