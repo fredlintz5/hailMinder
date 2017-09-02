@@ -27,7 +27,7 @@ $(document).ready(function() {
   //   initApp()
   // });
 
-  initApp = function() {
+  function initApp() {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
