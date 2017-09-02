@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  
+
+  initApp();  
 
   // Initialize Firebase
   var config = {
@@ -22,9 +23,9 @@ $(document).ready(function() {
   var uid;
   var phoneNumber;
 
-  window.addEventListener('load', function() {
-    initApp()
-  });
+  // window.addEventListener('load', function() {
+  //   initApp()
+  // });
 
   initApp = function() {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -149,12 +150,9 @@ $(document).ready(function() {
         localArray.push(inputHomeZip);
     }
 
-
     if (localArray.indexOf(inputWorkZip) < 0 ) {
       localArray.push(inputWorkZip);
     }
-
-    console.log(localArray);
 
 
     firebase.database().ref('userZips').set({
