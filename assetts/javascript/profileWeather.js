@@ -26,7 +26,7 @@ var long="";
          $("#description_weather").html(data.weather[0].description);
          console.log(data.weather[0].id);
          $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
-         $("#temperature").html(data.main.temp + "&#8457");
+         $("#temperature").html(Math.round(data.main.temp) + "&#8457");
 
         //Thunderstorm
         
