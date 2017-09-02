@@ -6,8 +6,8 @@ function currentweather() {
     navigator.geolocation.getCurrentPosition(function(position){
 
       var lat = position.coords.latitude;
-      var long = position.coords.longitude;
-      var weatherURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&units=imperial&APPID=fa6eb231f9fb2288695c7834db698e4c&callback "; 
+      var lon = position.coords.longitude;
+      var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=imperial&APPID=fa6eb231f9fb2288695c7834db698e4c&callback"; 
 
       $.ajax({
         url: weatherURL,
@@ -17,7 +17,6 @@ function currentweather() {
         console.log(data);
         $("#city").html(data.name);
         $("#description_weather").html(data.weather[0].description);
-        console.log(data.weather[0].id);
         $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
         $("#temperature").html(Math.round(data.main.temp) + "&#8457");
 

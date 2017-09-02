@@ -77,23 +77,21 @@ var localArray = [];
 // This callback keeps the page updated when a value changes in firebase.
 database.on("value", function(snapshot) {
 
+  // set localArray equal to database if it exists already
   if (snapshot.child('userZips').exists()) {
     localArray = snapshot.child('userZips/zipCodes').val();
-    console.log(localArray);
 
   } else {
     localArray = [];
   }
 
-})
 
-database.on("value", function(snapshot) {
-
-  // console.log(snapshot.val());
-  // console.log(snapshot.child('users').val());
-  // console.log(snapshot.child('users/' + uid + '/displayName').val());
-
+  // set profile input fields equal to database values if they exist
   if (snapshot.child('users/' + uid).exists()) {
+
+    // console.log(snapshot.val());
+    // console.log(snapshot.child('users').val());
+    // console.log(snapshot.child('users/' + uid + '/displayName').val());
 
     $('#displayName').attr('value', snapshot.child('users/' + uid + '/displayName').val());
     $('#email').attr('value', snapshot.child('users/' + uid + '/email').val());
@@ -102,6 +100,7 @@ database.on("value", function(snapshot) {
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
 
+    // toggle email/sms preferences based off of database values
     if (snapshot.child('users/' + uid + '/emailNotification').val()) {
       $('#emailToggle').attr('checked');
     } else {
@@ -117,6 +116,8 @@ database.on("value", function(snapshot) {
 })
 
 
+
+// Button to update Profile Information
 $('#updateButton').click(function() {
   event.preventDefault();
 
