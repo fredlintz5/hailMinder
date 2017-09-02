@@ -72,7 +72,6 @@ function signOut() {
 
 
 var database = firebase.database().ref();
-
 var localArray = [];
 
 // This callback keeps the page updated when a value changes in firebase.
@@ -141,10 +140,6 @@ $('#updateButton').click(function() {
     smsNotification: notificationCheck
   });
 
-  var filterArray = localArray.filter(function(){
-
-
-  });
 
   localArray.push(inputHomeZip);
   localArray.push(inputWorkZip);
