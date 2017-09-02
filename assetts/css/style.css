@@ -54,13 +54,29 @@ h3 {
 	border-color:#488E97;
 }
 
-.btn:hover {
+.btn-success:active {
 	background-color:#488E97;
 	border-color:#6BCDDA;
 }
 
-#currentWeather {
-	
+.btn-success:focus {
+	background-color:#488E97;
+	border-color:#6BCDDA;
+}
+
+.btn-success:active:hover {
+	background-color:#488E97;
+	border-color:#6BCDDA;
+}
+
+.btn-success:hover {
+	background-color:#488E97;
+	border-color:#6BCDDA;
+}
+
+.btn-success.disabled:hover {
+	background-color:#6BCDDA;
+	border-color:#488E97;
 }
 
 
