@@ -140,9 +140,15 @@ $('#updateButton').click(function() {
     smsNotification: notificationCheck
   });
 
+  if (localArray.indexOf(inputHomeZip) < 0 ) {
+      localArray.push(inputHomeZip);
+  }
 
-  localArray.push(inputHomeZip);
-  localArray.push(inputWorkZip);
+
+  if (localArray.indexOf(inputWorkZip) < 0 ) {
+    localArray.push(inputWorkZip);
+  }
+
   console.log(localArray);
 
 
