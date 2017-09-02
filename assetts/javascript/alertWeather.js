@@ -1,4 +1,4 @@
-// is there OpenWeather.app script to put into html page?
+ // is there OpenWeather.app script to put into html page?
 
 
 // API KEY
