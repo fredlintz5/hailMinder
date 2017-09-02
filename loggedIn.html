@@ -36,11 +36,13 @@
 
   <div class="container">
     <div class="row col-sm-12">
-      <h3 id="header">hailMinder</h3>
+      <div class='text-center' id="header">
+        <img src="assetts/images/logo.png" height='50px' alt="hailMinder logo">
+      </div>
       <hr>
     </div>
 
-    <div class="row">
+    <div class="row" id='profileRow'>
       <div class="col-sm-3 text-center">
         <div>
           <img id="profilePic" src="assetts/images/avatar-placeholder.png"/>
@@ -53,42 +55,45 @@
       </div>
       <br>
       <div class="col-sm-6">
-        <div class="form-group">
-          <label for="displayName">Name</label>
-          <input type="text" class="form-control" id="displayName" value="" placeholder="John Smith">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" value="" placeholder="john.smith@genericEmail.com">
-        </div>
-        <div class="form-group">
-          <label for="phoneNumber">Phone Number</label>
-          <input type="tel" class="form-control" id="phoneNumber" value="" placeholder="(800)-867-5309">
-        </div>
-        <div class="form-group">
-          <label for="homeZip">Home Zipcode</label>
-          <input type="number" class="form-control" id="homeZip" placeholder="90210">
-        </div>
-        <div class="form-group">
-          <label for="workZip">Work Zipcode</label>
-          <input type="number" class="form-control" id="workZip" placeholder="90210">
-        </div>
-        <div class="form-group">
-          <label for="">Email Notification</label>
-          <input id="emailToggle" type="checkbox" checked data-toggle="toggle">
-          <label for="">SMS Notification</label>
-          <input id="notificationToggle" type="checkbox" checked data-toggle="toggle">
-        </div>
-        <button class="btn btn-success" id="updateButton">Update Profile Info</button>
+        <form action="">
+          <div class="form-group">
+            <label for="displayName">Name</label>
+            <input type="text" class="form-control" id="displayName" value="" placeholder="John Smith">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" value="" placeholder="john.smith@genericEmail.com">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" class="form-control" id="phoneNumber" value="" placeholder="(800)-867-5309">
+          </div>
+          <div class="form-group">
+            <label for="homeZip">Home Zipcode</label>
+            <input type="number" class='form-control' id='homeZip' placeholder='90210' maxlength='6' required>
+          </div>
+          <div class="form-group">
+            <label for="workZip">Work Zipcode</label>
+            <input type="number" class="form-control" id="workZip" placeholder="90210" maxlength='6' required>
+          </div>
+          <div class="form-group">
+            <label for="">Email Notification</label>
+            <input id="emailToggle" type="checkbox" checked data-toggle="toggle">
+            <label for="">SMS Notification</label>
+            <input id="notificationToggle" type="checkbox" checked data-toggle="toggle">
+          </div>
+          <button type='submit' class="btn btn-success" id="updateButton">Update Profile Info</button>
+        </form>
       </div>
       <br>
-      <div class="col-sm-3 text-center">
-        <h2>city<span id="city"></span></h2>
-        <h2>description<span id="description_weather"></span></h2>
+      <div class="col-sm-3 text-center" id='currentWeather'>
+        <h2><span id="city"></span></h2>
+        <h2><span id="description_weather"></span></h2>
         <img id="weather_image" src="">
-        <h2>temp<span id="temperature"></span></h2>
-    </div>        
-</div>
+        <h2><span id="temperature"></span></h2>
+      </div> 
+    </div>       
+  </div>
 
 
 <script src="assetts/javascript/logic.js"></script>

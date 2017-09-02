@@ -18,7 +18,7 @@ a:hover {
 }
 
 #login-logo {
-	width: 30%;
+	width: 100%;
 }
 
 .menu-item {
@@ -40,6 +40,9 @@ h3 {
 	width: 50%;
 }
 
+#header {
+}
+
 
 #emailToggle {
 	margin-right: 10px;
@@ -56,6 +59,10 @@ h3 {
 	border-color:#6BCDDA;
 }
 
+#currentWeather {
+	
+}
+
 
 @media (min-width: 768px) {
 	#profilePic {
@@ -65,6 +72,14 @@ h3 {
 	.firebaseui-card-header h1 {
 		font-size: 30px;
 	}
+
+	#header {
+	}
+
+	#login-logo {
+		width: 60%;
+	}
+
 }
 
 

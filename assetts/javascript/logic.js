@@ -119,6 +119,7 @@ database.on("value", function(snapshot) {
 
 
 $('#updateButton').click(function() {
+  event.preventDefault();
 
   var inputDisplayName = $('#displayName').val().trim();
   var inputEmail = $('#email').val().trim();
