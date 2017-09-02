@@ -20,9 +20,11 @@ var photoURL;
 var uid;
 var phoneNumber;
 
+
 window.addEventListener('load', function() {
   initApp()
 });
+
 
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -71,7 +73,6 @@ function signOut() {
     console.log(error);
   });
 }
-
 
 
 // set valuse based off of changes to database

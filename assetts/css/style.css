@@ -1,13 +1,23 @@
-.container-fluid {
-	background-image: url("../images/tenor.gif");
-	background-size: cover;
-	height: 100vh;
-}
-
 a:hover {
 	text-decoration: none;
 	cursor: pointer;
 	background-color:rgba(192,192,192,0.2);
+}
+
+h3 {
+	font-family: 'Ubuntu', sans-serif;
+	text-align:center;
+	font-size:40px;
+}
+
+p {
+	margin: 0;
+}
+
+.container-fluid {
+	background-image: url("../images/tenor.gif");
+	background-size: cover;
+	height: 100vh;
 }
 
 .jumbotron {
@@ -15,10 +25,6 @@ a:hover {
 	padding-top: 20vh;
 	color: whitesmoke;
 	font-family: 'Ubuntu', sans-serif;
-}
-
-#login-logo {
-	width: 100%;
 }
 
 .menu-item {
@@ -30,24 +36,6 @@ a:hover {
 .panel-body {
 	padding: 0px;
 }
-
-h3 {
-	font-family: 'Ubuntu', sans-serif;
-	text-align:center;
-	font-size:40px;
-}
-#profilePic {
-	width: 50%;
-}
-
-#header {
-}
-
-
-#emailToggle {
-	margin-right: 10px;
-}
-
 
 .btn {
 	background-color:#6BCDDA;
@@ -79,6 +67,31 @@ h3 {
 	border-color:#488E97;
 }
 
+#login-logo {
+	width: 100%;
+}
+
+#profilePic {
+	width: 50%;
+}
+
+#emailToggle {
+	margin-right: 10px;
+}
+
+#currentWeather {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+#currentWeather h2 {
+	margin-bottom: 0;
+}
+
+#temperature {
+	font-size: 50px;
+	margin-left: 15px;
+}
+
 
 @media (min-width: 768px) {
 	#profilePic {
@@ -87,9 +100,6 @@ h3 {
 
 	.firebaseui-card-header h1 {
 		font-size: 30px;
-	}
-
-	#header {
 	}
 
 	#login-logo {
