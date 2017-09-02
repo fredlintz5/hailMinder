@@ -76,19 +76,21 @@ $(document).ready(function() {
 
 
 
-  // This callback keeps the page updated when a value changes in firebase.
+  // set localArray equal to database if it exists already 
   database.on("value", function(snapshot) {
-
-    // set localArray equal to database if it exists already
+    console.log(snapshot);
     if (snapshot.child('userZips').exists()) {
       localArray = snapshot.child('userZips/zipCodes').val();
 
     } else {
       localArray = [];
     }
+  })
 
 
-    // set profile input fields equal to database values if they exist
+  // set profile input fields equal to database values if they exist
+  database.on("value", function(snapshot) {
+    console.log(snapshot);
     if (snapshot.child('users/' + uid).exists()) {
 
       // console.log(snapshot.val());
