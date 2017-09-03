@@ -3,6 +3,7 @@ var dayTwoHailArray = [];
 var dayThreeHailArray = [];
 var dayFourHailArray = [];
 var dayFiveHailArray = [];
+var emailList = [];
 
 // ajax request and info grab for current weather
 function alertWeather(zipCode) {
@@ -22,40 +23,54 @@ function alertWeather(zipCode) {
 
 		if (todayHail === 906) {
 			todayHailArray.push(zipCode);
-		} else {
-			console.log('no hail today');
-		}
+		} 
 
 		if (dayTwoHail === 906) {
 			dayTwoHailArray.push(zipCode);
-		} else {
-			console.log('no hail tomorrow');
-		}
+		} 
 
 		if (dayThreeHail === 906) {
 			dayThreeHailArray.push(zipCode);
-		} else {
-			console.log('no hail 3 days from now');
-		}
+		} 
 
 		if (dayFourHail === 906) {
 			dayFourHailArray.push(zipCode);
-		} else {
-			console.log('no hail 4 days from now');
-		}
+		} 
 
 		if (dayFiveHail === 906) {
 			dayFiveHailArray.push(zipCode);
-		} else {
-			console.log('no hail 5 days from now');
-		}
+		} 
 
 	})
 }
 
 
+// loop through zip codes in database
+function buildAffectedZipCodes() {
+	for (var i = 0; i < localArray.length; i++) {
+		alertWeather(localArray[i]);
+	}
+}
 
 
+function clearHailArrays() {
+	todayHailArray = [];
+	dayTwoHailArray = [];
+	dayThreeHailArray = [];
+	dayFourHailArray = [];
+	dayFiveHailArray = [];
+}
+
+
+// this is a work in progress.....
+function alertEmail(hailArray) {
+	for (var i = 0; i < hailArray.length; i++) {
+		if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i] || snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+
+		}
+	
+	}
+}
 
 
 
