@@ -75,7 +75,7 @@ function signOut() {
 }
 
 
-// set valuse based off of changes to database
+// set values based off of changes to database
 database.on("value", function(snapshot) {
   // set localArray equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
