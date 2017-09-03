@@ -154,7 +154,7 @@ $('#updateButton').click(function() {
       $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
 
-  else {
+  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5) {
 
     $('#myModal').modal('toggle');
 
