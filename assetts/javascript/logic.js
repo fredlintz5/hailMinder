@@ -127,17 +127,6 @@ $('#updateButton').click(function() {
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
 
-  firebase.database().ref('users/' + uid).set({
-    displayName: inputDisplayName,
-    email: inputEmail,
-    profile_picture: photoURL,
-    uid: uid,
-    phoneNumber: inputPhoneNumber,
-    homeZip: inputHomeZip,
-    workZip: inputWorkZip,
-    emailNotification: emailCheck,
-    smsNotification: notificationCheck
-  });
 
   if (localArray.indexOf(inputHomeZip) < 0 ) {
       localArray.push(inputHomeZip);
@@ -152,7 +141,34 @@ $('#updateButton').click(function() {
     zipCodes:localArray,
   })
 
-  $('#myModal').modal('toggle');
+
+  if (inputHomeZip === "") {
+    $('#homeZip').css('border-color', '#D9534F');
+    $('#homeZip').attr('placeholder', 'Please enter your home zip code');
+
+  } if (inputWorkZip === "") {
+    $('#workZip').css('border-color', '#D9534F');
+    $('#workZip').attr('placeholder', 'Please enter your work zip code');
+
+  } else {
+
+    firebase.database().ref('users/' + uid).set({
+      displayName: inputDisplayName,
+      email: inputEmail,
+      profile_picture: photoURL,
+      uid: uid,
+      phoneNumber: inputPhoneNumber,
+      homeZip: inputHomeZip,
+      workZip: inputWorkZip,
+      emailNotification: emailCheck,
+      smsNotification: notificationCheck
+    });
+
+    $('#myModal').modal('toggle');
+    $('#homeZip').css('border-color', '#ccc');
+    $('#workZip').css('border-color', '#ccc');
+  }
+
 
 });
 
