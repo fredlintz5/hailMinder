@@ -128,20 +128,6 @@ $('#updateButton').click(function() {
   var notificationCheck = $('#notificationToggle').is(":checked");
 
 
-  if (localArray.indexOf(inputHomeZip) < 0 ) {
-      localArray.push(inputHomeZip);
-  }
-
-    if (localArray.indexOf(inputWorkZip) < 0 ) {
-      localArray.push(inputWorkZip);
-    }
-
-
-  firebase.database().ref('userZips').set({
-    zipCodes:localArray,
-  })
-
-
   if (inputHomeZip === "" || inputHomeZip.length != 5) {
     $('#homeZip').css('border-color', '#D9534F');
     $('#homeZip').val('');
@@ -169,6 +155,18 @@ $('#updateButton').click(function() {
       emailNotification: emailCheck,
       smsNotification: notificationCheck
     });
+
+    if (localArray.indexOf(inputHomeZip) < 0 ) {
+      localArray.push(inputHomeZip);
+    }
+
+    if (localArray.indexOf(inputWorkZip) < 0 ) {
+      localArray.push(inputWorkZip);
+    }
+
+    firebase.database().ref('userZips').set({
+      zipCodes:localArray,
+    })
 
     $('#homeZip').css('border-color', '#ccc');
     $('#workZip').css('border-color', '#ccc');
