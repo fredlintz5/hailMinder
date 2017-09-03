@@ -54,16 +54,6 @@ initApp = function() {
           $('#profilePic').attr('src', photoURL);
         }
 
-        if ($('#homeZip').val() === "") {
-          $('#homeZip').css('border-color', '#D9534F');
-          $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
-        }
-
-        if ($('#workZip').val() === "") {
-          $('#workZip').css('border-color', '#D9534F');
-          $('#workZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
-        }
-
       })
 
     } else {
@@ -142,9 +132,9 @@ $('#updateButton').click(function() {
       localArray.push(inputHomeZip);
   }
 
-  if (localArray.indexOf(inputWorkZip) < 0 ) {
-    localArray.push(inputWorkZip);
-  }
+    if (localArray.indexOf(inputWorkZip) < 0 ) {
+      localArray.push(inputWorkZip);
+    }
 
 
   firebase.database().ref('userZips').set({
@@ -156,13 +146,14 @@ $('#updateButton').click(function() {
     $('#homeZip').css('border-color', '#D9534F');
     $('#homeZip').val('');
     $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
-  
-  } if (inputWorkZip === "" || inputWorkZip.length != 5) {
+  } 
+
+    if (inputWorkZip === "" || inputWorkZip.length != 5) {
       $('#workZip').css('border-color', '#D9534F');
       $('#workZip').val('');
       $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
-    
+
   else {
 
     $('#myModal').modal('toggle');
