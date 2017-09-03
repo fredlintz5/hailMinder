@@ -144,13 +144,25 @@ $('#updateButton').click(function() {
 
   if (inputHomeZip === "") {
     $('#homeZip').css('border-color', '#D9534F');
-    $('#homeZip').attr('placeholder', 'Please enter your home zip code');
+  
+  } else if (inputHomeZip.length != 5) {
+    $('#homeZip').val('');
+    $('#homeZip').css('border-color', '#D9534F');
+    $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
+  }
 
-  } if (inputWorkZip === "") {
-    $('#workZip').css('border-color', '#D9534F');
-    $('#workZip').attr('placeholder', 'Please enter your work zip code');
+    if (inputWorkZip === "") {  
+      $('#workZip').css('border-color', '#D9534F');
 
-  } else {
+    } else if (inputWorkZip.length != 5) {
+      $('#workZip').val('');
+      $('#workZip').css('border-color', '#D9534F');
+      $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
+    }
+
+  else {
+
+    $('#myModal').modal('toggle');
 
     firebase.database().ref('users/' + uid).set({
       displayName: inputDisplayName,
@@ -164,7 +176,6 @@ $('#updateButton').click(function() {
       smsNotification: notificationCheck
     });
 
-    $('#myModal').modal('toggle');
     $('#homeZip').css('border-color', '#ccc');
     $('#workZip').css('border-color', '#ccc');
   }
