@@ -142,23 +142,17 @@ $('#updateButton').click(function() {
   })
 
 
-  if (inputHomeZip === "") {
+  if (inputHomeZip === "" || inputHomeZip.length != 5) {
     $('#homeZip').css('border-color', '#D9534F');
-  
-  } else if (inputHomeZip.length != 5) {
     $('#homeZip').val('');
-    $('#homeZip').css('border-color', '#D9534F');
     $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
-  }
-
-    if (inputWorkZip === "") {  
+  
+  } if (inputWorkZip === "" || inputWorkZip.length != 5) {
       $('#workZip').css('border-color', '#D9534F');
-
-    } else if (inputWorkZip.length != 5) {
       $('#workZip').val('');
-      $('#workZip').css('border-color', '#D9534F');
       $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
+    
 
   else {
 
