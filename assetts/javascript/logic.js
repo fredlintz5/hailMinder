@@ -53,7 +53,17 @@ initApp = function() {
         if ($('#profilePic').attr('src') === "assetts/images/avatar-placeholder.png") {
           $('#profilePic').attr('src', photoURL);
         }
-        
+
+        if ($('#homeZip').val() === "") {
+          $('#homeZip').css('border-color', '#D9534F');
+          $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
+        }
+
+        if ($('#workZip').val() === "") {
+          $('#workZip').css('border-color', '#D9534F');
+          $('#workZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
+        }
+
       })
 
     } else {
@@ -153,7 +163,6 @@ $('#updateButton').click(function() {
       $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
     
-
   else {
 
     $('#myModal').modal('toggle');
