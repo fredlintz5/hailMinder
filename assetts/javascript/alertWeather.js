@@ -1,9 +1,8 @@
-var todayHailArray = [];
+var todayHailArray = [80111];
 var dayTwoHailArray = [];
 var dayThreeHailArray = [];
 var dayFourHailArray = [];
 var dayFiveHailArray = [];
-var emailList = [];
 
 // ajax request and info grab for current weather
 function alertWeather(zipCode) {
@@ -63,17 +62,32 @@ function clearHailArrays() {
 
 
 // this is a work in progress.....
-function alertEmail(hailArray) {
+function alertEmail(hailArray, uid) {
 	for (var i = 0; i < hailArray.length; i++) {
-		if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i] || snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+		if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
+		
+			var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
+			var email = ('value', snapshot.child('users/' + uid + '/email').val());
+			var homeZip = ('value', snapshot.child('users/' + uid + '/homeZip').val());
 
-		}
-	
+			console.log(name, email, homeZip);
+			// sendEmail(name, email, homeZip);
+
+	    } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+
+			var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
+			var email = ('value', snapshot.child('users/' + uid + '/email').val());			
+	    	var workZip = ('value', snapshot.child('users/' + uid + '/workZip').val());
+
+	    	console.log(name, email, workZip);
+	    	// sendEmail(name, email, workZip);
+
+	    } 
 	}
 }
 
 
-
+alertEmail(todayHailArray, "CDKR5qISSOOkrXAnx3qnxDS9Cro2");
 
 
 
