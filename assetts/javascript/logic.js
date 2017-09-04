@@ -137,7 +137,7 @@ database.on("value", function(snapshot) {
     }
   } 
 
-  alertEmail(todayHailArray, "CDKR5qISSOOkrXAnx3qnxDS9Cro2");
+  alertEmail(todayHailArray, uid);
 
 })
 
@@ -265,30 +265,30 @@ function clearHailArrays() {
 }
 
 
-// this is a work in progress.....
-function alertEmail(hailArray, uid) {
-  for (var i = 0; i < hailArray.length; i++) {
-    if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
+// // this is a work in progress.....
+// function alertEmail(hailArray, uid) {
+//   for (var i = 0; i < hailArray.length; i++) {
+//     if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
     
-      var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
-      var email = ('value', snapshot.child('users/' + uid + '/email').val());
-      var homeZip = ('value', snapshot.child('users/' + uid + '/homeZip').val());
+//       var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
+//       var email = ('value', snapshot.child('users/' + uid + '/email').val());
+//       var homeZip = ('value', snapshot.child('users/' + uid + '/homeZip').val());
 
-      console.log(name, email, homeZip);
-      // sendEmail(name, email, homeZip);
+//       console.log(name, email, homeZip);
+//       // sendEmail(name, email, homeZip);
 
-      } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+//       } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
 
-      var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
-      var email = ('value', snapshot.child('users/' + uid + '/email').val());     
-        var workZip = ('value', snapshot.child('users/' + uid + '/workZip').val());
+//       var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
+//       var email = ('value', snapshot.child('users/' + uid + '/email').val());     
+//         var workZip = ('value', snapshot.child('users/' + uid + '/workZip').val());
 
-        console.log(name, email, workZip);
-        // sendEmail(name, email, workZip);
+//         console.log(name, email, workZip);
+//         // sendEmail(name, email, workZip);
 
-      } 
-  }
-}
+//       } 
+//   }
+// }
 
 
 
