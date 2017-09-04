@@ -112,6 +112,9 @@ database.on("value", function(snapshot) {
       $('#notificationToggle').removeAttr('checked');
     }
   }
+
+  alertEmail(todayHailArray, "CDKR5qISSOOkrXAnx3qnxDS9Cro2");
+
 })
 
 
@@ -264,7 +267,6 @@ function alertEmail(hailArray, uid) {
 }
 
 
-alertEmail(todayHailArray, "CDKR5qISSOOkrXAnx3qnxDS9Cro2");
 
 
 
