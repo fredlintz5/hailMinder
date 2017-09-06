@@ -78,7 +78,7 @@ function signOut() {
 // set values based off of changes to database
 database.on("value", function(snapshot) {
   // set localArray equal to database if it exists already 
-  console.log(snapshot.child('users'));
+  console.log(snapshot.child('users').val());
   if (snapshot.child('userZips').exists()) {
     localArray = snapshot.child('userZips/zipCodes').val();
 
