@@ -57,7 +57,7 @@
             </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+            <button type="button" class="btn btn-success" onclick="removeAccount()" data-dismiss="modal">Confirm</button>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
         <button class="btn btn-success" onclick="signOut()">Sign Out</button>
         <br>
         <br>
-        <button class="btn btn-success" onclick="removeAccount()">Delete Account</button>
+        <button class="btn btn-success" id="deleteModal">Delete Account</button>
       </div>
       <br>
       <div class="col-sm-6">
