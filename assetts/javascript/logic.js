@@ -137,7 +137,7 @@ $('#updateButton').click(function() {
   var inputWorkZip = $('#workZip').val().trim();
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
-  var carrier = $('#carrier').val().trim();
+  var carrier = $('#carrier').val();
 
 
   if (inputHomeZip === "" || inputHomeZip.length != 5) {
