@@ -76,8 +76,10 @@ function signOut() {
 
 function removeAccount(){
    var user = firebase.auth().currentUser;
+   console.log(user);
    user.delete().then(function() {
-    // User deleted.
+    console.log(user);
+    // window.location.assign("https://fredlintz5.github.io/hailMinder/");
     }).catch(function(error) {
     // An error happened.
 });
