@@ -109,7 +109,19 @@ database.on("value", function(snapshot) {
     $('#profilePic').attr('src', snapshot.child('users/' + uid + '/profile_picture').val());
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
-    $('#carrier').attr('value', snapshot.child('users/' + uid + '/carrier').val());
+
+    if (snapshot.child('users/' + uid + '/carrier').val() === "att") {
+      $('#att').attr('selected');
+
+    } else if (snapshot.child('users/' + uid + '/carrier').val() === "sprint") {
+      $('#sprint').attr('selected');
+
+    } else if (snapshot.child('users/' + uid + '/carrier').val() === "tmobile") {
+      $('#tmobile').attr('selected');
+      
+    } else if (snapshot.child('users/' + uid + '/carrier').val() === "verizon") {
+      $('#verizon').attr('selected');
+    }
 
     // toggle email/sms preferences based off of database values
     if (snapshot.child('users/' + uid + '/emailNotification').val()) {
@@ -129,7 +141,7 @@ database.on("value", function(snapshot) {
 
 // Button to update Profile Information
 $('#updateButton').click(function() {
-  // event.preventDefault();
+  event.preventDefault();
 
   var inputDisplayName = $('#displayName').val().trim();
   var inputEmail = $('#email').val().trim();
