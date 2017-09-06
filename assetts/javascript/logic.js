@@ -187,12 +187,12 @@ $('#updateButton').click(function() {
     $('#workZip').css('border-color', '#ccc');
   }
 
-
- 
-
 });
 
+$('#deleteModal').click(function(event) {
+      $('#confirmModal').modal('toggle');
 
+});
 
 
 
