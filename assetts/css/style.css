@@ -1,6 +1,7 @@
 body {
 	background-color:#D1D3D4;
 	color:#5E5E5E;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 a:hover {
@@ -69,6 +70,10 @@ p {
 
 .btn-success.disabled:hover {
 	background-color:#6BCDDA;
+	border-color:#63BCC8;
+}
+
+.form-control:focus {
 	border-color:#63BCC8;
 }
 
