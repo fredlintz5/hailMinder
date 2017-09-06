@@ -98,10 +98,6 @@
             <input type="email" class="form-control" id="email" value="" placeholder="john.smith@genericEmail.com">
           </div>
           <div class="form-group">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="tel" class="form-control" id="phoneNumber" value="" placeholder="(800)-867-5309">
-          </div>
-          <div class="form-group">
             <label for="homeZip">Home Zipcode</label>
             <input type="number" class='form-control' id='homeZip' placeholder='90210' maxlength='6' required>
           </div>
@@ -111,10 +107,24 @@
           </div>
           <div class="form-group">
             <label for="">Email Notification</label>
-            <input id="emailToggle" type="checkbox" checked data-toggle="toggle">
+            <input name="emailCheckbox" id="emailToggle" type="checkbox" checked data-toggle="toggle">
             <label for="">SMS Notification</label>
-            <input id="notificationToggle" type="checkbox" checked data-toggle="toggle">
+            <input name="textCheckbox" id="notificationToggle" type="checkbox" checked data-toggle="toggle">
           </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" class="form-control" id="phoneNumber" value="" placeholder="(800)-867-5309">
+          </div>
+          <div class="form-group">
+            <label for="exampleSelect1">Please select your phone carrier</label>
+            <select class="form-control" id="exampleSelect1">
+              <option>verizon</option>
+              <option>sprint</option>
+              <option>att</option>
+              <option>tmobile</option>
+            </select>
+          </div>
+
           <button class="btn btn-success" id="updateButton">Update Profile Info</button>
         </form>
       </div>
