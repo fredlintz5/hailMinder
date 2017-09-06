@@ -76,12 +76,10 @@ function signOut() {
 
 function removeAccount(){
    var user = firebase.auth().currentUser;
-   console.log(user);
    user.delete().then(function() {
-    console.log(user);
-    // window.location.assign("https://fredlintz5.github.io/hailMinder/");
+    window.location.assign("https://fredlintz5.github.io/hailMinder/");
     }).catch(function(error) {
-    // An error happened.
+    console.log('farts');
 });
 }
 
@@ -139,7 +137,7 @@ $('#updateButton').click(function() {
   var inputWorkZip = $('#workZip').val().trim();
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
-  var carrier = $('#carrier').val().trim();
+  var carrier = $('#carrier').val();
 
 
   if (inputHomeZip === "" || inputHomeZip.length != 5) {
