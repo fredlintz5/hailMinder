@@ -74,6 +74,15 @@ function signOut() {
   });
 }
 
+function removeAccount(){
+   var user = firebase.auth().currentUser;
+   user.delete().then(function() {
+    // User deleted.
+    }).catch(function(error) {
+    // An error happened.
+});
+}
+
 
 // set values based off of changes to database
 database.on("value", function(snapshot) {
@@ -173,6 +182,8 @@ $('#updateButton').click(function() {
     $('#workZip').css('border-color', '#ccc');
   }
 
+
+ 
 
 });
 
