@@ -1,8 +1,8 @@
 var todayHailArray = [80111];
 var dayTwoHailArray = [];
-var dayThreeHailArray = [];
-var dayFourHailArray = [];
-var dayFiveHailArray = [];
+// var dayThreeHailArray = [];
+// var dayFourHailArray = [];
+// var dayFiveHailArray = [];
 
 // ajax request and info grab for current weather
 function alertWeather(zipCode) {
@@ -16,9 +16,9 @@ function alertWeather(zipCode) {
 
 		var todayHail = data.list[0].weather[0].id;
 		var dayTwoHail = data.list[1].weather[0].id;
-		var dayThreeHail = data.list[2].weather[0].id;
-		var dayFourHail = data.list[3].weather[0].id;
-		var dayFiveHail = data.list[4].weather[0].id;
+		// var dayThreeHail = data.list[2].weather[0].id;
+		// var dayFourHail = data.list[3].weather[0].id;
+		// var dayFiveHail = data.list[4].weather[0].id;
 
 		if (todayHail === 906) {
 			todayHailArray.push(zipCode);
@@ -28,17 +28,17 @@ function alertWeather(zipCode) {
 			dayTwoHailArray.push(zipCode);
 		} 
 
-		if (dayThreeHail === 906) {
-			dayThreeHailArray.push(zipCode);
-		} 
+		// if (dayThreeHail === 906) {
+		// 	dayThreeHailArray.push(zipCode);
+		// } 
 
-		if (dayFourHail === 906) {
-			dayFourHailArray.push(zipCode);
-		} 
+		// if (dayFourHail === 906) {
+		// 	dayFourHailArray.push(zipCode);
+		// } 
 
-		if (dayFiveHail === 906) {
-			dayFiveHailArray.push(zipCode);
-		} 
+		// if (dayFiveHail === 906) {
+		// 	dayFiveHailArray.push(zipCode);
+		// } 
 
 	})
 }
@@ -73,8 +73,8 @@ function alertEmail(hailArray, uid) {
 			var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 			var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 
-	    	console.log(name, email, workZip, lastSMS, lastEmail);
-	    	// sendEmail(name, email, workZip, lastSMS, lastEmail);
+	    	console.log(snapshot.child('users/' + uid).val());
+	    	// runCommEngine(snapshot.child('users/' + uid).val());
 
 	    } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
 
@@ -85,8 +85,8 @@ function alertEmail(hailArray, uid) {
 			var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 			var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 
-	    	console.log(name, email, workZip, lastSMS, lastEmail);
-	    	// sendEmail(name, email, workZip, lastSMS, lastEmail);
+	    	console.log(snapshot.child('users/' + uid).val());
+	    	// runCommEngine(snapshot.child('users/' + uid).val());
 
 	    } 
 	}

@@ -99,6 +99,7 @@ database.on("value", function(snapshot) {
     $('#profilePic').attr('src', snapshot.child('users/' + uid + '/profile_picture').val());
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
+    $('#carrier').attr('value', snapshot.child('users/' + uid + '/carrier').val());
 
     // toggle email/sms preferences based off of database values
     if (snapshot.child('users/' + uid + '/emailNotification').val()) {
