@@ -127,6 +127,7 @@ $('#updateButton').click(function() {
   var inputWorkZip = $('#workZip').val().trim();
   var emailCheck = $('#emailToggle').is(":checked");
   var notificationCheck = $('#notificationToggle').is(":checked");
+  var carrier = $('#carrier').val().trim();
 
 
   if (inputHomeZip === "" || inputHomeZip.length != 5) {
@@ -154,7 +155,10 @@ $('#updateButton').click(function() {
       homeZip: inputHomeZip,
       workZip: inputWorkZip,
       emailNotification: emailCheck,
-      smsNotification: notificationCheck
+      smsNotification: notificationCheck,
+      lastSMS: "",
+      lastEmail: "",
+      carrier: ""
     });
 
     if (localArray.indexOf(inputHomeZip) < 0 ) {

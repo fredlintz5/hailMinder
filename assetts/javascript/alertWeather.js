@@ -69,18 +69,24 @@ function alertEmail(hailArray, uid) {
 			var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
 			var email = ('value', snapshot.child('users/' + uid + '/email').val());
 			var homeZip = ('value', snapshot.child('users/' + uid + '/homeZip').val());
+			var lastSMS = ('value', snapshot.child('users/' + uid + '/lastSMS').val());
+			var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
+			var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 
-			console.log(name, email, homeZip);
-			// sendEmail(name, email, homeZip);
+	    	console.log(name, email, workZip, lastSMS, lastEmail);
+	    	// sendEmail(name, email, workZip, lastSMS, lastEmail);
 
 	    } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
 
 			var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
 			var email = ('value', snapshot.child('users/' + uid + '/email').val());			
 	    	var workZip = ('value', snapshot.child('users/' + uid + '/workZip').val());
+	    	var lastSMS = ('value', snapshot.child('users/' + uid + '/lastSMS').val());
+			var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
+			var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 
-	    	console.log(name, email, workZip);
-	    	// sendEmail(name, email, workZip);
+	    	console.log(name, email, workZip, lastSMS, lastEmail);
+	    	// sendEmail(name, email, workZip, lastSMS, lastEmail);
 
 	    } 
 	}
