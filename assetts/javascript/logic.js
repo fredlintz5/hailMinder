@@ -168,7 +168,7 @@ $('#updateButton').click(function() {
       smsNotification: notificationCheck,
       lastSMS: "",
       lastEmail: "",
-      carrier: ""
+      carrier: carrier
     });
 
     if (localArray.indexOf(inputHomeZip) < 0 ) {
