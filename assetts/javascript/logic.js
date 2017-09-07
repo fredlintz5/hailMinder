@@ -152,6 +152,20 @@ $('#updateButton').click(function() {
   var notificationCheck = $('#notificationToggle').is(":checked");
   var carrier = $('#carrier').val();
 
+  function validate() {
+  var input = document.createElement('input');
+  input.type='email';
+  input.value=document.getElementById('test').value;
+    
+  if (input.checkValidity()) {
+     $('#email').val('');
+  } else {
+    $('#email').attr('placeholder', 'Please enter a valid 5 email address');
+  }
+    
+  return false;
+}
+
 
   if (inputHomeZip === "" || inputHomeZip.length != 5) {
     $('#homeZip').css('border-color', '#D9534F');
