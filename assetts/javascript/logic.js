@@ -53,13 +53,10 @@ initApp = function() {
         if ($('#profilePic').attr('src') === "assetts/images/avatar-placeholder.png") {
           $('#profilePic').attr('src', photoURL);
         }
-
       })
-
     } else {
       // User is signed out
     }
-
   }, function(error) {
     console.log(error);
   });
@@ -72,16 +69,6 @@ function signOut() {
   }).catch(function(error) {
     console.log(error);
   });
-}
-
-function removeAccount(){
-   var user = firebase.auth().currentUser;
-   user.delete().then(function() {
-    database.child('users/' + uid).remove();
-    window.location.assign("https://fredlintz5.github.io/hailMinder/");
-    }).catch(function(error) {
-    console.log('farts');
-});
 }
 
 
@@ -110,6 +97,7 @@ database.on("value", function(snapshot) {
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
 
+    // set carrier choice from database to 'select' correct carrier on page
     if (snapshot.child('users/' + uid + '/carrier').val() === "att") {
       $('#att').attr('selected');
 
@@ -153,6 +141,7 @@ $('#updateButton').click(function() {
   var carrier = $('#carrier').val();
 
 
+  // validation logic for correct zipcode length and require zip code input
   if (inputHomeZip === "" || inputHomeZip.length != 5) {
     $('#homeZip').css('border-color', '#D9534F');
     $('#homeZip').val('');
@@ -202,9 +191,23 @@ $('#updateButton').click(function() {
 
 });
 
+
+// this function called from within the deleteModal in html
+function removeAccount(){
+   var user = firebase.auth().currentUser;
+   user.delete().then(function() {
+    database.child('users/' + uid).remove();
+    window.location.assign("https://fredlintz5.github.io/hailMinder/");
+
+    }).catch(function(error) {
+    console.log('farts');
+});
+}
+
+
+//  open modal which gives user a prompt to confirm delete account
 $('#deleteModal').click(function(event) {
       $('#confirmModal').modal('toggle');
-
 });
 
 
