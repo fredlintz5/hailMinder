@@ -12,7 +12,8 @@ firebase.initializeApp(config);
 
 // global variables
 var database = firebase.database().ref();
-var localArray = [];
+var localZipArray = [];
+var localUIDs = [];
 
 var displayName;
 var email;
@@ -77,18 +78,31 @@ database.on("value", function(snapshot) {
   // set localArray equal to database if it exists already 
   console.log(snapshot.child('users').val());
   if (snapshot.child('userZips').exists()) {
-    localArray = snapshot.child('userZips/zipCodes').val();
+    localZipArray = snapshot.child('userZips/zipCodes').val();
 
   } else {
-    localArray = [];
+    localZipArray = [];
   }
+
+  if (snapshot.child('userUIDs').exists()) {
+    localUIDs = snapshot.child('userUIDs/UIDs').val();
+
+  } else {
+    localUIDs = [];
+  }
+
+
+  if (localUIDs.indexOf(uid) < 0 ) {
+      localUIDs.push(uid);
+    }
+
+  firebase.database().ref('userUIDs').set({
+    UIDs:localUIDs,
+  })
+
 
   // set profile input fields equal to database values if they exist
   if (snapshot.child('users/' + uid).exists()) {
-
-    // console.log(snapshot.val());
-    // console.log(snapshot.child('users').val());
-    // console.log(snapshot.child('users/' + uid + '/displayName').val());
 
     $('#displayName').attr('value', snapshot.child('users/' + uid + '/displayName').val());
     $('#email').attr('value', snapshot.child('users/' + uid + '/email').val());
@@ -173,16 +187,16 @@ $('#updateButton').click(function() {
       carrier: carrier
     });
 
-    if (localArray.indexOf(inputHomeZip) < 0 ) {
-      localArray.push(inputHomeZip);
+    if (localZipArray.indexOf(inputHomeZip) < 0 ) {
+      localZipArray.push(inputHomeZip);
     }
 
-    if (localArray.indexOf(inputWorkZip) < 0 ) {
-      localArray.push(inputWorkZip);
+    if (localZipArray.indexOf(inputWorkZip) < 0 ) {
+      localZipArray.push(inputWorkZip);
     }
 
     firebase.database().ref('userZips').set({
-      zipCodes:localArray,
+      zipCodes:localZipArray,
     })
 
     $('#homeZip').css('border-color', '#ccc');
