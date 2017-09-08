@@ -254,9 +254,12 @@ function alertWeather(zipCode) {
   var appID = "fa6eb231f9fb2288695c7834db698e4c";
   var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
   console.log(forecast);
-  
-  $.getJSON(forecast,function(data){
 
+  $.ajax({
+    url: forecast,
+    type: 'GET', 
+  })
+  .done(function() {
     console.log(data);
     var todayHail = data.list[0].weather[0].id;
     var dayTwoHail = data.list[1].weather[0].id;
@@ -269,6 +272,22 @@ function alertWeather(zipCode) {
       dayTwoHailArray.push(zipCode);
     } 
   })
+  
+  
+  // $.getJSON(forecast,function(data){
+
+  //   // console.log(data);
+  //   // var todayHail = data.list[0].weather[0].id;
+  //   // var dayTwoHail = data.list[1].weather[0].id;
+
+  //   // if (todayHail !== 906) {
+  //   //   todayHailArray.push(zipCode);
+  //   // } 
+
+  //   // if (dayTwoHail !== 906) {
+  //   //   dayTwoHailArray.push(zipCode);
+  //   // } 
+  // })
 }
 
 
