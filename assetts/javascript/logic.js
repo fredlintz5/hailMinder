@@ -82,8 +82,8 @@ function signOut() {
 database.on("value", function(snapshot) {
 
   console.log(snapshot.child('users').val());
-  console.log(snapshot.child('userUIDs').val());
-  console.log(snapshot.child('userZips').val());
+  console.log(snapshot.child('userUIDs/UIDs').val());
+  console.log(snapshot.child('userZips/zipCodes').val());
 
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
@@ -152,7 +152,6 @@ database.on("value", function(snapshot) {
   // every 30 seconds query affected zip codes
   setInterval(buildAffectedZipCodes, 1000*30);
 
-  alertEmail(todayHailArray, uid);
 
   // loop through zip codes in database
   function buildAffectedZipCodes() {
@@ -160,6 +159,8 @@ database.on("value", function(snapshot) {
     for (var i = 0; i < localZipArray.length; i++) {
       alertWeather(localZipArray[i]);
     }
+
+    alertEmail(todayHailArray, uid);
   }
 
   // ajax request and info grab for 16 day weather data
