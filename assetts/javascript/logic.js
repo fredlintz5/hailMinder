@@ -262,6 +262,7 @@ function buildAffectedZipCodes() {
 // ajax request and info grab for 16 day weather data
 function alertWeather(zipCode) {
   // API KEY
+  console.log(zipCode);
   var appID = "fa6eb231f9fb2288695c7834db698e4c";
   var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
   console.log(forecast);
