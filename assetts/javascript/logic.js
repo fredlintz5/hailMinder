@@ -143,8 +143,30 @@ database.on("value", function(snapshot) {
     } else {
       $('#notificationToggle').removeAttr('checked');
     }
+
+    if ($("#notificationToggle").is(':checked')){
+      $("#phoneNumberEntry").show(); 
+      $("#carrierDropdown").show();
+    }
+    else {
+      $("#phoneNumberEntry").show();
+      $("#carrierDropdown").show();
+    }
   }
 })
+
+$('input:checkbox').change(
+  function(){
+    if ($("#notificationToggle").is(':checked')) {
+      $("#phoneNumberEntry").show();
+      $("#carrierDropdown").show();
+    }
+    else if ($("#notificationToggle").not(':checked')){
+      $("#phoneNumberEntry").hide();
+      $("#carrierDropdown").hide();
+    }
+});
+
 
 
 // Button to update Profile Information
