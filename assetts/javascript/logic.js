@@ -119,16 +119,16 @@ database.on("value", function(snapshot) {
 
     // set carrier choice from database to 'select' correct carrier on page
     if (snapshot.child('users/' + uid + '/carrier').val() === "att") {
-      $('#att').attr('selected');
+      $('#att').prop('selected', true);
 
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "sprint") {
-      $('#sprint').attr('selected');
+      $('#sprint').prop('selected', true);
 
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "tmobile") {
-      $('#tmobile').attr('selected');
+      $('#tmobile').prop('selected', true);
 
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "verizon") {
-      $('#verizon').attr('selected');
+      $('#verizon').prop('selected', true);
     }
 
     // toggle email/sms preferences based off of database values
@@ -142,15 +142,6 @@ database.on("value", function(snapshot) {
       $('#notificationToggle').attr('checked');
     } else {
       $('#notificationToggle').removeAttr('checked');
-    }
-
-    if ($("#notificationToggle").is(':checked')){
-      $("#phoneNumberEntry").show(); 
-      $("#carrierDropdown").show();
-    }
-    else {
-      $("#phoneNumberEntry").show();
-      $("#carrierDropdown").show();
     }
   }
 })
