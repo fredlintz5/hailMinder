@@ -253,7 +253,8 @@ function alertWeather(zipCode) {
   // API KEY
   var appID = "fa6eb231f9fb2288695c7834db698e4c";
   var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
-
+  console.log(forecast);
+  
   $.getJSON(forecast,function(data){
 
     console.log(data);
