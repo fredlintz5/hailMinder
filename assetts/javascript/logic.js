@@ -140,15 +140,33 @@ database.on("value", function(snapshot) {
 
     if (snapshot.child('users/' + uid + '/smsNotification').val()) {
       $('#notificationToggle').attr('checked');
-      $('#phoneNumberEntry').show();
-      $('#carrierDropdown').show();
     } else {
       $('#notificationToggle').removeAttr('checked');
-      $('#phoneNumberEntry').hide();
-      $('#carrierDropdown').hide();
+    }
+
+    if ($("#notificationToggle").is(':checked')){
+      $("#phoneNumberEntry").show(); 
+      $("#carrierDropdown").show();
+    }
+    else {
+      $("#phoneNumberEntry").show();
+      $("#carrierDropdown").show();
     }
   }
 })
+
+$('input:checkbox').change(
+  function(){
+    if ($("#notificationToggle").is(':checked')) {
+      $("#phoneNumberEntry").show();
+      $("#carrierDropdown").show();
+    }
+    else if ($("#notificationToggle").not(':checked')){
+      $("#phoneNumberEntry").hide();
+      $("#carrierDropdown").hide();
+    }
+});
+
 
 
 // Button to update Profile Information
