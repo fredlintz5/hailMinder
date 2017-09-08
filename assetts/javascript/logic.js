@@ -126,7 +126,7 @@ database.on("value", function(snapshot) {
 
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "tmobile") {
       $('#tmobile').attr('selected');
-      
+
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "verizon") {
       $('#verizon').attr('selected');
     }
@@ -210,6 +210,17 @@ $('#updateButton').click(function() {
   }
 
 });
+
+function updateUserData(uid, field, value){
+  let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
+  if(supportedFields.indexOf(field) !== -1){
+    var updates = {};
+    updates['/'+ field +'/'] = value;
+    return firebase.database().ref('users/' + uid).update(updates)
+  } else {
+    console.log("Could not update database, invalid supported field")
+  }
+}
 
 
 // this function called from within the deleteModal in html

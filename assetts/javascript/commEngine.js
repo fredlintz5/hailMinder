@@ -1,68 +1,87 @@
 //Main comm engine method
 
-//Format: 2017-09-05T13:48:03-06:00"
-
-function runCommEngine(forcast, firstName, lastName, email, phoneNumber, carrier, lastEmailDate, lastTextDate) {
+//userObject
+function runCommEngine(user, forecast) {
     let momentNow = moment(moment.now());
     lastEmailDate = moment(lastEmailDate);
     lastTextDate = moment(lastTextDate);
+    let emailTemplate;
+    let smsTemplate;
 
-    console.log(momentNow.diff(lastEmailDate));
+    if(forecast === "today"){
+        emailTemplate = "todayEmail"
+        smsTemplate = "todaySMS"
+    } else {
+        emailTemplate = "tomorrowEmail"
+        smsTemplate = "tomorrowSMS"
+    }
 
-    if (momentNow.diff(lastEmailDate) > 10000000) {
-        sendEmailComm(template, email, firstName, lastName);
+    if ((momentNow.diff(user.lastEmailDate) > 10000000) || (lastEmailDate === "")) {
+        sendEmailComm(user, emailTemplate);
         //add method to update lastEmailDate with momentNow
     }
-    if (momentNow.diff(lastEmailDate) > 10000000) {
-        sendTextComm(template, phoneNumber, carrier, firstName, lastName);
+    if ((momentNow.diff(user.lastSMSDate) > 10000000) || (lastSMSDate === ""))  {
+        sendSMSComm(user, smsTemplate);
         //add method to update lastEmailDate with momentNow
     }
 }
 
 //Send Email Comm
-function sendEmailComm(template, email, firstName, lastName) {
-    if (template !== "threefive" || template !== "immediate") {
-        emailjs.send("sendgrid", template, { email: email, name: firstName + " " + lastName, to_name: firstName, from_name: "HailMinder" })
-            .then(function (response) {
-                console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
-            }, function (err) {
-                console.log("FAILED. error=", err);
-            });
-    } else {
-        console.log("Incorrect mail template given, email will not be sent!");
-    }
+function sendEmailComm(user, emailTemplate) {
+    console.log("user is" + user);
+    emailjs.send("sendgrid", emailTemplate, { email: user.email, name: user.displayName, to_name: user.displayName, from_name: "HailMinder" })
+        .then(function (response) {
+            console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+        }, function (err) {
+            console.log("FAILED. error=", err);
+        });
 };
 
 //Send Text Comm
-function sendTextComm(template, phoneNumber, carrier, firstName, lastName) {
+function sendSMSComm(user, smsTemplate) {
     let smsDomain;
     let smsEmail;
-    switch (carrier) {
+    switch (user.carrier) {
         case "verizon":
             smsDomain = "@vtext.com";
-            smsEmail = phoneNumber + smsDomain;
+            smsEmail = user.phoneNumber + smsDomain;
             break;
         case "sprint":
             smsDomain = "@messaging.sprintpcs.com";
-            smsEmail = phoneNumber + smsDomain;
+            smsEmail = user.phoneNumber + smsDomain;
             break;
         case "att":
             smsDomain = "@txt.att.net";
-            smsEmail = phoneNumber + smsDomain;
+            smsEmail = user.phoneNumber + smsDomain;
             break;
         case "tmobile":
             smsDomain = "@tmomail.net";
-            smsEmail = phoneNumber + smsDomain;
+            smsEmail = user.phoneNumber + smsDomain;
             break;
     }
-    if (template !== "threefive-text" || template !== "immediate-text") {
-        emailjs.send("sendgrid", template, { email: smsEmail, name: firstName + " " + lastName, to_name: firstName, from_name: "HailMinder" })
-            .then(function (response) {
-                console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
-            }, function (err) {
-                console.log("FAILED. error=", err);
-            });
-    } else {
-        console.log("Incorrect mail template given, sms will not be sent!");
-    }
+
+    emailjs.send("sendgrid", smsTemplate, { email: smsEmail, name: user.displayName, to_name: user.displayName, from_name: "HailMinder" })
+        .then(function (response) {
+            console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+        }, function (err) {
+            console.log("FAILED. error=", err);
+        });
 };
+
+/*
+
+For testing
+
+let jared = {};
+
+jared.displayName = "Ash Rotman";
+jared.email = "cjatkinson19@gmail.com";
+jared.emailNotification = true;
+jared.homeZip = 80221;
+jared.smsNotification = true;
+jared.workZip = 80223;
+jared.carrier = "verizon";
+jared.lastEmailDate = "";
+jared.lastEmailDate = "";
+
+*/
