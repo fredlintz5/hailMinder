@@ -143,7 +143,7 @@ database.on("value", function(snapshot) {
 
 // Button to update Profile Information
 $('#updateButton').click(function() {
-  event.preventDefault();
+  // event.preventDefault();
 
   var inputDisplayName = $('#displayName').val().trim();
   var inputEmail = $('#email').val().trim();
