@@ -237,6 +237,7 @@ setInterval(buildAffectedZipCodes, 1000*30);
 // loop through zip codes in database
 function buildAffectedZipCodes() {
   for (var i = 0; i < localZipArray.length; i++) {
+    console.log(localZipArray);
     console.log(localZipArray[i]);
     alertWeather(localZipArray[i]);
   }
@@ -255,6 +256,7 @@ function alertWeather(zipCode) {
 
   $.getJSON(forecast,function(data){
 
+    console.log(data);
     var todayHail = data.list[0].weather[0].id;
     var dayTwoHail = data.list[1].weather[0].id;
 

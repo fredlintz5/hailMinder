@@ -4,6 +4,7 @@ var todayHailArray = [80111];
 var dayTwoHailArray = [];
 
 
+
 // loop through zip codes in database
 function buildAffectedZipCodes() {
 	for (var i = 0; i < localArray.length; i++) {
