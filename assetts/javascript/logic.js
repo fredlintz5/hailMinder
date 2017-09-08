@@ -16,7 +16,7 @@ var localZipArray = [];
 var localUIDs = [];
 
 // alertWeather function variables
-var todayHailArray = [80111];
+var todayHailArray = [];
 var dayTwoHailArray = [];
 
 // profile variables
@@ -80,8 +80,12 @@ function signOut() {
 
 // grab a snapshot of the database for manipulation
 database.on("value", function(snapshot) {
-  // set local Zip Array equal to database if it exists already 
+
   console.log(snapshot.child('users').val());
+  console.log(snapshot.child('userUIDs').val());
+  console.log(snapshot.child('userZips').val());
+
+  // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
     localZipArray = snapshot.child('userZips/zipCodes').val();
 
@@ -119,16 +123,16 @@ database.on("value", function(snapshot) {
 
     // set carrier choice from database to 'select' correct carrier on page
     if (snapshot.child('users/' + uid + '/carrier').val() === "att") {
-      $('#att').attr('selected');
+      $('#att').prop('selected', true);
 
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "sprint") {
-      $('#sprint').attr('selected');
+      $('#sprint').prop('selected', true);
 
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "tmobile") {
-      $('#tmobile').attr('selected');
+      $('#tmobile').prop('selected', true);
 
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "verizon") {
-      $('#verizon').attr('selected');
+      $('#verizon').prop('selected', true);
     }
 
     // toggle email/sms preferences based off of database values
@@ -144,7 +148,75 @@ database.on("value", function(snapshot) {
       $('#notificationToggle').removeAttr('checked');
     }
   }
+
+  // every 30 seconds query affected zip codes
+  setInterval(buildAffectedZipCodes, 1000*30);
+
+  alertEmail(todayHailArray, uid);
+
+  // loop through zip codes in database
+  function buildAffectedZipCodes() {
+    console.log('building affected zipcodes...');
+    for (var i = 0; i < localZipArray.length; i++) {
+      alertWeather(localZipArray[i]);
+    }
+  }
+
+  // ajax request and info grab for 16 day weather data
+  function alertWeather(zipCode) {
+    // API KEY
+    var appID = "fa6eb231f9fb2288695c7834db698e4c";
+    var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
+
+    $.ajax({
+      url: forecast,
+      type: 'GET', 
+    })
+    .done(function(data) {
+      var todayHail = data.list[0].weather[0].id;
+      var dayTwoHail = data.list[1].weather[0].id;
+
+      if (todayHail !== 906) {
+        todayHailArray.push(zipCode);
+      } 
+
+      if (dayTwoHail !== 906) {
+        dayTwoHailArray.push(zipCode);
+      } 
+    })
+  }
+
+  // alert users based off of affected arrays
+  function alertEmail(hailArray, uid) {
+    console.log('checking for users to alert');
+    for (var i = 0; i < hailArray.length; i++) {
+      if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
+
+          console.log(snapshot.child('users/' + uid).val() + ' Home Zip');
+          // runCommEngine(snapshot.child('users/' + uid).val());
+
+        } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+
+          console.log(snapshot.child('users/' + uid).val() + ' Work Zip');
+          // runCommEngine(snapshot.child('users/' + uid).val());
+        } 
+    }
+  }
 })
+
+
+$('input:checkbox').change(
+  function(){
+    if ($("#notificationToggle").is(':checked')) {
+      $("#phoneNumberEntry").show();
+      $("#carrierDropdown").show();
+    }
+    else if ($("#notificationToggle").not(':checked')){
+      $("#phoneNumberEntry").hide();
+      $("#carrierDropdown").hide();
+    }
+});
+
 
 
 // Button to update Profile Information
@@ -231,7 +303,7 @@ function removeAccount(){
     window.location.assign("https://fredlintz5.github.io/hailMinder/");
 
     }).catch(function(error) {
-    console.log('farts');
+    console.log(error);
 });
 }
 
@@ -242,42 +314,6 @@ $('#deleteModal').click(function(event) {
 });
 
 
-// every 30 seconds query affected zip codes
-setInterval(buildAffectedZipCodes, 1000*30);
-
-// loop through zip codes in database
-function buildAffectedZipCodes() {
-  for (var i = 0; i < localZipArray.length; i++) {
-    console.log(localZipArray[i]);
-    alertWeather(localZipArray[i]);
-  }
-  console.log(todayHailArray);
-  console.log(dayTwoHailArray);
-
-  clearHailArrays();
-}
-
-
-// ajax request and info grab for 16 day weather data
-function alertWeather(zipCode) {
-  // API KEY
-  var appID = "fa6eb231f9fb2288695c7834db698e4c";
-  var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
-
-  $.getJSON(forecast,function(data){
-
-    var todayHail = data.list[0].weather[0].id;
-    var dayTwoHail = data.list[1].weather[0].id;
-
-    if (todayHail !== 906) {
-      todayHailArray.push(zipCode);
-    } 
-
-    if (dayTwoHail !== 906) {
-      dayTwoHailArray.push(zipCode);
-    } 
-  })
-}
 
 
 function clearHailArrays() {
@@ -287,34 +323,7 @@ function clearHailArrays() {
 
 
 
-function alertEmail(hailArray, uid) {
-  for (var i = 0; i < hailArray.length; i++) {
-    if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
-    
-      // var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
-      // var email = ('value', snapshot.child('users/' + uid + '/email').val());
-      // var homeZip = ('value', snapshot.child('users/' + uid + '/homeZip').val());
-      // var lastSMS = ('value', snapshot.child('users/' + uid + '/lastSMS').val());
-      // var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
-      // var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 
-        console.log(snapshot.child('users/' + uid).val());
-        // runCommEngine(snapshot.child('users/' + uid).val());
-
-      } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
-
-      // var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
-      // var email = ('value', snapshot.child('users/' + uid + '/email').val());      
-      // var workZip = ('value', snapshot.child('users/' + uid + '/workZip').val());
-      // var lastSMS = ('value', snapshot.child('users/' + uid + '/lastSMS').val());
-      // var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
-      // var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
-
-        console.log(snapshot.child('users/' + uid).val());
-        // runCommEngine(snapshot.child('users/' + uid).val());
-      } 
-  }
-}
 
 
 

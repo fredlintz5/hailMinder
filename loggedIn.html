@@ -111,17 +111,17 @@
             <label for="">SMS Notification</label>
             <input name="textCheckbox" id="notificationToggle" type="checkbox" checked data-toggle="toggle">
           </div>
-          <div class="form-group">
+          <div class="form-group" id="phoneNumberEntry">
             <label for="phoneNumber">Phone Number</label>
             <input type="tel" class="form-control" id="phoneNumber" value="" placeholder="(800)-867-5309"  required>
           </div>
-          <div class="form-group">
+          <div class="form-group" id="carrierDropdown">
             <label for="exampleSelect1">Please select your phone carrier</label>
             <select class="form-control" id="carrier">
               <option id="empty"></option>
               <option id="verizon">verizon</option>
               <option id="sprint">sprint</option>
-              <option id="att">att</option>
+              <option id="att" selected>att</option>
               <option id="tmobile">tmobile</option>
             </select>
           </div>
@@ -141,7 +141,6 @@
 
 <script src="assetts/javascript/logic.js"></script>
 <script src="assetts/javascript/profileWeather.js"></script>
-<script src="assetts/javascript/alertWeather.js"></script>
 
 </body>
 </html>
