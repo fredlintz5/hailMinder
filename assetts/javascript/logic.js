@@ -80,8 +80,12 @@ function signOut() {
 
 // grab a snapshot of the database for manipulation
 database.on("value", function(snapshot) {
-  // set local Zip Array equal to database if it exists already 
+
   console.log(snapshot.child('users').val());
+  console.log(snapshot.child('userUIDs').val());
+  console.log(snapshot.child('userZips').val());
+
+  // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
     localZipArray = snapshot.child('userZips/zipCodes').val();
 
@@ -150,7 +154,41 @@ database.on("value", function(snapshot) {
 
   alertEmail(todayHailArray, uid);
 
+  // loop through zip codes in database
+  function buildAffectedZipCodes() {
+    console.log('building affected zipcodes...');
+    for (var i = 0; i < localZipArray.length; i++) {
+      alertWeather(localZipArray[i]);
+    }
+  }
+
+  // ajax request and info grab for 16 day weather data
+  function alertWeather(zipCode) {
+    // API KEY
+    var appID = "fa6eb231f9fb2288695c7834db698e4c";
+    var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
+
+    $.ajax({
+      url: forecast,
+      type: 'GET', 
+    })
+    .done(function(data) {
+      var todayHail = data.list[0].weather[0].id;
+      var dayTwoHail = data.list[1].weather[0].id;
+
+      if (todayHail !== 906) {
+        todayHailArray.push(zipCode);
+      } 
+
+      if (dayTwoHail !== 906) {
+        dayTwoHailArray.push(zipCode);
+      } 
+    })
+  }
+
+  // alert users based off of affected arrays
   function alertEmail(hailArray, uid) {
+    console.log('checking for users to alert');
     for (var i = 0; i < hailArray.length; i++) {
       if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
 
@@ -165,6 +203,7 @@ database.on("value", function(snapshot) {
     }
   }
 })
+
 
 $('input:checkbox').change(
   function(){
@@ -275,38 +314,6 @@ $('#deleteModal').click(function(event) {
 });
 
 
-
-// loop through zip codes in database
-function buildAffectedZipCodes() {
-  for (var i = 0; i < localZipArray.length; i++) {
-    alertWeather(localZipArray[i]);
-  }
-}
-
-
-// ajax request and info grab for 16 day weather data
-function alertWeather(zipCode) {
-  // API KEY
-  var appID = "fa6eb231f9fb2288695c7834db698e4c";
-  var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
-
-  $.ajax({
-    url: forecast,
-    type: 'GET', 
-  })
-  .done(function(data) {
-    var todayHail = data.list[0].weather[0].id;
-    var dayTwoHail = data.list[1].weather[0].id;
-
-    if (todayHail !== 906) {
-      todayHailArray.push(zipCode);
-    } 
-
-    if (dayTwoHail !== 906) {
-      dayTwoHailArray.push(zipCode);
-    } 
-  })
-}
 
 
 function clearHailArrays() {
