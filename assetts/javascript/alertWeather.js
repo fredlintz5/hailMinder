@@ -19,7 +19,7 @@ function alertWeather(zipCode) {
 	var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
 
 	$.getJSON(forecast,function(data){
-
+		console.log(data);
 		var todayHail = data.list[0].weather[0].id;
 		var dayTwoHail = data.list[1].weather[0].id;
 
