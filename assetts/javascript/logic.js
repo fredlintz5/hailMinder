@@ -134,8 +134,12 @@ database.on("value", function(snapshot) {
 
     if (snapshot.child('users/' + uid + '/smsNotification').val()) {
       $('#notificationToggle').attr('checked');
+      $('#phoneNumberEntry').show();
+      $('#carrierDropdown').show();
     } else {
       $('#notificationToggle').removeAttr('checked');
+      $('#phoneNumberEntry').hide();
+      $('#carrierDropdown').hide();
     }
   }
 })
