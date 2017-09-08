@@ -4,6 +4,7 @@ var todayHailArray = [80111];
 var dayTwoHailArray = [];
 
 
+
 // loop through zip codes in database
 function buildAffectedZipCodes() {
 	for (var i = 0; i < localArray.length; i++) {
@@ -19,7 +20,7 @@ function alertWeather(zipCode) {
 	var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
 
 	$.getJSON(forecast,function(data){
-		console.log(data);
+
 		var todayHail = data.list[0].weather[0].id;
 		var dayTwoHail = data.list[1].weather[0].id;
 

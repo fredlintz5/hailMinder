@@ -255,6 +255,7 @@ function alertWeather(zipCode) {
 
   $.getJSON(forecast,function(data){
 
+    console.log(data);
     var todayHail = data.list[0].weather[0].id;
     var dayTwoHail = data.list[1].weather[0].id;
 
