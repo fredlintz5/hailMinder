@@ -184,21 +184,23 @@ database.on("value", function(snapshot) {
         dayTwoHailArray.push(zipCode);
       } 
     })
+    console.log(todayHailArray);
+    console.log(dayTwoHailArray);
   }
 
   // alert users based off of affected arrays
-  function alertEmail(hailArray, uid) {
+  function alertEmail(hailArray, UID) {
     console.log('checking for users to alert');
     for (var i = 0; i < hailArray.length; i++) {
-      if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
+      if (snapshot.child('users/' + UID + '/homeZip').val() === hailArray[i]) {
 
-          console.log(snapshot.child('users/' + uid).val() + ' Home Zip');
-          // runCommEngine(snapshot.child('users/' + uid).val());
+          console.log(snapshot.child('users/' + UID).val() + ' Home Zip');
+          // runCommEngine(snapshot.child('users/' + UID).val());
 
-        } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+        } else if (snapshot.child('users/' + UID + '/workZip').val() === hailArray[i]) {
 
-          console.log(snapshot.child('users/' + uid).val() + ' Work Zip');
-          // runCommEngine(snapshot.child('users/' + uid).val());
+          console.log(snapshot.child('users/' + UID).val() + ' Work Zip');
+          // runCommEngine(snapshot.child('users/' + UID).val());
         } 
     }
   }
