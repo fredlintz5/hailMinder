@@ -147,6 +147,21 @@ database.on("value", function(snapshot) {
 
   // every 30 seconds query affected zip codes
   setInterval(buildAffectedZipCodes, 1000*30);
+
+  function alertEmail(hailArray, uid) {
+    for (var i = 0; i < hailArray.length; i++) {
+      if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
+
+          console.log(snapshot.child('users/' + uid).val() + ' Home Zip');
+          // runCommEngine(snapshot.child('users/' + uid).val());
+
+        } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+
+          console.log(snapshot.child('users/' + uid).val() + ' Work Zip');
+          // runCommEngine(snapshot.child('users/' + uid).val());
+        } 
+    }
+  }
 })
 
 $('input:checkbox').change(
@@ -284,7 +299,6 @@ function alertWeather(zipCode) {
     type: 'GET', 
   })
   .done(function(data) {
-    console.log(data);
     var todayHail = data.list[0].weather[0].id;
     var dayTwoHail = data.list[1].weather[0].id;
 
@@ -306,20 +320,7 @@ function clearHailArrays() {
 
 
 
-function alertEmail(hailArray, uid) {
-  for (var i = 0; i < hailArray.length; i++) {
-    if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
 
-        console.log(snapshot.child('users/' + uid).val() + ' Home Zip');
-        // runCommEngine(snapshot.child('users/' + uid).val());
-
-      } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
-
-        console.log(snapshot.child('users/' + uid).val() + ' Work Zip');
-        // runCommEngine(snapshot.child('users/' + uid).val());
-      } 
-  }
-}
 
 
 
