@@ -148,6 +148,8 @@ database.on("value", function(snapshot) {
   // every 30 seconds query affected zip codes
   setInterval(buildAffectedZipCodes, 1000*30);
 
+  alertEmail(todayHailArray, uid);
+
   function alertEmail(hailArray, uid) {
     for (var i = 0; i < hailArray.length; i++) {
       if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
@@ -279,12 +281,6 @@ function buildAffectedZipCodes() {
   for (var i = 0; i < localZipArray.length; i++) {
     alertWeather(localZipArray[i]);
   }
-  console.log(todayHailArray);
-  console.log(dayTwoHailArray);
-
-  alertEmail(todayHailArray, uid)
-
-  clearHailArrays();
 }
 
 
