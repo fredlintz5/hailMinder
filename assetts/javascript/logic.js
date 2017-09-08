@@ -237,10 +237,13 @@ setInterval(buildAffectedZipCodes, 1000*30);
 // loop through zip codes in database
 function buildAffectedZipCodes() {
   for (var i = 0; i < localZipArray.length; i++) {
+    console.log(localZipArray[i]);
     alertWeather(localZipArray[i]);
   }
   console.log(todayHailArray);
   console.log(dayTwoHailArray);
+
+  clearHailArrays();
 }
 
 
@@ -269,9 +272,6 @@ function alertWeather(zipCode) {
 function clearHailArrays() {
   todayHailArray = [];
   dayTwoHailArray = [];
-  dayThreeHailArray = [];
-  dayFourHailArray = [];
-  dayFiveHailArray = [];
 }
 
 
