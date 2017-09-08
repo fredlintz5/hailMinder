@@ -1,39 +1,8 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyClRKGEi4sOAzyk6pOn8oxIevbY3zOoy7I",
-  authDomain: "hailminder-d07a5.firebaseapp.com",
-  databaseURL: "https://hailminder-d07a5.firebaseio.com",
-  projectId: "hailminder-d07a5",
-  storageBucket: "hailminder-d07a5.appspot.com",
-  messagingSenderId: "150987850599"
-};
-firebase.initializeApp(config);
-
 
 // global variables
-var database = firebase.database().ref();
 var todayHailArray = [80111];
 var dayTwoHailArray = [];
-var localArray = [];
 
-
-// set values based off of changes to database
-database.once("value", function(snapshot) {
-
-  // set localArray equal to database if it exists already
-  if (snapshot.child('userZips').exists()) {
-    localArray = snapshot.child('userZips/zipCodes').val();
-    console.log(localArray);
-
-  } else {
-    localArray = [];
-  }
-
-  buildAffectedZipCodes();
-  console.log(todayHailArray);
-  console.log(dayTwoHailArray);
-
-})
 
 // loop through zip codes in database
 function buildAffectedZipCodes() {
