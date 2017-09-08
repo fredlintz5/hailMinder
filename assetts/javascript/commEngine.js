@@ -1,35 +1,43 @@
 //Main comm engine method
 
-//userObject
-function runCommEngine(user, forecast) {
+//uidObject
+function runCommEngine(uid, forecast, affectedZip) {
     let momentNow = moment(moment.now());
-    lastEmailDate = moment(lastEmailDate);
-    lastTextDate = moment(lastTextDate);
+    lastEmailDate = moment(uid.lastEmail);
+    lastTextDate = moment(uid.lastSMS);
     let emailTemplate;
     let smsTemplate;
 
     if(forecast === "today"){
-        emailTemplate = "todayEmail"
-        smsTemplate = "todaySMS"
-    } else {
-        emailTemplate = "tomorrowEmail"
-        smsTemplate = "tomorrowSMS"
+        emailTemplate = "todayemail"
+        smsTemplate = "todaysms"
+    } else if(forecast == "tomorrow"){
+        emailTemplate = "tomorrowemail"
+        smsTemplate = "tomorrowsms"
     }
 
-    if ((momentNow.diff(user.lastEmailDate) > 10000000) || (lastEmailDate === "")) {
-        sendEmailComm(user, emailTemplate);
-        //add method to update lastEmailDate with momentNow
+    if(affectedZip === 'home'){
+        affectedZip = uid.homeZip
+    } else if (affectedZip === 'work'){
+        affectedZip = uid.workZip
+    } else {console.log("invalid affected zip code passed into runCommEngine")}
+
+    if ((momentNow.diff(uid.lastEmailDate) > 10000000) || (uid.lastEmailDate === "")) {
+        sendEmailComm(uid, emailTemplate, affectedZip);
+        console.log("Sent email");
+        // updateuidData(uid.uid, 'lastEmail', momentNow);
     }
-    if ((momentNow.diff(user.lastSMSDate) > 10000000) || (lastSMSDate === ""))  {
-        sendSMSComm(user, smsTemplate);
-        //add method to update lastEmailDate with momentNow
+    if ((momentNow.diff(uid.lastSMSDate) > 10000000) || (uid.lastSMSDate === ""))  {
+        sendSMSComm(uid, smsTemplate, affectedZip);
+        console.log("Sent sms");
+        // updateuidData(uid.uid, 'smsEmail', momentNow);
     }
-}
+};
 
 //Send Email Comm
-function sendEmailComm(user, emailTemplate) {
-    console.log("user is" + user);
-    emailjs.send("sendgrid", emailTemplate, { email: user.email, name: user.displayName, to_name: user.displayName, from_name: "HailMinder" })
+function sendEmailComm(uid, emailTemplate, affectedZip) {
+    console.log("uid is" + uid);
+    emailjs.send("sendgrid", emailTemplate, { email: uid.email, name: uid.displayName, to_name: uid.displayName, from_name: "HailMinder", zip: affectedZip})
         .then(function (response) {
             console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
         }, function (err) {
@@ -38,29 +46,29 @@ function sendEmailComm(user, emailTemplate) {
 };
 
 //Send Text Comm
-function sendSMSComm(user, smsTemplate) {
+function sendSMSComm(uid, smsTemplate, affectedZip) {
     let smsDomain;
     let smsEmail;
-    switch (user.carrier) {
+    switch (uid.carrier) {
         case "verizon":
             smsDomain = "@vtext.com";
-            smsEmail = user.phoneNumber + smsDomain;
+            smsEmail = uid.phoneNumber + smsDomain;
             break;
         case "sprint":
             smsDomain = "@messaging.sprintpcs.com";
-            smsEmail = user.phoneNumber + smsDomain;
+            smsEmail = uid.phoneNumber + smsDomain;
             break;
         case "att":
             smsDomain = "@txt.att.net";
-            smsEmail = user.phoneNumber + smsDomain;
+            smsEmail = uid.phoneNumber + smsDomain;
             break;
         case "tmobile":
             smsDomain = "@tmomail.net";
-            smsEmail = user.phoneNumber + smsDomain;
+            smsEmail = uid.phoneNumber + smsDomain;
             break;
     }
 
-    emailjs.send("sendgrid", smsTemplate, { email: smsEmail, name: user.displayName, to_name: user.displayName, from_name: "HailMinder" })
+    emailjs.send("sendgrid", smsTemplate, { email: smsEmail, name: uid.displayName, to_name: uid.displayName, from_name: "HailMinder", zip: affectedZip})
         .then(function (response) {
             console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
         }, function (err) {
@@ -76,12 +84,13 @@ let jared = {};
 
 jared.displayName = "Ash Rotman";
 jared.email = "cjatkinson19@gmail.com";
+jared.phoneNumber = 3033453612;
 jared.emailNotification = true;
 jared.homeZip = 80221;
 jared.smsNotification = true;
 jared.workZip = 80223;
 jared.carrier = "verizon";
 jared.lastEmailDate = "";
-jared.lastEmailDate = "";
+jared.lastSMSDate = "";
 
 */
