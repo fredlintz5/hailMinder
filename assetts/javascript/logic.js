@@ -160,8 +160,10 @@ database.on("value", function(snapshot) {
       alertWeather(localZipArray[i]);
     }
 
+    console.log(todayHailArray);
+    console.log(dayTwoHailArray);
+
     alertEmail(todayHailArray, uid);
-    console.log(todayHailArray + " " + uid);
 
     clearHailArrays();
 
@@ -189,8 +191,6 @@ database.on("value", function(snapshot) {
         dayTwoHailArray.push(zipCode);
       } 
     })
-    console.log(todayHailArray);
-    console.log(dayTwoHailArray);
   }
 
   // alert users based off of affected arrays
