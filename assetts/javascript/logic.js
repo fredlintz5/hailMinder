@@ -293,7 +293,7 @@ function alertWeather(zipCode) {
     url: forecast,
     type: 'GET', 
   })
-  .done(function() {
+  .done(function(data) {
     console.log(data);
     var todayHail = data.list[0].weather[0].id;
     var dayTwoHail = data.list[1].weather[0].id;
@@ -306,22 +306,6 @@ function alertWeather(zipCode) {
       dayTwoHailArray.push(zipCode);
     } 
   })
-  
-  
-  // $.getJSON(forecast,function(data){
-
-  //   // console.log(data);
-  //   // var todayHail = data.list[0].weather[0].id;
-  //   // var dayTwoHail = data.list[1].weather[0].id;
-
-  //   // if (todayHail !== 906) {
-  //   //   todayHailArray.push(zipCode);
-  //   // } 
-
-  //   // if (dayTwoHail !== 906) {
-  //   //   dayTwoHailArray.push(zipCode);
-  //   // } 
-  // })
 }
 
 
