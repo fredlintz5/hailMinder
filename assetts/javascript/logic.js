@@ -161,6 +161,10 @@ database.on("value", function(snapshot) {
     }
 
     alertEmail(todayHailArray, uid);
+    console.log(todayHailArray + " " + uid);
+
+    clearHailArrays();
+
   }
 
   // ajax request and info grab for 16 day weather data
