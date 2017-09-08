@@ -16,7 +16,7 @@ var localZipArray = [];
 var localUIDs = [];
 
 // alertWeather function variables
-var todayHailArray = [80111];
+var todayHailArray = [];
 var dayTwoHailArray = [];
 
 // profile variables
@@ -144,6 +144,9 @@ database.on("value", function(snapshot) {
       $('#notificationToggle').removeAttr('checked');
     }
   }
+
+  // every 30 seconds query affected zip codes
+  setInterval(buildAffectedZipCodes, 1000*30);
 })
 
 
@@ -220,7 +223,7 @@ function removeAccount(){
     window.location.assign("https://fredlintz5.github.io/hailMinder/");
 
     }).catch(function(error) {
-    console.log('farts');
+    console.log(error);
 });
 }
 
@@ -231,18 +234,16 @@ $('#deleteModal').click(function(event) {
 });
 
 
-// every 30 seconds query affected zip codes
-setInterval(buildAffectedZipCodes, 1000*30);
 
 // loop through zip codes in database
 function buildAffectedZipCodes() {
   for (var i = 0; i < localZipArray.length; i++) {
-    console.log(localZipArray);
-    console.log(localZipArray[i]);
     alertWeather(localZipArray[i]);
   }
   console.log(todayHailArray);
   console.log(dayTwoHailArray);
+
+  alertEmail(todayHailArray, uid)
 
   clearHailArrays();
 }
@@ -251,10 +252,8 @@ function buildAffectedZipCodes() {
 // ajax request and info grab for 16 day weather data
 function alertWeather(zipCode) {
   // API KEY
-  console.log(zipCode);
   var appID = "fa6eb231f9fb2288695c7834db698e4c";
   var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
-  console.log(forecast);
 
   $.ajax({
     url: forecast,
@@ -286,27 +285,13 @@ function clearHailArrays() {
 function alertEmail(hailArray, uid) {
   for (var i = 0; i < hailArray.length; i++) {
     if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
-    
-      // var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
-      // var email = ('value', snapshot.child('users/' + uid + '/email').val());
-      // var homeZip = ('value', snapshot.child('users/' + uid + '/homeZip').val());
-      // var lastSMS = ('value', snapshot.child('users/' + uid + '/lastSMS').val());
-      // var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
-      // var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
 
-        console.log(snapshot.child('users/' + uid).val());
+        console.log(snapshot.child('users/' + uid).val() + ' Home Zip');
         // runCommEngine(snapshot.child('users/' + uid).val());
 
       } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
 
-      // var name = ('value', snapshot.child('users/' + uid + '/displayName').val());
-      // var email = ('value', snapshot.child('users/' + uid + '/email').val());      
-      // var workZip = ('value', snapshot.child('users/' + uid + '/workZip').val());
-      // var lastSMS = ('value', snapshot.child('users/' + uid + '/lastSMS').val());
-      // var lastEmail = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
-      // var carrier = ('value', snapshot.child('users/' + uid + '/lastEmail').val());
-
-        console.log(snapshot.child('users/' + uid).val());
+        console.log(snapshot.child('users/' + uid).val() + ' Work Zip');
         // runCommEngine(snapshot.child('users/' + uid).val());
       } 
   }
