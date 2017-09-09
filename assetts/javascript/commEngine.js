@@ -2,6 +2,7 @@
 
 //uidObject
 function runCommEngine(uid, forecast, affectedZip) {
+    console.log("Run comm engine method called");
     let momentNow = moment(moment.now());
     if(uid.lastEmail !== ""){
     lastEmailDate = moment(uid.lastEmail);
@@ -24,6 +25,8 @@ function runCommEngine(uid, forecast, affectedZip) {
     } else if(forecast == "tomorrow"){
         emailTemplate = "tomorrowemail"
         smsTemplate = "tomorrowsms"
+    } else {
+        console.log("invalid forcast arguement")
     }
 
     if(affectedZip === 'home'){

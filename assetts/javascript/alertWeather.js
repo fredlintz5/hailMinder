@@ -38,9 +38,6 @@ function alertWeather(zipCode) {
 function clearHailArrays() {
 	todayHailArray = [];
 	dayTwoHailArray = [];
-	dayThreeHailArray = [];
-	dayFourHailArray = [];
-	dayFiveHailArray = [];
 }
 
 

@@ -82,8 +82,8 @@ function signOut() {
 database.on("value", function(snapshot) {
 
   console.log(snapshot.child('users').val());
-  console.log(snapshot.child('userUIDs').val());
-  console.log(snapshot.child('userZips').val());
+  console.log(snapshot.child('userUIDs/UIDs').val());
+  console.log(snapshot.child('userZips/zipCodes').val());
 
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
@@ -121,6 +121,7 @@ database.on("value", function(snapshot) {
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
 
+
     // set carrier choice from database to 'select' correct carrier on page
     if (snapshot.child('users/' + uid + '/carrier').val() === "att") {
       $('#att').prop('selected', true);
@@ -134,6 +135,7 @@ database.on("value", function(snapshot) {
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "verizon") {
       $('#verizon').prop('selected', true);
     }
+
 
     // toggle email/sms preferences based off of database values
     if (snapshot.child('users/' + uid + '/emailNotification').val()) {
@@ -149,10 +151,31 @@ database.on("value", function(snapshot) {
     }
   }
 
-  // every 30 seconds query affected zip codes
-  setInterval(buildAffectedZipCodes, 1000*30);
 
-  alertEmail(todayHailArray, uid);
+  // every 30 seconds query affected zip codes
+  setInterval(usersToAlert, 1000*30);
+
+
+  // put all thr functions together to Alert the correct User
+  function usersToAlert() {
+    console.log('here we go...');
+
+    buildAffectedZipCodes();
+
+    console.log(todayHailArray);
+    console.log(dayTwoHailArray);
+
+    for (var i = 0; i < localUIDs.length; i++) {
+      alertEmail(todayHailArray, localUIDs[i], 'today');
+    }
+
+    for (var j = 0; j < localUIDs.length; j++) {
+      alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+    }
+
+    clearHailArrays();
+  };
+
 
   // loop through zip codes in database
   function buildAffectedZipCodes() {
@@ -162,8 +185,10 @@ database.on("value", function(snapshot) {
     }
   }
 
-  // ajax request and info grab for 16 day weather data
+
+  // ajax request for 16 day weather data and affected Zipcode push
   function alertWeather(zipCode) {
+    console.log('getting weather api data...');
     // API KEY
     var appID = "fa6eb231f9fb2288695c7834db698e4c";
     var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
@@ -186,23 +211,43 @@ database.on("value", function(snapshot) {
     })
   }
 
+
   // alert users based off of affected arrays
-  function alertEmail(hailArray, uid) {
+  function alertEmail(hailArray, UID, day) {
     console.log('checking for users to alert');
+
+    var buttz = snapshot.child('users/' + UID).val();
+    var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
+    var workZip = snapshot.child('users/' + UID + '/workZip').val();
+    var user = snapshot.child('users/' + UID + '/displayName').val();
+
     for (var i = 0; i < hailArray.length; i++) {
-      if (snapshot.child('users/' + uid + '/homeZip').val() === hailArray[i]) {
+      if (homeZip === hailArray[i]) {
 
-          console.log(snapshot.child('users/' + uid).val() + ' Home Zip');
-          // runCommEngine(snapshot.child('users/' + uid).val());
+        console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
+        runCommEngine(buttz, day, 'home');
+        // console.log(buttz);
+        // console.log(UID, day, homeZip);
 
-        } else if (snapshot.child('users/' + uid + '/workZip').val() === hailArray[i]) {
+      } 
 
-          console.log(snapshot.child('users/' + uid).val() + ' Work Zip');
-          // runCommEngine(snapshot.child('users/' + uid).val());
-        } 
+      if (workZip === hailArray[i]) {
+
+        console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
+        runCommEngine(buttz, day, 'work');
+        // console.log(buttz);
+        // console.log(UID, day, workZip);
+      } 
     }
   }
+
 })
+
+
+function clearHailArrays() {
+  todayHailArray = [];
+  dayTwoHailArray = [];
+}
 
 
 $('input:checkbox').change(
@@ -216,7 +261,6 @@ $('input:checkbox').change(
       $("#carrierDropdown").hide();
     }
 });
-
 
 
 // Button to update Profile Information
@@ -240,13 +284,22 @@ $('#updateButton').click(function() {
     $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
   } 
 
-    if (inputWorkZip === "" || inputWorkZip.length != 5) {
-      $('#workZip').css('border-color', '#D9534F');
-      $('#workZip').val('');
-      $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
+  if (inputWorkZip === "" || inputWorkZip.length != 5) {
+    $('#workZip').css('border-color', '#D9534F');
+    $('#workZip').val('');
+    $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
 
-  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5) {
+  // //new  "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-])*@[A-Za-z0-9]+(\\.[A-Za-z0-9])*(\\.[A-Za-z])$"
+  // //old "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+  // if (inputEmail === "" || inputEmail !== "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-])*@[A-Za-z0-9]+(\\.[A-Za-z0-9])*(\\.[A-Za-z])$") {
+  //   $('#email').css('border-color', '#D9534F');
+  //   $('#email').val('');
+  //   $("#email").attr('placeholder', 'Please enter a valid email address');
+  // }
+
+
+  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5 && inputEmail !== "") {
 
     $('#myModal').modal('toggle');
 
@@ -312,19 +365,6 @@ function removeAccount(){
 $('#deleteModal').click(function(event) {
       $('#confirmModal').modal('toggle');
 });
-
-
-
-
-function clearHailArrays() {
-  todayHailArray = [];
-  dayTwoHailArray = [];
-}
-
-
-
-
-
 
 
 
