@@ -165,11 +165,11 @@ database.on("value", function(snapshot) {
     console.log(dayTwoHailArray);
 
     for (var i = 0; i < localUIDs.length; i++) {
-      alertEmail(todayHailArray, localUIDs[i]);
+      alertEmail(todayHailArray, localUIDs[i], 'today');
     }
 
     for (var j = 0; j < localUIDs.length; j++) {
-      alertEmail(dayTwoHailArray, localUIDs[j]);
+      alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
     }
 
     clearHailArrays();
@@ -211,7 +211,7 @@ database.on("value", function(snapshot) {
   }
 
   // alert users based off of affected arrays
-  function alertEmail(hailArray, UID) {
+  function alertEmail(hailArray, UID, day) {
     console.log('checking for users to alert');
 
     var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
@@ -221,12 +221,12 @@ database.on("value", function(snapshot) {
     for (var i = 0; i < hailArray.length; i++) {
       if (homeZip === hailArray[i]) {
 
-        console.log('send email to ' + user + ' at his/her Home Zip');
+        console.log('send email to ' + user + ' at his/her Home Zip for ' + day);
         // runCommEngine(snapshot.child('users/' + UID).val());
 
       } else if (workZip === hailArray[i]) {
 
-        console.log('send email to ' + user + ' at his/her Work Zip');
+        console.log('send email to ' + user + ' at his/her Work Zip for ' + day);
         // runCommEngine(snapshot.child('users/' + UID).val());
       } 
     }
