@@ -123,7 +123,7 @@ p {
 }
 
 @media only screen  and (min-width : 768px) {
-#profilePic {
+	#profilePic {
 		width: 100%;
 	}
 
@@ -141,10 +141,6 @@ p {
 
 @media only screen 
 and (min-device-width : 440px) {
-#profilePic {
-		width: 100%;
-	}
-
 
 	.firebaseui-card-header h1 {
 		font-size: 30px;
