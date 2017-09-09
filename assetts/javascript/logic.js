@@ -152,20 +152,6 @@ $('#updateButton').click(function() {
   var notificationCheck = $('#notificationToggle').is(":checked");
   var carrier = $('#carrier').val();
 
-  function validate() {
-  var input = document.createElement('input');
-  input.type='email';
-  input.value=document.getElementById('test').value;
-    
-  if (input.checkValidity()) {
-     $('#email').val('');
-  } else {
-    $('#email').attr('placeholder', 'Please enter a valid 5 email address');
-  }
-    
-  return false;
-}
-
 
   if (inputHomeZip === "" || inputHomeZip.length != 5) {
     $('#homeZip').css('border-color', '#D9534F');
@@ -173,13 +159,20 @@ $('#updateButton').click(function() {
     $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
   } 
 
-    if (inputWorkZip === "" || inputWorkZip.length != 5) {
-      $('#workZip').css('border-color', '#D9534F');
-      $('#workZip').val('');
-      $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
+  if (inputWorkZip === "" || inputWorkZip.length != 5) {
+    $('#workZip').css('border-color', '#D9534F');
+    $('#workZip').val('');
+    $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
 
-  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5) {
+  if (inputEmail.length == "" || inputEmail !== ^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$) {
+     $('#email').css('border-color', '#D9534F');
+    $('#email').val('');
+    $("#email").attr('placeholder', 'Please enter a valid email address');
+  }
+
+
+  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5 && inputEmail.length !== "") {
 
     $('#myModal').modal('toggle');
 
