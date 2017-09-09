@@ -155,6 +155,7 @@ database.on("value", function(snapshot) {
   setInterval(usersToAlert, 1000*30);
 
 
+  // put all thr functions together to Alert the correct User
   function usersToAlert() {
     console.log('here we go...');
 
@@ -174,7 +175,6 @@ database.on("value", function(snapshot) {
     clearHailArrays();
 
   };
-
 
 
   // loop through zip codes in database
@@ -216,7 +216,7 @@ database.on("value", function(snapshot) {
 
     var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
     var workZip = snapshot.child('users/' + UID + '/workZip').val();
-    var userUID = snapshot.child('users/' + UID).val();
+    var userUID = snapshot.child('users/' + UID);
 
     for (var i = 0; i < hailArray.length; i++) {
       if (homeZip === hailArray[i]) {
@@ -226,7 +226,7 @@ database.on("value", function(snapshot) {
 
       } else if (workZip === hailArray[i]) {
 
-        console.log(JSON.parse(userUID) + ' Work Zip');
+        console.log(userUID + ' Work Zip');
         // runCommEngine(snapshot.child('users/' + UID).val());
       } 
     }
