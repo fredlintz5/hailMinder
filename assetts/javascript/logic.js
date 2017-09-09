@@ -151,6 +151,7 @@ database.on("value", function(snapshot) {
     }
   }
 
+
   // every 30 seconds query affected zip codes
   setInterval(usersToAlert, 1000*30);
 
@@ -173,7 +174,6 @@ database.on("value", function(snapshot) {
     }
 
     clearHailArrays();
-
   };
 
 
@@ -184,6 +184,7 @@ database.on("value", function(snapshot) {
       alertWeather(localZipArray[i]);
     }
   }
+
 
   // ajax request for 16 day weather data and affected Zipcode push
   function alertWeather(zipCode) {
@@ -209,6 +210,7 @@ database.on("value", function(snapshot) {
       } 
     })
   }
+
 
   // alert users based off of affected arrays
   function alertEmail(hailArray, UID, day) {
@@ -284,14 +286,14 @@ $('#updateButton').click(function() {
     $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
 
-  if (inputEmail.length == "" || inputEmail !== ^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$) {
+  if (inputEmail === "" || inputEmail !== [_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$) {
      $('#email').css('border-color', '#D9534F');
     $('#email').val('');
     $("#email").attr('placeholder', 'Please enter a valid email address');
   }
 
 
-  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5 && inputEmail.length !== "") {
+  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5 && inputEmail !== "") {
 
     $('#myModal').modal('toggle');
 
