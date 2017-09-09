@@ -121,6 +121,7 @@ database.on("value", function(snapshot) {
     $('#homeZip').attr('value', snapshot.child('users/' + uid + '/homeZip').val());
     $('#workZip').attr('value', snapshot.child('users/' + uid + '/workZip').val());
 
+
     // set carrier choice from database to 'select' correct carrier on page
     if (snapshot.child('users/' + uid + '/carrier').val() === "att") {
       $('#att').prop('selected', true);
@@ -134,6 +135,7 @@ database.on("value", function(snapshot) {
     } else if (snapshot.child('users/' + uid + '/carrier').val() === "verizon") {
       $('#verizon').prop('selected', true);
     }
+
 
     // toggle email/sms preferences based off of database values
     if (snapshot.child('users/' + uid + '/emailNotification').val()) {
@@ -150,7 +152,29 @@ database.on("value", function(snapshot) {
   }
 
   // every 30 seconds query affected zip codes
-  setInterval(buildAffectedZipCodes, 1000*30);
+  setInterval(usersToAlert, 1000*30);
+
+
+  function usersToAlert() {
+    console.log('here we go...');
+
+    buildAffectedZipCodes();
+
+    console.log(todayHailArray);
+    console.log(dayTwoHailArray);
+
+    for (var i = 0; i < localUIDs.length; i++) {
+      alertEmail(todayHailArray, localUIDs[i]);
+    }
+
+    for (var j = 0; j < localUIDs.length; j++) {
+      alertEmail(dayTwoHailArray, localUIDs[j]);
+    }
+
+    clearHailArrays();
+
+  };
+
 
 
   // loop through zip codes in database
@@ -159,18 +183,11 @@ database.on("value", function(snapshot) {
     for (var i = 0; i < localZipArray.length; i++) {
       alertWeather(localZipArray[i]);
     }
-
-    console.log(todayHailArray);
-    console.log(dayTwoHailArray);
-
-    alertEmail(todayHailArray, uid);
-
-    clearHailArrays();
-
   }
 
-  // ajax request and info grab for 16 day weather data
+  // ajax request for 16 day weather data and affected Zipcode push
   function alertWeather(zipCode) {
+    console.log('getting weather api data...');
     // API KEY
     var appID = "fa6eb231f9fb2288695c7834db698e4c";
     var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
@@ -209,7 +226,14 @@ database.on("value", function(snapshot) {
         } 
     }
   }
+
 })
+
+
+function clearHailArrays() {
+  todayHailArray = [];
+  dayTwoHailArray = [];
+}
 
 
 $('input:checkbox').change(
@@ -223,7 +247,6 @@ $('input:checkbox').change(
       $("#carrierDropdown").hide();
     }
 });
-
 
 
 // Button to update Profile Information
@@ -319,19 +342,6 @@ function removeAccount(){
 $('#deleteModal').click(function(event) {
       $('#confirmModal').modal('toggle');
 });
-
-
-
-
-function clearHailArrays() {
-  todayHailArray = [];
-  dayTwoHailArray = [];
-}
-
-
-
-
-
 
 
 
