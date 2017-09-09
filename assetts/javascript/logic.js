@@ -338,8 +338,6 @@ $('#updateButton').click(function() {
 });
 
 
-
-
 // this function called from within the deleteModal in html
 function removeAccount(){
    var user = firebase.auth().currentUser;
