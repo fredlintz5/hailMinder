@@ -222,13 +222,22 @@ database.on("value", function(snapshot) {
       if (homeZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
-        // runCommEngine(snapshot.child('users/' + UID).val());
+        // runCommEngine(UID, day);
+        console.log(UID, day);
+        
+      } else {
+        console.log('no matching users');
+      }
 
-      } else if (workZip === hailArray[i]) {
+      if (workZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
-        // runCommEngine(snapshot.child('users/' + UID).val());
-      } 
+        // runCommEngine(UID, day);
+        console.log(UID, day);
+
+      } else {
+        console.log('no matching users');
+      }
     }
   }
 
