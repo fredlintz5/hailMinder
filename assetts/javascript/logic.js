@@ -216,7 +216,7 @@ database.on("value", function(snapshot) {
   function alertEmail(hailArray, UID, day) {
     console.log('checking for users to alert');
 
-    var buttz = snapshot.child('users/' + UID).val();
+    var userObject = snapshot.child('users/' + UID).val();
     var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
     var workZip = snapshot.child('users/' + UID + '/workZip').val();
     var user = snapshot.child('users/' + UID + '/displayName').val();
@@ -225,29 +225,33 @@ database.on("value", function(snapshot) {
       if (homeZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
-        runCommEngine(buttz, day, 'home');
-        // console.log(buttz);
-        // console.log(UID, day, homeZip);
-
+        runCommEngine(userObject, day, 'home');
       } 
 
       if (workZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
-        runCommEngine(buttz, day, 'work');
-        // console.log(buttz);
-        // console.log(UID, day, workZip);
+        runCommEngine(userObject, day, 'work');
       } 
     }
   }
 
+  function clearHailArrays() {
+    todayHailArray = [];
+    dayTwoHailArray = [];
+  }
+
+  function updateUserData(uid, field, value){
+    let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
+    if(supportedFields.indexOf(field) !== -1){
+      var updates = {};
+      updates['/'+ field +'/'] = value;
+      return firebase.database().ref('users/' + uid).update(updates)
+    } else {
+      console.log("Could not update database, invalid supported field")
+    }
+  }
 })
-
-
-function clearHailArrays() {
-  todayHailArray = [];
-  dayTwoHailArray = [];
-}
 
 
 $('input:checkbox').change(
@@ -333,16 +337,7 @@ $('#updateButton').click(function() {
 
 });
 
-function updateUserData(uid, field, value){
-  let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
-  if(supportedFields.indexOf(field) !== -1){
-    var updates = {};
-    updates['/'+ field +'/'] = value;
-    return firebase.database().ref('users/' + uid).update(updates)
-  } else {
-    console.log("Could not update database, invalid supported field")
-  }
-}
+
 
 
 // this function called from within the deleteModal in html
