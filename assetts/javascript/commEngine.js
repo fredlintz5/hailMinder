@@ -2,6 +2,7 @@
 
 //uidObject
 function runCommEngine(uid, forecast, affectedZip) {
+    console.log("Run comm engine method called");
     let momentNow = moment(moment.now());
     lastEmailDate = moment(uid.lastEmail);
     lastTextDate = moment(uid.lastSMS);
@@ -14,6 +15,8 @@ function runCommEngine(uid, forecast, affectedZip) {
     } else if(forecast == "tomorrow"){
         emailTemplate = "tomorrowemail"
         smsTemplate = "tomorrowsms"
+    } else {
+        console.log("invalid forcast arguement")
     }
 
     if(affectedZip === 'home'){
@@ -25,12 +28,12 @@ function runCommEngine(uid, forecast, affectedZip) {
     if ((momentNow.diff(uid.lastEmailDate) > 10000000) || (uid.lastEmailDate === "")) {
         sendEmailComm(uid, emailTemplate, affectedZip);
         console.log("Sent email");
-        // updateuidData(uid.uid, 'lastEmail', momentNow);
+        //updateuidData(uid.uid, 'lastEmail', momentNow);
     }
     if ((momentNow.diff(uid.lastSMSDate) > 10000000) || (uid.lastSMSDate === ""))  {
         sendSMSComm(uid, smsTemplate, affectedZip);
         console.log("Sent sms");
-        // updateuidData(uid.uid, 'smsEmail', momentNow);
+        //updateuidData(uid.uid, 'smsEmail', momentNow);
     }
 };
 
