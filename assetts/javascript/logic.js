@@ -286,13 +286,13 @@ $('#updateButton').click(function() {
     $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
 
-//new  "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-])*@[A-Za-z0-9]+(\\.[A-Za-z0-9])*(\\.[A-Za-z])$"
-//old "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-  if (inputEmail === "" || inputEmail !== "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-])*@[A-Za-z0-9]+(\\.[A-Za-z0-9])*(\\.[A-Za-z])$") {
-    $('#email').css('border-color', '#D9534F');
-    $('#email').val('');
-    $("#email").attr('placeholder', 'Please enter a valid email address');
-  }
+  // //new  "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-])*@[A-Za-z0-9]+(\\.[A-Za-z0-9])*(\\.[A-Za-z])$"
+  // //old "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+  // if (inputEmail === "" || inputEmail !== "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-])*@[A-Za-z0-9]+(\\.[A-Za-z0-9])*(\\.[A-Za-z])$") {
+  //   $('#email').css('border-color', '#D9534F');
+  //   $('#email').val('');
+  //   $("#email").attr('placeholder', 'Please enter a valid email address');
+  // }
 
 
   else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5 && inputEmail !== "") {
