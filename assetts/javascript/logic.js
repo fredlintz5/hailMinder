@@ -216,17 +216,17 @@ database.on("value", function(snapshot) {
 
     var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
     var workZip = snapshot.child('users/' + UID + '/workZip').val();
-    var userUID = snapshot.child('users/' + UID);
+    var user = snapshot.child('users/' + UID + '/displayName').val();
 
     for (var i = 0; i < hailArray.length; i++) {
       if (homeZip === hailArray[i]) {
 
-        console.log(userUID + ' Home Zip');
+        console.log('send email to ' + user + ' at his/her Home Zip');
         // runCommEngine(snapshot.child('users/' + UID).val());
 
       } else if (workZip === hailArray[i]) {
 
-        console.log(userUID + ' Work Zip');
+        console.log('send email to ' + user + ' at his/her Work Zip');
         // runCommEngine(snapshot.child('users/' + UID).val());
       } 
     }
