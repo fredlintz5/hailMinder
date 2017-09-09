@@ -278,13 +278,20 @@ $('#updateButton').click(function() {
     $('#homeZip').attr('placeholder', 'Please enter a valid 5 digit zip code');
   } 
 
-    if (inputWorkZip === "" || inputWorkZip.length != 5) {
-      $('#workZip').css('border-color', '#D9534F');
-      $('#workZip').val('');
-      $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
+  if (inputWorkZip === "" || inputWorkZip.length != 5) {
+    $('#workZip').css('border-color', '#D9534F');
+    $('#workZip').val('');
+    $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
 
-  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5) {
+  if (inputEmail.length == "" || inputEmail !== ^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$) {
+     $('#email').css('border-color', '#D9534F');
+    $('#email').val('');
+    $("#email").attr('placeholder', 'Please enter a valid email address');
+  }
+
+
+  else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5 && inputEmail.length !== "") {
 
     $('#myModal').modal('toggle');
 
