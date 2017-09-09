@@ -84,7 +84,7 @@
         <button class="btn btn-success" onclick="signOut()">Sign Out</button>
         <br>
         <br>
-        <button class="btn btn-success" id="deleteModal">Delete Account</button>
+        <!-- <button class="btn btn-success" id="deleteModal">Delete Account</button> -->
       </div>
       <br>
       <div class="col-sm-6">
@@ -95,15 +95,15 @@
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" value="" placeholder="john.smith@genericEmail.com" required>
+            <input type="email" class="form-control" id="email" value="" placeholder="john.smith@genericEmail.com">
           </div>
           <div class="form-group">
             <label for="homeZip">Home Zipcode</label>
-            <input type="number" class='form-control' id='homeZip' placeholder='90210' maxlength='6' required>
+            <input type="number" class='form-control' id='homeZip' placeholder='90210'>
           </div>
           <div class="form-group">
             <label for="workZip">Work Zipcode</label>
-            <input type="number" class="form-control" id="workZip" placeholder="90210" maxlength='6' required>
+            <input type="number" class="form-control" id="workZip" placeholder="90210">
           </div>
           <div class="form-group">
             <label for="">Email Notification</label>
@@ -113,7 +113,7 @@
           </div>
           <div class="form-group" id="phoneNumberEntry">
             <label for="phoneNumber">Phone Number</label>
-            <input type="tel" class="form-control" id="phoneNumber" value="" placeholder="(800)-867-5309"  required>
+            <input type="tel" class="form-control" id="phoneNumber" value="" placeholder="(800)-867-5309" >
           </div>
           <div class="form-group" id="carrierDropdown">
             <label for="exampleSelect1">Please select your phone carrier</label>
@@ -121,7 +121,7 @@
               <option id="empty"></option>
               <option id="verizon">verizon</option>
               <option id="sprint">sprint</option>
-              <option id="att" selected>att</option>
+              <option id="att">att</option>
               <option id="tmobile">tmobile</option>
             </select>
           </div>
@@ -135,6 +135,9 @@
         <p><span id="description_weather"></span></p>
         <p><span id="temperature"></span></p>
       </div> 
+      <div class='text-center'>
+        <button class="btn btn-success" id="deleteModal">Delete Account</button>
+      </div>
     </div>       
   </div>
   
