@@ -201,11 +201,11 @@ database.on("value", function(snapshot) {
       var todayHail = data.list[0].weather[0].id;
       var dayTwoHail = data.list[1].weather[0].id;
 
-      if (todayHail === 906) {
+      if (todayHail !== 906) {
         todayHailArray.push(zipCode);
       } 
 
-      if (dayTwoHail === 906) {
+      if (dayTwoHail !== 906) {
         dayTwoHailArray.push(zipCode);
       } 
     })
@@ -216,6 +216,7 @@ database.on("value", function(snapshot) {
   function alertEmail(hailArray, UID, day) {
     console.log('checking for users to alert');
 
+    var buttz = snapshot.child('users/' + UID).val();
     var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
     var workZip = snapshot.child('users/' + UID + '/workZip').val();
     var user = snapshot.child('users/' + UID + '/displayName').val();
@@ -224,14 +225,17 @@ database.on("value", function(snapshot) {
       if (homeZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
-        // runCommEngine(UID, day, zip);
+        // runCommEngine(UID, day, 'home');
+        console.log(buttz);
         console.log(UID, day, homeZip);
+
       } 
 
       if (workZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
-        // runCommEngine(UID, day, zip);
+        // runCommEngine(UID, day, 'work');
+        console.log(buttz);
         console.log(UID, day, workZip);
       } 
     }
