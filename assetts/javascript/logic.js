@@ -225,18 +225,18 @@ database.on("value", function(snapshot) {
       if (homeZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
-        // runCommEngine(UID, day, 'home');
-        console.log(buttz);
-        console.log(UID, day, homeZip);
+        runCommEngine(UID, day, 'home');
+        // console.log(buttz);
+        // console.log(UID, day, homeZip);
 
       } 
 
       if (workZip === hailArray[i]) {
 
         console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
-        // runCommEngine(UID, day, 'work');
-        console.log(buttz);
-        console.log(UID, day, workZip);
+        runCommEngine(UID, day, 'work');
+        // console.log(buttz);
+        // console.log(UID, day, workZip);
       } 
     }
   }
