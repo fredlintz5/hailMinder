@@ -11,9 +11,9 @@ function runCommEngine(uid, forecast, affectedZip) {
     };
 
     if(uid.lastSMS !== ""){
-    lastTextDate = moment(uid.lastSMS);
+        lastSMSDate = moment(uid.lastSMS);
     } else {
-        lastSMS = uid.lastSMS;
+        lastSMSDate = uid.lastSMS;
     };
 
     let emailTemplate;
