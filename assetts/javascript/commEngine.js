@@ -4,8 +4,18 @@
 function runCommEngine(uid, forecast, affectedZip) {
     console.log("Run comm engine method called");
     let momentNow = moment(moment.now());
+    if(uid.lastEmail !== ""){
     lastEmailDate = moment(uid.lastEmail);
+    } else {
+        lastEmailDate = uid.lastEmail;
+    };
+
+    if(uid.lastSMS !== ""){
     lastTextDate = moment(uid.lastSMS);
+    } else {
+        lastSMS = uid.lastSMS;
+    };
+
     let emailTemplate;
     let smsTemplate;
 
