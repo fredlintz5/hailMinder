@@ -296,8 +296,6 @@ $('#updateButton').click(function() {
     $("#email").attr('placeholder', 'Please enter a valid email address');
   }
 
-}
-
   else if (inputHomeZip !== "" && inputHomeZip.length === 5 && inputWorkZip !== "" && inputWorkZip.length === 5 && inputEmail !== "") {
 
     $('#myModal').modal('toggle');
