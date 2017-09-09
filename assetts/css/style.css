@@ -79,6 +79,8 @@ p {
 
 #login-logo {
 	width: 100%;
+
+
 }
 
 #profilePic {
@@ -103,17 +105,54 @@ p {
 }
 
 
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) {
 	#profilePic {
 		width: 100%;
 	}
+
 
 	.firebaseui-card-header h1 {
 		font-size: 30px;
 	}
 
 	#login-logo {
-		width: 60%;
+		width: 359px;
+		height:  69px;
+	}
+
+}
+
+@media only screen  and (min-width : 768px) {
+#profilePic {
+		width: 100%;
+	}
+
+
+	.firebaseui-card-header h1 {
+		font-size: 30px;
+	}
+
+	#login-logo {
+		width: 359px;
+		height:  69px;
+	}
+
+}
+
+@media only screen 
+and (min-device-width : 440px) {
+#profilePic {
+		width: 100%;
+	}
+
+
+	.firebaseui-card-header h1 {
+		font-size: 30px;
+	}
+
+	#login-logo {
+		width: 359px;
+		height: 69px;
 	}
 
 }
