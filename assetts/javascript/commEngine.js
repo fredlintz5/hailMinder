@@ -32,12 +32,12 @@ function runCommEngine(uid, forecast, affectedZip) {
         affectedZip = uid.workZip
     } else {console.log("invalid affected zip code passed into runCommEngine")}
 
-    if ((momentNow.diff(uid.lastEmailDate) > 10000000) || (uid.lastEmailDate === "")) {
+    if ((momentNow.diff(lastEmailDate) > 10000000) || (lastEmailDate === "")) {
         sendEmailComm(uid, emailTemplate, affectedZip);
         console.log("Sent email");
         // updateuidData(uid.uid, 'lastEmail', momentNow);
     }
-    if ((momentNow.diff(uid.lastSMSDate) > 10000000) || (uid.lastSMSDate === ""))  {
+    if ((momentNow.diff(lastSMSDate) > 10000000) || (lastSMSDate === ""))  {
         sendSMSComm(uid, smsTemplate, affectedZip);
         console.log("Sent sms");
         // updateuidData(uid.uid, 'smsEmail', momentNow);
