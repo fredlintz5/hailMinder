@@ -221,12 +221,12 @@ database.on("value", function(snapshot) {
     for (var i = 0; i < hailArray.length; i++) {
       if (homeZip === hailArray[i]) {
 
-        console.log('send email to ' + user + ' at his/her Home Zip for ' + day);
+        console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
         // runCommEngine(snapshot.child('users/' + UID).val());
 
       } else if (workZip === hailArray[i]) {
 
-        console.log('send email to ' + user + ' at his/her Work Zip for ' + day);
+        console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
         // runCommEngine(snapshot.child('users/' + UID).val());
       } 
     }
