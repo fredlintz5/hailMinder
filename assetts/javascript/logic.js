@@ -213,17 +213,22 @@ database.on("value", function(snapshot) {
   // alert users based off of affected arrays
   function alertEmail(hailArray, UID) {
     console.log('checking for users to alert');
+
+    var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
+    var workZip = snapshot.child('users/' + UID + '/workZip').val();
+    var userUID = snapshot.child('users/' + UID).val();
+
     for (var i = 0; i < hailArray.length; i++) {
-      if (snapshot.child('users/' + UID + '/homeZip').val() === hailArray[i]) {
+      if (homeZip === hailArray[i]) {
 
-          console.log(snapshot.child('users/' + UID).val() + ' Home Zip');
-          // runCommEngine(snapshot.child('users/' + UID).val());
+        console.log(userUID + ' Home Zip');
+        // runCommEngine(snapshot.child('users/' + UID).val());
 
-        } else if (snapshot.child('users/' + UID + '/workZip').val() === hailArray[i]) {
+      } else if (workZip === hailArray[i]) {
 
-          console.log(snapshot.child('users/' + UID).val() + ' Work Zip');
-          // runCommEngine(snapshot.child('users/' + UID).val());
-        } 
+        console.log(JSON.parse(userUID) + ' Work Zip');
+        // runCommEngine(snapshot.child('users/' + UID).val());
+      } 
     }
   }
 
