@@ -56,7 +56,7 @@ initApp = function() {
           $('#phoneNumber').attr('value', phoneNumber);
         }
 
-        if ($('#profilePic').attr('src') === "assetts/images/avatar-placeholder.png") {
+        if ($('#profilePic').attr('src') === "assets/images/avatar-placeholder.png") {
           $('#profilePic').attr('src', photoURL);
         }
       })
