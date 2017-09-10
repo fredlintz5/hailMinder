@@ -103,8 +103,8 @@ database.on("value", function(snapshot) {
   }
 
   if (localUIDs.indexOf(uid) < 0 ) {
-      localUIDs.push(uid);
-    }
+    localUIDs.push(uid);
+  }
 
   firebase.database().ref('userUIDs').set({
     UIDs:localUIDs,
@@ -200,11 +200,11 @@ database.on("value", function(snapshot) {
       var todayHail = data.list[0].weather[0].id;
       var dayTwoHail = data.list[1].weather[0].id;
 
-      if (todayHail !== 906) {
+      if (todayHail === 500) {
         todayHailArray.push(zipCode);
       } 
 
-      if (dayTwoHail !== 906) {
+      if (dayTwoHail === 500) {
         dayTwoHailArray.push(zipCode);
       } 
     })
