@@ -200,11 +200,11 @@ database.on("value", function(snapshot) {
       var todayHail = data.list[0].weather[0].id;
       var dayTwoHail = data.list[1].weather[0].id;
 
-      if (todayHail === 600) {
+      if (todayHail !== 906) {
         todayHailArray.push(zipCode);
       } 
 
-      if (dayTwoHail === 600) {
+      if (dayTwoHail !== 906) {
         dayTwoHailArray.push(zipCode);
       } 
     })
@@ -339,7 +339,7 @@ function removeAccount(){
 
     }).catch(function(error) {
     console.log(error);
-});
+  });
 }
 
 
