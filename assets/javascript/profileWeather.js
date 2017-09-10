@@ -1,4 +1,5 @@
 
+// displays current Weather on users profile page based off of geolocation
 function currentweather() {
 
   if (navigator.geolocation){

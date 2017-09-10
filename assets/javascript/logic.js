@@ -28,7 +28,8 @@ var phoneNumber;
 
 
 window.addEventListener('load', function() {
-  initApp()
+  initApp();
+  usersToAlert();
 });
 
 
@@ -93,6 +94,7 @@ database.on("value", function(snapshot) {
     localZipArray = [];
   }
 
+
   // set local UID array to database if it exists already
   if (snapshot.child('userUIDs').exists()) {
     localUIDs = snapshot.child('userUIDs/UIDs').val();
@@ -100,7 +102,6 @@ database.on("value", function(snapshot) {
   } else {
     localUIDs = [];
   }
-
 
   if (localUIDs.indexOf(uid) < 0 ) {
       localUIDs.push(uid);
@@ -114,6 +115,7 @@ database.on("value", function(snapshot) {
   // set profile input fields equal to database values if they exist
   if (snapshot.child('users/' + uid).exists()) {
 
+    // update profile input values based off of database
     $('#displayName').attr('value', snapshot.child('users/' + uid + '/displayName').val());
     $('#email').attr('value', snapshot.child('users/' + uid + '/email').val());
     $('#phoneNumber').attr('value', snapshot.child('users/' + uid + '/phoneNumber').val());
@@ -156,7 +158,7 @@ database.on("value", function(snapshot) {
   setInterval(usersToAlert, 1000*30);
 
 
-  // put all thr functions together to Alert the correct User
+  // put all the functions together to alert the correct User
   function usersToAlert() {
     console.log('here we go...');
 
@@ -236,24 +238,16 @@ database.on("value", function(snapshot) {
     }
   }
 
+  // this one should be obvious
   function clearHailArrays() {
     todayHailArray = [];
     dayTwoHailArray = [];
   }
 
-  function updateUserData(uid, field, value){
-    let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
-    if(supportedFields.indexOf(field) !== -1){
-      var updates = {};
-      updates['/'+ field +'/'] = value;
-      return firebase.database().ref('users/' + uid).update(updates)
-    } else {
-      console.log("Could not update database, invalid supported field")
-    }
-  }
 })
 
 
+// hide or show phone number input fields based off of sms toggle
 $('input:checkbox').change(
   function(){
     if ($("#notificationToggle").is(':checked')) {
@@ -293,7 +287,8 @@ $('#updateButton').click(function() {
     $('#workZip').val('');
     $('#workZip').attr('placeholder', 'Please enter a valid 5-digit zip code');
     }
-    //validation for email 
+  
+  //validation for email 
   if (inputEmail === "") {
     $('#email').css('border-color', '#D9534F');
     $('#email').val('');
