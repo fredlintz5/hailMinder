@@ -20,12 +20,6 @@ p {
 	margin: 0;
 }
 
-.container-fluid {
-	background-image: url("../images/tenor.gif");
-	background-size: cover;
-	height: 100vh;
-}
-
 .jumbotron {
 	background: none;
 	padding-top: 26vh;
@@ -77,14 +71,19 @@ p {
 	border-color:#63BCC8;
 }
 
+#indexContainer {
+	background-image: url("../images/tenor.gif");
+	background-size: cover;
+	height: 100vh;
+}
+
 #login-logo {
 	width: 100%;
-
-
 }
 
 #profilePic {
 	width: 50%;
+	border-radius: 10px;
 }
 
 #emailToggle {
@@ -105,11 +104,16 @@ p {
 }
 
 
+/*******************************************
+			Media Queries
+*******************************************/
+
+
 @media only screen and (min-width: 768px) {
 	#profilePic {
 		width: 100%;
+		border-radius: 10px;
 	}
-
 
 	.firebaseui-card-header h1 {
 		font-size: 30px;
@@ -119,28 +123,9 @@ p {
 		width: 359px;
 		height:  69px;
 	}
-
 }
 
-@media only screen  and (min-width : 768px) {
-	#profilePic {
-		width: 100%;
-	}
-
-
-	.firebaseui-card-header h1 {
-		font-size: 30px;
-	}
-
-	#login-logo {
-		width: 359px;
-		height:  69px;
-	}
-
-}
-
-@media only screen 
-and (min-device-width : 440px) {
+@media only screen and (min-device-width : 440px) {
 
 	.firebaseui-card-header h1 {
 		font-size: 30px;
@@ -150,7 +135,6 @@ and (min-device-width : 440px) {
 		width: 359px;
 		height: 69px;
 	}
-
 }
 
 
