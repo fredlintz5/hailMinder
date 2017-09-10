@@ -38,14 +38,28 @@ function runCommEngine(uid, forecast, affectedZip) {
     if ((momentNow.diff(lastEmailDate) > 10000000) || (lastEmailDate === "")) {
         //sendEmailComm(uid, emailTemplate, affectedZip);
         console.log("Sent email");
-        // updateUserData(uid.uid, 'lastEmail', momentNow);
+        updateUserData(uid.uid, 'lastEmail', momentNow);
     }
     if ((momentNow.diff(lastSMSDate) > 10000000) || (lastSMSDate === ""))  {
         //sendSMSComm(uid, smsTemplate, affectedZip);
         console.log("Sent sms");
-        // updateUserData(uid.uid, 'smsEmail', momentNow);
+        updateUserData(uid.uid, 'smsEmail', momentNow);
     }
 };
+
+
+// allow Updates to userData values
+function updateUserData(uid, field, value){
+    let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
+    if(supportedFields.indexOf(field) !== -1){
+      var updates = {};
+      updates['/'+ field +'/'] = value;
+      return firebase.database().ref('users/' + uid).update(updates)
+    } else {
+      console.log("Could not update database, invalid supported field")
+    }
+}
+
 
 //Send Email Comm
 function sendEmailComm(uid, emailTemplate, affectedZip) {
@@ -86,7 +100,7 @@ function sendSMSComm(uid, smsTemplate, affectedZip) {
             console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
         }, function (err) {
             console.log("FAILED. error=", err);
-        });
+    });
 };
 
 /*
