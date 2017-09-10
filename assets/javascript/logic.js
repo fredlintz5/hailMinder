@@ -200,11 +200,11 @@ database.on("value", function(snapshot) {
       var todayHail = data.list[0].weather[0].id;
       var dayTwoHail = data.list[1].weather[0].id;
 
-      if (todayHail === 500) {
+      if (todayHail === 600) {
         todayHailArray.push(zipCode);
       } 
 
-      if (dayTwoHail === 500) {
+      if (dayTwoHail === 600) {
         dayTwoHailArray.push(zipCode);
       } 
     })
