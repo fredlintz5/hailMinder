@@ -29,7 +29,6 @@ var phoneNumber;
 
 window.addEventListener('load', function() {
   initApp();
-  usersToAlert();
 });
 
 
@@ -82,9 +81,9 @@ function signOut() {
 // grab a snapshot of the database for manipulation
 database.on("value", function(snapshot) {
 
-  console.log(snapshot.child('users').val());
-  console.log(snapshot.child('userUIDs/UIDs').val());
-  console.log(snapshot.child('userZips/zipCodes').val());
+  // console.log(snapshot.child('users').val());
+  // console.log(snapshot.child('userUIDs/UIDs').val());
+  // console.log(snapshot.child('userZips/zipCodes').val());
 
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
@@ -155,6 +154,7 @@ database.on("value", function(snapshot) {
 
 
   // every 30 seconds query affected zip codes
+  usersToAlert();
   setInterval(usersToAlert, 1000*30);
 
 
@@ -163,9 +163,6 @@ database.on("value", function(snapshot) {
     console.log('here we go...');
 
     buildAffectedZipCodes();
-
-    console.log(todayHailArray);
-    console.log(dayTwoHailArray);
 
     for (var i = 0; i < localUIDs.length; i++) {
       alertEmail(todayHailArray, localUIDs[i], 'today');
