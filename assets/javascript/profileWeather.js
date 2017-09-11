@@ -8,7 +8,7 @@ function currentweather() {
 
       var lat = position.coords.latitude;
       var lon = position.coords.longitude;
-      var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=imperial&APPID=fa6eb231f9fb2288695c7834db698e4c&callback"; 
+      var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=imperial&APPID=e121ab8dfa2534c63c98a9bb1c039bda&callback"; 
 
       $.ajax({
         url: weatherURL,
