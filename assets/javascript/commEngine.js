@@ -43,7 +43,7 @@ function runCommEngine(uid, forecast, affectedZip) {
     if ((momentNow.diff(lastSMSDate) > 10000000) || (lastSMSDate === ""))  {
         //sendSMSComm(uid, smsTemplate, affectedZip);
         console.log("Sent sms");
-        updateUserData(uid.uid, 'smsEmail', momentNow);
+        updateUserData(uid.uid, 'lastSMS', momentNow);
     }
 };
 

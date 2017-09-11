@@ -351,15 +351,22 @@ $('#deleteModal').click(function(event) {
 
 // allow Updates to userData values
 function updateUserData(uid, field, value){
-    let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
-    if(supportedFields.indexOf(field) !== -1){
-      var updates = {};
-      updates['/'+ field +'/'] = value;
-      return firebase.database().ref('users/' + uid).update(updates)
-    } else {
-      console.log("Could not update database, invalid supported field")
-    }
+
+  firebase.database().ref('users/' + uid).update({
+    field: value   
+  });
 }
+
+// function updateUserData(uid, field, value){
+//     let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
+//     if(supportedFields.indexOf(field) !== -1){
+//       var updates = {};
+//       updates['/'+ field +'/'] = value;
+//       return firebase.database().ref('users/' + uid).update(updates)
+//     } else {
+//       console.log("Could not update database, invalid supported field")
+//     }
+// }
 
 
 
