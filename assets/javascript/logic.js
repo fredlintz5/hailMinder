@@ -189,7 +189,7 @@ database.on("value", function(snapshot) {
   function alertWeather(zipCode) {
     console.log('getting weather api data...');
     // API KEY
-    var appID = "fa6eb231f9fb2288695c7834db698e4c";
+    var appID = "e121ab8dfa2534c63c98a9bb1c039bda";
     var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
 
     $.ajax({
