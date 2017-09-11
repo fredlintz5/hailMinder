@@ -380,9 +380,9 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
     var userUID = userObject.uid;
 
-    let momentNow = moment(moment.now());
+    let momentNow = moment(moment.now())._i;
     console.log(momentNow);
-    
+
     if(userObject.lastEmail !== ""){
     lastEmailDate = moment(userObject.lastEmail);
     } else {
