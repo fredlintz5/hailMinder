@@ -352,9 +352,15 @@ $('#deleteModal').click(function(event) {
 // allow Updates to userData values
 function updateUserData(uid, field, value){
 
-  firebase.database().ref('users/' + uid).update({
-    field: value   
-  });
+  if (field === 'lastEmail') {
+    firebase.database().ref('users/' + uid).update({
+      lastEmail: value   
+    });
+  } else if (field === 'lastSMS') {
+    firebase.database().ref('users/' + uid).update({
+      lastSMS: value   
+    });
+  }
 }
 
 
