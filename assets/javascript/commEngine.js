@@ -38,12 +38,12 @@ function runCommEngine(uid, forecast, affectedZip) {
     if ((momentNow.diff(lastEmailDate) > 10000000) || (lastEmailDate === "")) {
         //sendEmailComm(uid, emailTemplate, affectedZip);
         console.log("Sent email");
-        updateUserData(uid, 'lastEmail', momentNow);
+        updateUserData(uid.uid, 'lastEmail', momentNow);
     }
     if ((momentNow.diff(lastSMSDate) > 10000000) || (lastSMSDate === ""))  {
         //sendSMSComm(uid, smsTemplate, affectedZip);
         console.log("Sent sms");
-        updateUserData(uid, 'smsEmail', momentNow);
+        updateUserData(uid.uid, 'smsEmail', momentNow);
     }
 };
 
