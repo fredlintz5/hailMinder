@@ -1,15 +1,3 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyClRKGEi4sOAzyk6pOn8oxIevbY3zOoy7I",
-  authDomain: "hailminder-d07a5.firebaseapp.com",
-  databaseURL: "https://hailminder-d07a5.firebaseio.com",
-  projectId: "hailminder-d07a5",
-  storageBucket: "hailminder-d07a5.appspot.com",
-  messagingSenderId: "150987850599"
-};
-firebase.initializeApp(config);
-
-
 //Main comm engine method
 
 //uidObject
@@ -58,19 +46,6 @@ function runCommEngine(uid, forecast, affectedZip) {
         updateUserData(uid, 'smsEmail', momentNow);
     }
 };
-
-
-// allow Updates to userData values
-function updateUserData(uid, field, value){
-    let supportedFields = ['displayName', 'email', 'profile_picture', 'uid', 'phoneNumber', 'homeZip', 'workZip', 'emailNotification', 'smsNotification', 'lastSMS', 'lastEmail', 'carrier'];
-    if(supportedFields.indexOf(field) !== -1){
-      var updates = {};
-      updates['/'+ field +'/'] = value;
-      return firebase.database().ref('users/' + uid).update(updates)
-    } else {
-      console.log("Could not update database, invalid supported field")
-    }
-}
 
 
 //Send Email Comm
