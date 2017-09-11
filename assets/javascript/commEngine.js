@@ -1,19 +1,22 @@
 //Main comm engine method
 
 //uidObject
-function runCommEngine(uid, forecast, affectedZip) {
+function runCommEngine(userObject, forecast, affectedZip) {
     console.log("Run comm engine method called");
+
+    var userUID = userObject.uid;
+
     let momentNow = moment(moment.now());
-    if(uid.lastEmail !== ""){
-    lastEmailDate = moment(uid.lastEmail);
+    if(userObject.lastEmail !== ""){
+    lastEmailDate = moment(userObject.lastEmail);
     } else {
-        lastEmailDate = uid.lastEmail;
+        lastEmailDate = userObject.lastEmail;
     };
 
-    if(uid.lastSMS !== ""){
-        lastSMSDate = moment(uid.lastSMS);
+    if(userObject.lastSMS !== ""){
+        lastSMSDate = moment(userObject.lastSMS);
     } else {
-        lastSMSDate = uid.lastSMS;
+        lastSMSDate = userObject.lastSMS;
     };
 
     let emailTemplate;
@@ -30,20 +33,20 @@ function runCommEngine(uid, forecast, affectedZip) {
     }
 
     if(affectedZip === 'home'){
-        affectedZip = uid.homeZip
+        affectedZip = userObject.homeZip
     } else if (affectedZip === 'work'){
-        affectedZip = uid.workZip
+        affectedZip = userObject.workZip
     } else {console.log("invalid affected zip code passed into runCommEngine")}
 
     if ((momentNow.diff(lastEmailDate) > 10000000) || (lastEmailDate === "")) {
         //sendEmailComm(uid, emailTemplate, affectedZip);
         console.log("Sent email");
-        updateUserData(uid.uid, 'lastEmail', momentNow);
+        updateUserData(userUID, 'lastEmail', momentNow);
     }
     if ((momentNow.diff(lastSMSDate) > 10000000) || (lastSMSDate === ""))  {
         //sendSMSComm(uid, smsTemplate, affectedZip);
         console.log("Sent sms");
-        updateUserData(uid.uid, 'lastSMS', momentNow);
+        updateUserData(userUID, 'lastSMS', momentNow);
     }
 };
 
