@@ -83,7 +83,7 @@ function signOut() {
 database.on("value", function(snapshot) {
 
   // store User Object for global use
-  userObject = snapshot.child('users/' + UID).val();
+  userObject = snapshot.child('users/' + uid).val();
 
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
