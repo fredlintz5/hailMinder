@@ -154,11 +154,8 @@ database.on("value", function(snapshot) {
 
 
   // every 30 seconds query affected zip codes
-  var interval = setInterval(usersToAlert, 1000*30);
-
-  function stopInterval() {
-      clearInterval(interval);
-  }
+  usersToAlert();
+  setInterval(usersToAlert, 1000*60*1);
 
 
   // put all the functions together to alert the correct User
@@ -184,6 +181,10 @@ database.on("value", function(snapshot) {
     console.log('building affected zipcodes...');
     for (var i = 0; i < localZipArray.length; i++) {
       alertWeather(localZipArray[i]);
+
+      setTimeout(function(){ 
+        console.log("giving Ajax a chance to catch up"); 
+      }, 2000);
     }
   }
 
