@@ -167,8 +167,15 @@ function usersToAlert() {
   buildAffectedZipCodes();
 
   setTimeout(function(){ 
-    notifyToday();
-    // notifyTomorrow();
+    // notify Today
+    for (var i = 0; i < localUIDs.length; i++) {
+      alertEmail(todayHailArray, localUIDs[i], 'today');
+    }
+
+    // notify Tomorrow
+    // for (var j = 0; j < localUIDs.length; j++) {
+    //   alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+    // }
 
   }, 3000);
     
@@ -208,20 +215,6 @@ function alertWeather(zipCode) {
       dayTwoHailArray.push(zipCode);
     } 
   })
-}
-
-
-function notifyToday() {
-  for (var i = 0; i < localUIDs.length; i++) {
-    alertEmail(todayHailArray, localUIDs[i], 'today');
-  }
-}
-
-
-function notifyTomorrow() {
-  for (var j = 0; j < localUIDs.length; j++) {
-    alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-  }
 }
 
 
