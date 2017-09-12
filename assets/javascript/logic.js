@@ -154,8 +154,7 @@ database.on("value", function(snapshot) {
 
 
   // every 30 seconds query affected zip codes
-  usersToAlert();
-  setInterval(usersToAlert, 1000*30);
+  setInterval(usersToAlert, 1000*60);
 
 
   // put all the functions together to alert the correct User
@@ -186,7 +185,7 @@ database.on("value", function(snapshot) {
 
 
   // ajax request for 16 day weather data and affected Zipcode push
-  function alertWeather(zipCode) {
+  async function alertWeather(zipCode) {
     console.log('getting weather api data...');
     // API KEY
     var appID = "e121ab8dfa2534c63c98a9bb1c039bda";
@@ -197,8 +196,8 @@ database.on("value", function(snapshot) {
       type: 'GET', 
     })
     .done(function(data) {
-      var todayHail = data.list[0].weather[0].id;
-      var dayTwoHail = data.list[1].weather[0].id;
+      var todayHail = await data.list[0].weather[0].id;
+      var dayTwoHail = await data.list[1].weather[0].id;
 
       if (todayHail !== 906) {
         todayHailArray.push(zipCode);
