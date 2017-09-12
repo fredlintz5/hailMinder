@@ -155,7 +155,6 @@ database.on("value", function(snapshot) {
 
   // every 30 seconds query affected zip codes
   var interval = setInterval(usersToAlert, 1000*30);
-  return interval;
 
   function stopInterval() {
       clearInterval(interval);
