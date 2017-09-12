@@ -145,6 +145,8 @@ database.on("value", function(snapshot) {
       $('#notificationToggle').attr('checked');
     } else {
       $('#notificationToggle').removeAttr('checked');
+      $("#phoneNumberEntry").hide();
+      $("#carrierDropdown").hide();
     }
   }
 
@@ -161,7 +163,7 @@ database.on("value", function(snapshot) {
 
     setTimeout(function(){ 
       notifyToday();
-      notifyTomorrow();
+      // notifyTomorrow();
 
     }, 3000);
       
@@ -211,11 +213,11 @@ database.on("value", function(snapshot) {
   }
 
 
-  // function notifyTomorrow() {
-  //   for (var j = 0; j < localUIDs.length; j++) {
-  //     alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-  //   }
-  // }
+  function notifyTomorrow() {
+    for (var j = 0; j < localUIDs.length; j++) {
+      alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+    }
+  }
 
 
   // alert users based off of affected arrays
