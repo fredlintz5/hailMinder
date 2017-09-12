@@ -196,8 +196,8 @@ database.on("value", function(snapshot) {
       type: 'GET', 
     })
     .done(function(data) {
-      var todayHail = await data.list[0].weather[0].id;
-      var dayTwoHail = await data.list[1].weather[0].id;
+      var todayHail = data.list[0].weather[0].id;
+      var dayTwoHail = data.list[1].weather[0].id;
 
       if (todayHail !== 906) {
         todayHailArray.push(zipCode);
