@@ -81,10 +81,6 @@ function signOut() {
 // grab a snapshot of the database for manipulation
 database.on("value", function(snapshot) {
 
-  // console.log(snapshot.child('users').val());
-  // console.log(snapshot.child('userUIDs/UIDs').val());
-  // console.log(snapshot.child('userZips/zipCodes').val());
-
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
     localZipArray = snapshot.child('userZips/zipCodes').val();
@@ -154,7 +150,6 @@ database.on("value", function(snapshot) {
 
 
   // every 30 seconds query affected zip codes
-  usersToAlert();
   setInterval(usersToAlert, 1000*60*1);
 
 
@@ -400,7 +395,6 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
     // let momentNow = moment(moment.now())._i/1000;
     let momentNow = moment().unix();
-    console.log(momentNow);
 
     if(userObject.lastEmail !== ""){
     // lastEmailDate = moment(userObject.lastEmail);
