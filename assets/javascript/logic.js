@@ -230,9 +230,9 @@ function alertEmail(hailArray, UID, day) {
   console.log('checking for users to alert');
 
   // var userObject = snapshot.child('users/' + UID).val();
-  var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
-  var workZip = snapshot.child('users/' + UID + '/workZip').val();
-  var user = snapshot.child('users/' + UID + '/displayName').val();
+  var homeZip = userObject.homeZip;
+  var workZip = userObject.workZip;
+  var user = userObject.displayName;
 
   for (var i = 0; i < hailArray.length; i++) {
     if (homeZip === hailArray[i]) {
