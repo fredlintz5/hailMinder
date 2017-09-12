@@ -386,19 +386,23 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
     var userUID = userObject.uid;
 
-    let momentNow = moment(moment.now())._i/1000;
+    // let momentNow = moment(moment.now())._i/1000;
+    let momentNow = moment().unix();
     console.log(momentNow);
 
     if(userObject.lastEmail !== ""){
-    lastEmailDate = moment(userObject.lastEmail);
+    // lastEmailDate = moment(userObject.lastEmail);
+      lastEmailDate = userObject.lastEmail;
+
     } else {
-        lastEmailDate = userObject.lastEmail;
+        lastEmailDate = "";
     };
 
     if(userObject.lastSMS !== ""){
-        lastSMSDate = moment(userObject.lastSMS);
-    } else {
+        // lastSMSDate = moment(userObject.lastSMS);
         lastSMSDate = userObject.lastSMS;
+    } else {
+        lastSMSDate = "";
     };
 
     let emailTemplate;
@@ -411,7 +415,7 @@ function runCommEngine(userObject, forecast, affectedZip) {
         emailTemplate = "tomorrowemail"
         smsTemplate = "tomorrowsms"
     } else {
-        console.log("invalid forcast arguement")
+        console.log("invalid forecast arguement")
     }
 
     if(affectedZip === 'home'){
@@ -420,12 +424,12 @@ function runCommEngine(userObject, forecast, affectedZip) {
         affectedZip = userObject.workZip
     } else {console.log("invalid affected zip code passed into runCommEngine")}
 
-    if ((moment(momentNow).diff(lastEmailDate, 'seconds') > 10000) || (lastEmailDate === "")) {
+    if (momentNow.diff(lastEmailDate, 'seconds') > 10000) || (lastEmailDate === "") {
         //sendEmailComm(userObject, emailTemplate, affectedZip);
         console.log("Sent email");
         updateUserData(userUID, 'lastEmail', momentNow);
     }
-    if ((moment(momentNow).diff(lastSMSDate, 'seconds') > 10000) || (lastSMSDate === ""))  {
+    if (momentNow.diff(lastSMSDate, 'seconds') > 10000) || (lastSMSDate === "") {
         //sendSMSComm(userObject, smsTemplate, affectedZip);
         console.log("Sent sms");
         updateUserData(userUID, 'lastSMS', momentNow);
