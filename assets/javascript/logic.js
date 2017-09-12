@@ -164,10 +164,12 @@ database.on("value", function(snapshot) {
 
     buildAffectedZipCodes();
 
-    notifyToday();
+    setTimeout(function(){ 
+      notifyToday();
+      notifyTomorrow();
 
-    notifyTomorrow();  
-
+    }, 3000);
+      
     clearHailArrays();
   };
 
