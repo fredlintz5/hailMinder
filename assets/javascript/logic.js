@@ -154,7 +154,12 @@ database.on("value", function(snapshot) {
 
 
   // every 30 seconds query affected zip codes
-  setInterval(usersToAlert, 1000*60);
+  var interval = setInterval(usersToAlert, 1000*30);
+  return interval;
+
+  function stopInterval() {
+      clearInterval(interval);
+  }
 
 
   // put all the functions together to alert the correct User
@@ -185,7 +190,7 @@ database.on("value", function(snapshot) {
 
 
   // ajax request for 16 day weather data and affected Zipcode push
-  async function alertWeather(zipCode) {
+  function alertWeather(zipCode) {
     console.log('getting weather api data...');
     // API KEY
     var appID = "e121ab8dfa2534c63c98a9bb1c039bda";
