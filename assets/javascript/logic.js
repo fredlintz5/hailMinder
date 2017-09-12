@@ -211,11 +211,11 @@ database.on("value", function(snapshot) {
   }
 
 
-  function notifyTomorrow() {
-    for (var j = 0; j < localUIDs.length; j++) {
-      alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-    }
-  }
+  // function notifyTomorrow() {
+  //   for (var j = 0; j < localUIDs.length; j++) {
+  //     alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+  //   }
+  // }
 
 
   // alert users based off of affected arrays
@@ -429,15 +429,20 @@ function runCommEngine(userObject, forecast, affectedZip) {
         affectedZip = userObject.workZip
     } else {console.log("invalid affected zip code passed into runCommEngine")}
 
-    if (momentNow - lastEmailDate > 10000 || lastEmailDate === "" && userObject.emailNotification === 'true') {
+    if (userObject.emailNotification === 'true') {
+      if (momentNow - lastEmailDate > 10000 || lastEmailDate === "") {
         //sendEmailComm(userObject, emailTemplate, affectedZip);
         console.log("Sent email");
         // updateUserData(userUID, 'lastEmail', momentNow);
+      }
     }
-    if (momentNow - lastSMSDate > 10000 || lastSMSDate === "" && userObject.smsNotification === 'true') {
-        //sendSMSComm(userObject, smsTemplate, affectedZip);
-        console.log("Sent sms");
-        // updateUserData(userUID, 'lastSMS', momentNow);
+
+    if (userObject.smsNotification === 'true') {
+      if (momentNow - lastSMSDate > 10000 || lastSMSDate === "") {
+          //sendSMSComm(userObject, smsTemplate, affectedZip);
+          console.log("Sent sms");
+          // updateUserData(userUID, 'lastSMS', momentNow);
+      }
     }
 };
 
