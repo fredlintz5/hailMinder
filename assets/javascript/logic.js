@@ -14,6 +14,7 @@ firebase.initializeApp(config);
 var database = firebase.database().ref();
 var localZipArray = [];
 var localUIDs = [];
+var userObject;
 
 // alertWeather function variables
 var todayHailArray = [];
@@ -80,6 +81,9 @@ function signOut() {
 
 // grab a snapshot of the database for manipulation
 database.on("value", function(snapshot) {
+
+  // store User Object for global use
+  userObject = snapshot.child('users/' + UID).val();
 
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
@@ -148,109 +152,109 @@ database.on("value", function(snapshot) {
       $("#phoneNumberEntry").hide();
       $("#carrierDropdown").hide();
     }
-  }
-
-
-  // every 30 seconds query affected zip codes
-  setInterval(usersToAlert, 1000*60*1);
-
-
-  // put all the functions together to alert the correct User
-  function usersToAlert() {
-    console.log('here we go...');
-
-    buildAffectedZipCodes();
-
-    setTimeout(function(){ 
-      notifyToday();
-      // notifyTomorrow();
-
-    }, 3000);
-      
-    clearHailArrays();
-  };
-
-
-  // loop through zip codes in database
-  function buildAffectedZipCodes() {
-    console.log('building affected zipcodes...');
-    for (var i = 0; i < localZipArray.length; i++) {
-      alertWeather(localZipArray[i]);
-    }
-  }
-
-
-  // ajax request for 16 day weather data and affected Zipcode push
-  function alertWeather(zipCode) {
-    console.log('getting weather api data...');
-    // API KEY
-    var appID = "e121ab8dfa2534c63c98a9bb1c039bda";
-    var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
-
-    $.ajax({
-      url: forecast,
-      type: 'GET', 
-    })
-    .done(function(data) {
-      var todayHail = data.list[0].weather[0].id;
-      var dayTwoHail = data.list[1].weather[0].id;
-
-      if (todayHail !== 906) {
-        todayHailArray.push(zipCode);
-      } 
-
-      if (dayTwoHail !== 906) {
-        dayTwoHailArray.push(zipCode);
-      } 
-    })
-  }
-
-
-  function notifyToday() {
-    for (var i = 0; i < localUIDs.length; i++) {
-      alertEmail(todayHailArray, localUIDs[i], 'today');
-    }
-  }
-
-
-  function notifyTomorrow() {
-    for (var j = 0; j < localUIDs.length; j++) {
-      alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-    }
-  }
-
-
-  // alert users based off of affected arrays
-  function alertEmail(hailArray, UID, day) {
-    console.log('checking for users to alert');
-
-    var userObject = snapshot.child('users/' + UID).val();
-    var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
-    var workZip = snapshot.child('users/' + UID + '/workZip').val();
-    var user = snapshot.child('users/' + UID + '/displayName').val();
-
-    for (var i = 0; i < hailArray.length; i++) {
-      if (homeZip === hailArray[i]) {
-
-        console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
-        runCommEngine(userObject, day, 'home');
-      } 
-
-      if (workZip === hailArray[i]) {
-
-        console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
-        runCommEngine(userObject, day, 'work');
-      } 
-    }
-  }
-
-  // this one should be obvious
-  function clearHailArrays() {
-    todayHailArray = [];
-    dayTwoHailArray = [];
-  }
-
+  }  
 })
+
+
+// every 60 seconds check for Users to alert
+setInterval(usersToAlert, 1000*60*1);
+
+
+// put all the functions together to alert the correct User
+function usersToAlert() {
+  console.log('here we go...');
+
+  buildAffectedZipCodes();
+
+  setTimeout(function(){ 
+    notifyToday();
+    // notifyTomorrow();
+
+  }, 3000);
+    
+  clearHailArrays();
+};
+
+
+// loop through zip codes in database
+function buildAffectedZipCodes() {
+  console.log('building affected zipcodes...');
+  for (var i = 0; i < localZipArray.length; i++) {
+    alertWeather(localZipArray[i]);
+  }
+}
+
+
+// ajax request for 16 day weather data and affected Zipcode push
+function alertWeather(zipCode) {
+  console.log('getting weather api data...');
+  // API KEY
+  var appID = "e121ab8dfa2534c63c98a9bb1c039bda";
+  var forecast = "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zipCode + "&APPID=" + appID;
+
+  $.ajax({
+    url: forecast,
+    type: 'GET', 
+  })
+  .done(function(data) {
+    var todayHail = data.list[0].weather[0].id;
+    var dayTwoHail = data.list[1].weather[0].id;
+
+    if (todayHail !== 906) {
+      todayHailArray.push(zipCode);
+    } 
+
+    if (dayTwoHail !== 906) {
+      dayTwoHailArray.push(zipCode);
+    } 
+  })
+}
+
+
+function notifyToday() {
+  for (var i = 0; i < localUIDs.length; i++) {
+    alertEmail(todayHailArray, localUIDs[i], 'today');
+  }
+}
+
+
+function notifyTomorrow() {
+  for (var j = 0; j < localUIDs.length; j++) {
+    alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+  }
+}
+
+
+// alert users based off of affected arrays
+function alertEmail(hailArray, UID, day) {
+  console.log('checking for users to alert');
+
+  // var userObject = snapshot.child('users/' + UID).val();
+  var homeZip = snapshot.child('users/' + UID + '/homeZip').val();
+  var workZip = snapshot.child('users/' + UID + '/workZip').val();
+  var user = snapshot.child('users/' + UID + '/displayName').val();
+
+  for (var i = 0; i < hailArray.length; i++) {
+    if (homeZip === hailArray[i]) {
+
+      console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
+      runCommEngine(userObject, day, 'home');
+    } 
+
+    if (workZip === hailArray[i]) {
+
+      console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
+      runCommEngine(userObject, day, 'work');
+    } 
+  }
+}
+
+
+// this one should be obvious
+function clearHailArrays() {
+  todayHailArray = [];
+  dayTwoHailArray = [];
+}
 
 
 // hide or show phone number input fields based off of sms toggle
