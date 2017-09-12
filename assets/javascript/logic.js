@@ -164,13 +164,9 @@ database.on("value", function(snapshot) {
 
     buildAffectedZipCodes();
 
-    for (var i = 0; i < localUIDs.length; i++) {
-      alertEmail(todayHailArray, localUIDs[i], 'today');
-    }
+    notifyToday();
 
-    for (var j = 0; j < localUIDs.length; j++) {
-      alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-    }
+    notifyTomorrow();  
 
     clearHailArrays();
   };
@@ -181,10 +177,6 @@ database.on("value", function(snapshot) {
     console.log('building affected zipcodes...');
     for (var i = 0; i < localZipArray.length; i++) {
       alertWeather(localZipArray[i]);
-
-      setTimeout(function(){ 
-        console.log("giving Ajax a chance to catch up"); 
-      }, 2000);
     }
   }
 
@@ -212,6 +204,20 @@ database.on("value", function(snapshot) {
         dayTwoHailArray.push(zipCode);
       } 
     })
+  }
+
+
+  function notifyToday() {
+    for (var i = 0; i < localUIDs.length; i++) {
+      alertEmail(todayHailArray, localUIDs[i], 'today');
+    }
+  }
+
+
+  function notifyTomorrow() {
+    for (var j = 0; j < localUIDs.length; j++) {
+      alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+    }
   }
 
 
