@@ -439,12 +439,12 @@ function runCommEngine(userObject, forecast, affectedZip) {
     if (momentNow - lastEmailDate > 118 || lastEmailDate === "") {
         //sendEmailComm(userObject, emailTemplate, affectedZip);
         console.log("Sent email");
-        updateUserData(userUID, 'lastEmail', momentNow);
+        // updateUserData(userUID, 'lastEmail', momentNow);
     }
     if (momentNow - lastSMSDate > 118 || lastSMSDate === "") {
         //sendSMSComm(userObject, smsTemplate, affectedZip);
         console.log("Sent sms");
-        updateUserData(userUID, 'lastSMS', momentNow);
+        // updateUserData(userUID, 'lastSMS', momentNow);
     }
 };
 
