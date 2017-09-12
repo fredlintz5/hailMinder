@@ -333,7 +333,6 @@ $('#updateButton').click(function() {
     $('#homeZip').css('border-color', '#ccc');
     $('#workZip').css('border-color', '#ccc');
   }
-
 });
 
 
@@ -430,12 +429,12 @@ function runCommEngine(userObject, forecast, affectedZip) {
         affectedZip = userObject.workZip
     } else {console.log("invalid affected zip code passed into runCommEngine")}
 
-    if (momentNow - lastEmailDate > 118 || lastEmailDate === "") {
+    if (momentNow - lastEmailDate > 10000 || lastEmailDate === "" && userObject.emailNotification === 'true') {
         //sendEmailComm(userObject, emailTemplate, affectedZip);
         console.log("Sent email");
         // updateUserData(userUID, 'lastEmail', momentNow);
     }
-    if (momentNow - lastSMSDate > 118 || lastSMSDate === "") {
+    if (momentNow - lastSMSDate > 10000 || lastSMSDate === "" && userObject.smsNotification === 'true') {
         //sendSMSComm(userObject, smsTemplate, affectedZip);
         console.log("Sent sms");
         // updateUserData(userUID, 'lastSMS', momentNow);
