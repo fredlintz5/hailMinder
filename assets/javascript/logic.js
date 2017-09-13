@@ -125,16 +125,16 @@ database.on("value", function(snapshot) {
 
 
     // set carrier choice from database to 'select' correct carrier on page
-    if (snapshot.child('users/' + uid + '/carrier').val() === "att") {
+    if (snapshot.child('users/' + uid + '/carrier').val() === "AT&T") {
       $('#att').prop('selected', true);
 
-    } else if (snapshot.child('users/' + uid + '/carrier').val() === "sprint") {
+    } else if (snapshot.child('users/' + uid + '/carrier').val() === "Sprint") {
       $('#sprint').prop('selected', true);
 
-    } else if (snapshot.child('users/' + uid + '/carrier').val() === "tmobile") {
+    } else if (snapshot.child('users/' + uid + '/carrier').val() === "t-mobile") {
       $('#tmobile').prop('selected', true);
 
-    } else if (snapshot.child('users/' + uid + '/carrier').val() === "verizon") {
+    } else if (snapshot.child('users/' + uid + '/carrier').val() === "Verizon") {
       $('#verizon').prop('selected', true);
     }
 
