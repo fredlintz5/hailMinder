@@ -152,8 +152,8 @@ database.on("value", function(snapshot) {
       $("#phoneNumberEntry").hide();
       $("#carrierDropdown").hide();
     }
-  //} else {
-    //modal me bro
+  } else {
+      $('#welcomeModal').modal('toggle');
   }
 })
 
