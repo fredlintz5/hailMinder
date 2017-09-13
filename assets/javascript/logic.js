@@ -172,10 +172,10 @@ function usersToAlert() {
     alertEmail(todayHailArray, localUIDs[i], 'today');
   }
 
-  // notify Tomorrow
-  for (var j = 0; j < localUIDs.length; j++) {
-    alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-  }
+  // // notify Tomorrow
+  // for (var j = 0; j < localUIDs.length; j++) {
+  //   alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+  // }
     
   clearHailArrays();
 };
@@ -220,10 +220,10 @@ function alertWeather(zipCode) {
 function alertEmail(hailArray, UID, day) {
   console.log('checking for users to alert');
 
-  var userObject = dataSnapshot.uid;
-  var homeZip = dataSnapshot.uid.homeZip;
-  var workZip = dataSnapshot.uid.workZip;
-  var displayName = dataSnapshot.uid.displayName;
+  var userObject = dataSnapshot.UID;
+  var homeZip = dataSnapshot.UID.homeZip;
+  var workZip = dataSnapshot.UID.workZip;
+  var displayName = dataSnapshot.UID.displayName;
 
   for (var i = 0; i < hailArray.length; i++) {
     if (homeZip === hailArray[i]) {
