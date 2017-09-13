@@ -174,11 +174,11 @@ function usersToAlert() {
     alertEmail(todayHailArray, localUIDs[i], 'today');
   }
 
-
-  // notify Tomorrow
-  for (var j = 0; j < localUIDs.length; j++) {
-    alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-  }
+  // // notify Tomorrow
+  // for (var j = 0; j < localUIDs.length; j++) {
+  //   alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+  // }
+  
   clearHailArrays();
 };
 
