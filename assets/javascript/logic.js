@@ -152,7 +152,10 @@ database.on("value", function(snapshot) {
       $("#phoneNumberEntry").hide();
       $("#carrierDropdown").hide();
     }
-  }  
+  } else {
+    //modal me bro
+    alert('first time user');
+  }
 })
 
 
@@ -175,7 +178,7 @@ function usersToAlert() {
   for (var j = 0; j < localUIDs.length; j++) {
     alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
   }
-    
+
   clearHailArrays();
 };
 
