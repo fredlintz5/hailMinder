@@ -42,7 +42,7 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
     if (userObject.emailNotification) {
       if (momentNow - lastEmailDate > 118 || lastEmailDate === "") {
-        sendEmailComm(userObject, emailTemplate, affectedZip);
+        // sendEmailComm(userObject, emailTemplate, affectedZip);
         console.log("Sent email");
         updateUserData(userUID, 'lastEmail', momentNow);
       }
@@ -50,9 +50,9 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
     if (userObject.smsNotification) {
       if (momentNow - lastSMSDate > 118 || lastSMSDate === "") {
-          sendSMSComm(userObject, smsTemplate, affectedZip);
-          console.log("Sent sms");
-          updateUserData(userUID, 'lastSMS', momentNow);
+        // sendSMSComm(userObject, smsTemplate, affectedZip);
+        console.log("Sent sms");
+        updateUserData(userUID, 'lastSMS', momentNow);
       }
     }
 };
@@ -60,7 +60,7 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
 //Send Email Comm
 function sendEmailComm(uid, emailTemplate, affectedZip) {
-    console.log("uid is" + uid);
+    console.log("uid is", uid);
     emailjs.send("sendgrid", emailTemplate, { email: uid.email, name: uid.displayName, to_name: uid.displayName, from_name: "HailMinder", zip: affectedZip})
         .then(function (response) {
             console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
