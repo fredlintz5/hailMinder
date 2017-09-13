@@ -75,19 +75,19 @@ function sendSMSComm(uid, smsTemplate, affectedZip) {
     let smsDomain;
     let smsEmail;
     switch (uid.carrier) {
-        case "verizon":
+        case "Verizon":
             smsDomain = "@vtext.com";
             smsEmail = uid.phoneNumber + smsDomain;
             break;
-        case "sprint":
+        case "Sprint":
             smsDomain = "@messaging.sprintpcs.com";
             smsEmail = uid.phoneNumber + smsDomain;
             break;
-        case "att":
+        case "AT&T":
             smsDomain = "@txt.att.net";
             smsEmail = uid.phoneNumber + smsDomain;
             break;
-        case "tmobile":
+        case "t-mobile":
             smsDomain = "@tmomail.net";
             smsEmail = uid.phoneNumber + smsDomain;
             break;
