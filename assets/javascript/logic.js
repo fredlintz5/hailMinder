@@ -217,16 +217,14 @@ function alertWeather(zipCode) {
   })
 }
 
-
 // alert users based off of affected arrays
 function alertEmail(hailArray, UID, day) {
   console.log('checking for users to alert');
 
-  var noQuotesUid = UID.replace(/^"|"$/g, '');
-  var userObject = dataSnapshot.noQuotesUid;
-  var homeZip = dataSnapshot.noQuotesUid.homeZip;
-  var workZip = dataSnapshot.noQuotesUid.workZip;
-  var displayName = dataSnapshot.noQuotesUid.displayName;
+  var userObject = dataSnapshot[UID];
+  var homeZip = userObject.homeZip;
+  var workZip = userObject.workZip;
+  var displayName = userObject.displayName;
 
   for (var i = 0; i < hailArray.length; i++) {
     if (homeZip === hailArray[i]) {
