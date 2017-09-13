@@ -112,7 +112,7 @@ chris.homeZip = 80223;
 chris.smsNotification = true;
 chris.workZip = 80401;
 chris.carrier = "verizon";
-chris.lastEmailDate = "";
-chris.lastSMSDate = "";
+chris.lastEmail = "";
+chris.lastSMS = "";
 
 */

@@ -178,7 +178,7 @@ function usersToAlert() {
   // for (var j = 0; j < localUIDs.length; j++) {
   //   alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
   // }
-  
+
   clearHailArrays();
 };
 
