@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <!--Responsive Mobile Meta Tag-->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>HailMinder</title>
+<head>
+  <!--Meta-->
+  <meta charset="UTF-8">
+  <meta name="description" content="30 second trivia game">
+  <meta name="author" content="Fred Lintz, Ash Rotman, Liz Misoudi, Christopher Atkinson">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/favicon.ico">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
@@ -27,11 +29,10 @@
     firebase.initializeApp(config);
   </script>
 
-	<!-- Firebase Web Auth UI -->
+  <!-- Firebase Web Auth UI -->
   <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
   <script type="text/javascript">
-
     // FirebaseUI config.
     var uiConfig = {
       signInSuccessUrl: 'loggedIn.html',
@@ -49,13 +50,13 @@
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
-
   </script>
 
+  <title>HailMinder</title>
 </head>
-<body>
 
-	<div class="container-fluid" id='indexContainer'>
+<body>
+  <div class="container-fluid" id='indexContainer'>
     <div class="jumbotron text-white text-center">
       <img src="assets/images/whiteLogo.png" id="login-logo">
       <p>Sign up to get hail alerts for your location</p>
@@ -65,8 +66,5 @@
   </div>
 
 </body>
+
 </html>
-
-<!-- 359 x 69 -->
-
-
