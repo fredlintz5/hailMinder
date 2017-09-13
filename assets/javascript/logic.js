@@ -220,10 +220,11 @@ function alertWeather(zipCode) {
 function alertEmail(hailArray, UID, day) {
   console.log('checking for users to alert');
 
-  var userObject = dataSnapshot.UID;
-  var homeZip = dataSnapshot.UID.homeZip;
-  var workZip = dataSnapshot.UID.workZip;
-  var displayName = dataSnapshot.UID.displayName;
+  var noQuotesUid = UID.replace(/[‘“]+/g, ‘’);
+  var userObject = dataSnapshot.noQuotesUid;
+  var homeZip = dataSnapshot.noQuotesUid.homeZip;
+  var workZip = dataSnapshot.noQuotesUid.workZip;
+  var displayName = dataSnapshot.noQuotesUid.displayName;
 
   for (var i = 0; i < hailArray.length; i++) {
     if (homeZip === hailArray[i]) {
