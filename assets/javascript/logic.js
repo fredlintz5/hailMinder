@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 var database = firebase.database().ref();
 var localZipArray = [];
 var localUIDs = [];
-var userObject;
+var dataSnapshot;
 
 // alertWeather function variables
 var todayHailArray = [];
@@ -82,8 +82,9 @@ function signOut() {
 // grab a snapshot of the database for manipulation
 database.on("value", function(snapshot) {
 
-  // store User Object for global use
-  userObject = snapshot.child('users/' + uid).val();
+  // store snapshot for global use
+  dataSnapshot = snapshot.child('users').val();
+  console.log(dataSnapshot);
 
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
@@ -152,9 +153,8 @@ database.on("value", function(snapshot) {
       $("#phoneNumberEntry").hide();
       $("#carrierDropdown").hide();
     }
-  } else {
+  //} else {
     //modal me bro
-    alert('first time user');
   }
 })
 
@@ -174,11 +174,11 @@ function usersToAlert() {
     alertEmail(todayHailArray, localUIDs[i], 'today');
   }
 
+
   // notify Tomorrow
   for (var j = 0; j < localUIDs.length; j++) {
     alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
   }
-
   clearHailArrays();
 };
 
@@ -222,21 +222,22 @@ function alertWeather(zipCode) {
 function alertEmail(hailArray, UID, day) {
   console.log('checking for users to alert');
 
-  // var userObject = snapshot.child('users/' + UID).val();
-  var homeZip = userObject.homeZip;
-  var workZip = userObject.workZip;
-  var user = userObject.displayName;
+  var noQuotesUid = UID.replace(/^"|"$/g, '');
+  var userObject = dataSnapshot.noQuotesUid;
+  var homeZip = dataSnapshot.noQuotesUid.homeZip;
+  var workZip = dataSnapshot.noQuotesUid.workZip;
+  var displayName = dataSnapshot.noQuotesUid.displayName;
 
   for (var i = 0; i < hailArray.length; i++) {
     if (homeZip === hailArray[i]) {
 
-      console.log('Notify ' + user + ' of Hail Storms at his Home Zip for ' + day);
+      console.log('Notify ' + displayName + ' of Hail Storms at his Home Zip for ' + day);
       runCommEngine(userObject, day, 'home');
     } 
 
     if (workZip === hailArray[i]) {
 
-      console.log('Notify ' + user + ' of Hail Storms at his Work Zip for ' + day);
+      console.log('Notify ' + displayName + ' of Hail Storms at his Work Zip for ' + day);
       runCommEngine(userObject, day, 'work');
     } 
   }
