@@ -166,19 +166,15 @@ function usersToAlert() {
 
   buildAffectedZipCodes();
 
-  setTimeout(function(){ 
-    console.log('giving the AJAX request room to run...')
-  }, 3000);
-
   // notify Today
   for (var i = 0; i < localUIDs.length; i++) {
     alertEmail(todayHailArray, localUIDs[i], 'today');
   }
 
-  // // notify Tomorrow
-  // for (var j = 0; j < localUIDs.length; j++) {
-  //   alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
-  // }
+  // notify Tomorrow
+  for (var j = 0; j < localUIDs.length; j++) {
+    alertEmail(dayTwoHailArray, localUIDs[j], 'tomorrow');
+  }
     
   clearHailArrays();
 };
