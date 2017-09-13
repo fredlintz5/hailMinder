@@ -84,7 +84,6 @@ database.on("value", function(snapshot) {
 
   // store snapshot for global use
   dataSnapshot = snapshot.child('users').val();
-  console.log(dataSnapshot);
 
   // set local Zip Array equal to database if it exists already 
   if (snapshot.child('userZips').exists()) {
