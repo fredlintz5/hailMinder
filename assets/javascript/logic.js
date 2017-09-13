@@ -220,7 +220,7 @@ function alertWeather(zipCode) {
 function alertEmail(hailArray, UID, day) {
   console.log('checking for users to alert');
 
-  var noQuotesUid = UID.replace(/[‘“]+/g, ‘’);
+  var noQuotesUid = UID.replace(/^"|"$/g, '');
   var userObject = dataSnapshot.noQuotesUid;
   var homeZip = dataSnapshot.noQuotesUid.homeZip;
   var workZip = dataSnapshot.noQuotesUid.workZip;
