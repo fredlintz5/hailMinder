@@ -348,7 +348,7 @@ function removeAccount(){
 
 //  open modal which gives user a prompt to confirm delete account
 $('#deleteModal').click(function(event) {
-      $('#confirmModal').modal('toggle');
+    $('#confirmModal').modal('toggle');
 });
 
 

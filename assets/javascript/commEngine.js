@@ -41,7 +41,7 @@ function runCommEngine(userObject, forecast, affectedZip) {
     } else {console.log("invalid affected zip code passed into runCommEngine")}
 
     if (userObject.emailNotification) {
-      if (momentNow - lastEmailDate > 118 || lastEmailDate === "") {
+      if (momentNow - lastEmailDate > 298 || lastEmailDate === "") {
         // sendEmailComm(userObject, emailTemplate, affectedZip);
         console.log("Sent email");
         updateUserData(userUID, 'lastEmail', momentNow);
@@ -49,7 +49,7 @@ function runCommEngine(userObject, forecast, affectedZip) {
     }
 
     if (userObject.smsNotification) {
-      if (momentNow - lastSMSDate > 118 || lastSMSDate === "") {
+      if (momentNow - lastSMSDate > 298 || lastSMSDate === "") {
         // sendSMSComm(userObject, smsTemplate, affectedZip);
         console.log("Sent sms");
         updateUserData(userUID, 'lastSMS', momentNow);
