@@ -42,7 +42,7 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
     if (userObject.emailNotification) {
       if (momentNow - lastEmailDate > 298 || lastEmailDate === "") {
-        sendEmailComm(userObject, emailTemplate, affectedZip);
+        // sendEmailComm(userObject, emailTemplate, affectedZip);
         console.log("Sent email");
         updateUserData(userUID, 'lastEmail', momentNow);
       }
@@ -50,7 +50,7 @@ function runCommEngine(userObject, forecast, affectedZip) {
 
     if (userObject.smsNotification) {
       if (momentNow - lastSMSDate > 298 || lastSMSDate === "") {
-        sendSMSComm(userObject, smsTemplate, affectedZip);
+        // sendSMSComm(userObject, smsTemplate, affectedZip);
         console.log("Sent sms");
         updateUserData(userUID, 'lastSMS', momentNow);
       }
