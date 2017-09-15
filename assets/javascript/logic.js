@@ -206,11 +206,11 @@ function alertWeather(zipCode) {
     var todayHail = data.list[0].weather[0].id;
     var dayTwoHail = data.list[1].weather[0].id;
 
-    if (todayHail !== 906) {
+    if (todayHail === 906) {
       todayHailArray.push(zipCode);
     } 
 
-    if (dayTwoHail !== 906) {
+    if (dayTwoHail === 906) {
       dayTwoHailArray.push(zipCode);
     } 
   })
