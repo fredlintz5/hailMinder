@@ -2,7 +2,7 @@
 > WebApp to alert users of active or pending Hail Storms in ther specified locations. 
 
 
-![](../multiLogo.png)
+![](../images/multiLogo.png)
 
 
 <!-- ## Usage example
@@ -15,10 +15,10 @@ _For more examples and usage, please refer to the [Wiki][wiki]._ -->
 
 ## Authors
 
-Fred Lintz - (https://github.com/fredlintz5)
-Liz Masoudi - (https://github.com/LizMasoudi)
-Ash Rotman - (https://github.com/AshRotman)
-Chris Atkinson - (https://github.com/catkinson19)
+- Fred Lintz - (https://github.com/fredlintz5)
+- Liz Masoudi - (https://github.com/LizMasoudi)
+- Ash Rotman - (https://github.com/AshRotman)
+- Chris Atkinson - (https://github.com/catkinson19)
 
 
 ## Contributing
