@@ -2,7 +2,7 @@
 > WebApp to alert users of active or pending Hail Storms in ther specified locations. 
 
 
-![](../images/multiLogo.png)
+![](..assets/images/multiLogoBlackBackground.png)
 
 
 <!-- ## Usage example
