@@ -1,7 +1,8 @@
 # hailMinder
 > WebApp to alert users of active or pending Hail Storms in ther specified locations. 
 
-![](assets/images/multiLogoBlackBackground.png)
+
+![](assets/images/multiLogoGreyBackground.png)
 
 
 <!-- ## Usage example
